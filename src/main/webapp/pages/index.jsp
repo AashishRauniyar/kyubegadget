@@ -1,258 +1,123 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page import="com.kyubegadget.controller.dao.ProductDao"%>
+<%@ page import="com.kyubegadget.model.ProductModel"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Home page</title>
-<link href="../styles/output.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <link href="../styles/output.css" rel="stylesheet">
+    <style>
+        /* Modal */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 9999; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% 200px; /* auto rakhamla na vaye 10% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+            height: 80%; /* Set the height to 80% of the modal */
+            position: relative;
+            overflow: auto; /* Enable scroll if content exceeds modal size */
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Adjustments for iframe */
+        .modal-content iframe {
+            width: 100%; /* Make iframe fill the modal content */
+            height: 100%; /* Make iframe fill the modal content */
+            border: none; /* Remove iframe border */
+        }
+    </style>
 </head>
 <body>
-	
-	<%@ include file="navbar.jsp"%>
 
-	<!-- ✅ Grid Section - Starts Here 👇 -->
-	<section id="Projects"
-		class="mx-auto mb-5 mt-10 grid w-fit grid-cols-1 justify-center justify-items-center gap-x-14 gap-y-20 md:grid-cols-2 lg:grid-cols-3">
+<%@ include file="navbar.jsp"%>
 
+<!--  Grid Section - Starts Here  -->
+<section id="Projects"
+         class="mx-auto mb-5 mt-10 grid w-fit grid-cols-1 justify-center justify-items-center gap-x-14 gap-y-20 md:grid-cols-2 lg:grid-cols-3">
+    <%
+        ProductDao productDao = new ProductDao();
+        List<ProductModel> products = productDao.getAllProducts();
+        for (ProductModel product : products) {
+    %>
 
-		<!--   ✅ Product card 1 - Starts Here 👇 -->
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="https://www.bhphotovideo.com/images/images2500x2500/apple_mgyj3am_a_airpods_max_silver_1610234.jpg"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">APPLE</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Airpods</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<!--   🛑 Product card 1 - Ends Here  -->
+    <div class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
+        <!-- Open the modal with the productId when clicked -->
+        <a href="javascript:void(0)" onclick="showModal('<%= product.getProductId() %>')">
+            <!-- Your product display content here -->
+            <img src="../<%= product.getImageUrl() %>" alt="<%= product.getProductName() %>"
+                 class="h-80 w-72 rounded-t-xl object-cover"/>
+            <div class="w-72 px-4 py-3">
+                <span class="mr-3 text-xs uppercase text-gray-400"><%= product.getProductBrand() %></span>
+                <p class="block truncate text-lg font-bold capitalize text-black"><%= product.getProductName() %></p>
+                <div class="flex items-center">
+                    <p class="my-3 cursor-auto text-lg font-semibold text-black">$<%= product.getPrice() %></p>
+                    <div class="ml-auto">
+                        <button class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    <% } %>
+</section>
 
-		<!--   ✅ Product card 2 - Starts Here 👇 -->
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="./insideProduct.jsp"> <img
-				src="https://choicemandu.com/image/cache/catalog/iphone/iwatch-1000x1000.jpg"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Apple</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Watch
-						Ultra</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$200</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$250</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<!--   🛑 Product card 2- Ends Here  -->
-
-		<!--   ✅ Product card 3 - Starts Here 👇 -->
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="https://images.unsplash.com/photo-1651950537598-373e4358d320?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MjV8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Brand</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Product
-						Name</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<!--   🛑 Product card 3 - Ends Here  -->
-
-		<!--   ✅ Product card 4 - Starts Here 👇 -->
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="https://images.unsplash.com/photo-1651950540805-b7c71869e689?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwcm9maWxlLXBhZ2V8Mjl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Brand</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Product
-						Name</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<!--   🛑 Product card 4 - Ends Here  -->
-
-		<!--   ✅ Product card 5 - Starts Here 👇 -->
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="https://sony.scene7.com/is/image/sonyglobalsolutions/og-2?$categorypdpnav$&fmt=png-alpha"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Brand</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Product
-						Name</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<!--   🛑 Product card 5 - Ends Here  -->
-
-		<!--   ✅ Product card 6 - Starts Here 👇 -->
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-card-40-iphone15prohero-202309_FMT_WHH?wid=508&hei=472&fmt=p-jpg&qlt=95&.v=1693086369818"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Brand</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Product
-						Name</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<!--   🛑 Product card 6 - Ends Here  -->
-
-		<!-- product 7,8,9 start -->
-
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-card-40-iphone15prohero-202309_FMT_WHH?wid=508&hei=472&fmt=p-jpg&qlt=95&.v=1693086369818"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Brand</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Product
-						Name</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-card-40-iphone15prohero-202309_FMT_WHH?wid=508&hei=472&fmt=p-jpg&qlt=95&.v=1693086369818"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Brand</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Product
-						Name</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<div
-			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
-			<a href="#"> <img
-				src="../images/one5.jpeg"
-				alt="Product" class="h-80 w-72 rounded-t-xl object-cover" />
-				<div class="w-72 px-4 py-3">
-					<span class="mr-3 text-xs uppercase text-gray-400">Brand</span>
-					<p class="block truncate text-lg font-bold capitalize text-black">Product
-						Name</p>
-					<div class="flex items-center">
-						<p class="my-3 cursor-auto text-lg font-semibold text-black">$149</p>
-						<del>
-							<p class="ml-2 cursor-auto text-sm text-gray-600">$199</p>
-						</del>
-						<div class="ml-auto">
-							<button
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
-								to Cart</button>
-						</div>
-					</div>
-				</div>
-			</a>
-		</div>
-		<!-- Product 7,8,9 end -->
-
-	</section>
-
-	<!-- 🛑 Grid Section - Ends Here -->
-
+<!--  Grid Section - Ends Here -->
 
 <%@ include file="footer.jsp"%>
 
+<!-- The modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" onclick="hideModal()">&times;</span>
+        <!-- The iframe to load insideProduct.jsp -->
+        <iframe id="modalFrame" class="modal-frame" frameborder="0"></iframe>
+    </div>
+</div>
+
+<!-- JavaScript to show/hide modal -->
+<script>
+    function showModal(productId) {
+        // Set the src attribute of the iframe to insideProduct.jsp with the productId as a parameter
+        document.getElementById('modalFrame').src = 'insideProduct.jsp?id=' + productId;
+        // Display the modal
+        document.getElementById('myModal').style.display = 'block';
+    }
+
+    function hideModal() {
+        // Hide the modal
+        document.getElementById('myModal').style.display = 'none';
+    }
+</script>
 
 </body>
 </html>

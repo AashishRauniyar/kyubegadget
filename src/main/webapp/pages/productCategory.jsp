@@ -16,7 +16,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Add Category</title>
 <link href="../styles/output.css" rel="stylesheet">
 </head>
 <body>

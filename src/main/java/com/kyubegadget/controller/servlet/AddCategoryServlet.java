@@ -45,11 +45,12 @@ public class AddCategoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 		String categoryName = request.getParameter("categoryName");
 		
 		
-		ProductCategoryModel productCategoryModel = new ProductCategoryModel(categoryName);
-		
+	
+		ProductCategoryModel productCategoryModel = new ProductCategoryModel( categoryName);
 		
 		int result = categoryDao.addCategory(productCategoryModel);
 		

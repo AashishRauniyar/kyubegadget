@@ -51,4 +51,25 @@ public class StringUtils {
  	
  	public static final String SUCCESS_ADD_CATEGORY = "Category added Successfully Registered!";
  	public static final String ADD_CATEGORY_ERROR_MESSAGE = "category cannot be added";
+ 	
+ 	
+ 	
+ 	
+ 	//product
+ 	public static final String PRODUCT_ADDED_MESSAGE = "product added successfully";
+ 	public static final String ADD_PRODUCT_ERROR_MESSAGE = "product not added error";
+ 	
+ 	
+ 	public static final String productName = "productName";
+ 	public static final String productBrand = "productBrand";
+ 	public static final String price = "price";
+ 	public static final String productDescription = "productDescription";
+ 	public static final String imageUrl = "imageUrl";
+ 	public static final String productCategoryId = "productCategoryId";
+ 	public static final String stock = "stock";
+ 	
+ 	
+ 	public static final String ADD_PRODUCT = "/pages/addProduct.jsp";
+
+ 	
 }

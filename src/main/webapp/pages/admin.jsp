@@ -73,7 +73,7 @@
                                 d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
                         </svg> <span class="ms-3 flex-1 whitespace-nowrap">Orders</span>
                 </a></li>
-                <li><a href="#"
+                <li><a href="./logout.jsp"
                     class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                         <svg
                             class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
@@ -158,7 +158,9 @@
                 <!-- Add more rows here -->
             </tbody>
         </table>
-        <button > <a href="./productCategory.jsp">Add Category </button></a> 
+        <button class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " > <a href="./productCategory.jsp">Add Category </button></a> 
+		<button class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " > <a href="./addProduct.jsp">Add Product </button></a> 
+        
     </div>
 
 </body>

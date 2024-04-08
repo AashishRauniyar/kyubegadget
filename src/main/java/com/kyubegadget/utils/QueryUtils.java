@@ -25,7 +25,8 @@ public class QueryUtils {
 
 	public static final String GET_DETAILS_BYUSERNAME = "SELECT * FROM Users WHERE userName = ?";
 	
-	public static final String GET_LOGIN_ADMIN_INFOS = "SELECT password FROM Users WHERE userType = 1";
+	public static final String GET_LOGIN_ADMIN_INFOS = "SELECT userType FROM users WHERE userName = ? AND password = ?";
+
 	
 	
 	// profile update 
@@ -42,6 +43,22 @@ public class QueryUtils {
 	//product category
 	
 	public static final String ADD_CATEGORY = "INSERT INTO productCategory (categoryName)  values (?)";
-    public static final String GET_ALL_CATEGORIES = "SELECT categoryName from productCategory";
+	
+	//old
+//    public static final String GET_ALL_CATEGORIES = "SELECT categoryName from productCategory";
     
+    
+    //new
+    public static final String GET_ALL_CATEGORIES = "SELECT productCategoryId,categoryName from productCategory";
+
+    
+    
+    // for product
+    
+    public static final String ADD_PRODUCT = "INSERT product (productName, productBrand, price, productDescription, imageUrl, productCategoryId, stock) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    
+    public static final String GET_ALL_PRODUCTS = "SELECT * from product";
+    
+    
+    public static final String GET_PRODUCT_BY_ID = "SELECT * FROM product WHERE productId = ?";
 }

@@ -16,6 +16,7 @@ public class UserModel {
     private LocalDate dob;
     private String gender;
     private String address;
+    private String userType;
     
     
     
@@ -41,6 +42,39 @@ public class UserModel {
 	
 	
 	
+	
+	
+	
+	
+	public UserModel( String userName, String firstName, String lastName, String email, String phoneNumber,
+			String password, LocalDate dob, String gender, String address, String userType) {
+		super();
+		this.userName = userName;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.password = password;
+		this.dob = dob;
+		this.gender = gender;
+		this.address = address;
+		this.userType = userType;
+	}
+
+
+
+	public String getUserType() {
+		return userType;
+	}
+
+
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
+
+
+
 	public String getUserName() {
 		return userName;
 	}

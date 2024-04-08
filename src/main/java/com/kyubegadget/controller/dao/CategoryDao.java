@@ -44,7 +44,8 @@ public class CategoryDao {
 
 	        while (resultSet.next()) {
 	            ProductCategoryModel category = new ProductCategoryModel();
-	            
+	            //checking
+	            category.setProductCategoryId(resultSet.getInt("productCategoryId")); // Set the productCategoryId
 	            category.setCategoryName(resultSet.getString("categoryName"));
 	            categories.add(category);
 	        }
@@ -57,6 +58,8 @@ public class CategoryDao {
 	    }
 	    return categories;
 	}
+	
+
 
 
            

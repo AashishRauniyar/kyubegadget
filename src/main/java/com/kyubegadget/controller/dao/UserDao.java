@@ -92,26 +92,57 @@ public class UserDao {
 	
 	
 	
-	//paxi garamla
+	//paxi garamla old ho yo
+//	public int getAdminLoginInfo(String userName, String password) {
+// 		try (Connection conn = DatabaseController.getConn()) {
+// 			PreparedStatement ps = conn.prepareStatement(QueryUtils.GET_LOGIN_ADMIN_INFOS);
+// 			ps.setString(1, userName);
+// 			ps.setString(2, password);
+// 			ResultSet rs = ps.executeQuery();
+//
+// 			if (rs.next()) {
+// 				// User name and password match in the database
+// 				return 1;
+// 			} else {
+// 				// No matching record found
+// 				return 0;
+// 			}
+// 		} catch (SQLException | ClassNotFoundException ex) {
+// 			ex.printStackTrace(); // Log the exception for debugging
+// 			return -1;
+//
+// 		}
+// 	}
+	
+	//new code
+	
 	public int getAdminLoginInfo(String userName, String password) {
- 		try (Connection conn = DatabaseController.getConn()) {
- 			PreparedStatement ps = conn.prepareStatement(QueryUtils.GET_LOGIN_ADMIN_INFOS);
- 			ps.setString(1, userName);
- 			ps.setString(2, password);
- 			ResultSet rs = ps.executeQuery();
+	    try (Connection conn = DatabaseController.getConn()) {
+	        PreparedStatement ps = conn.prepareStatement(QueryUtils.GET_LOGIN_ADMIN_INFOS);
+	        ps.setString(1, userName);
+	        ps.setString(2, password);
+	        ResultSet rs = ps.executeQuery();
 
- 			if (rs.next()) {
- 				// User name and password match in the database
- 				return 1;
- 			} else {
- 				// No matching record found
- 				return 0;
- 			}
- 		} catch (SQLException | ClassNotFoundException ex) {
- 			ex.printStackTrace(); // Log the exception for debugging
- 			return -1;
+	        if (rs.next()) {
+	            int userType = rs.getInt("userType");
+	            if (userType == 1) {
+	                // User is an admin
+	                return 1;
+	            } else {
+	                // User is not an admin
+	                return 0;
+	            }
+	        } else {
+	            // No matching record found
+	            return -1;
+	        }
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace(); // Log the exception for debugging
+	        return -1;
+	    }
+	}
 
- 		}
- 	}
+	
+	
 
 }

@@ -7,8 +7,17 @@ public class ProductCategoryModel {
 	public String categoryName;
 	
 	
-	public ProductCategoryModel() {
+	public ProductCategoryModel(int productCategoryId, String categoryName) {
+		this.productCategoryId = productCategoryId;
+		this.categoryName = categoryName;
 		
+	}
+	
+	
+	
+
+
+	public ProductCategoryModel() {
 		
 	}
 	
@@ -21,9 +30,17 @@ public class ProductCategoryModel {
 		return productCategoryId;
 	}
 
+	
+	
+	
+
 	public void setProductCategoryId(int productCategoryId) {
 		this.productCategoryId = productCategoryId;
 	}
+
+
+
+
 
 	public String getCategoryName() {
 		return categoryName;
