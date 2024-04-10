@@ -141,6 +141,52 @@ public class UserDao {
 	        return -1;
 	    }
 	}
+	
+	// username already exists
+		public boolean isUsernameExists(String userName) {
+		    try (Connection conn = DatabaseController.getConn()) {
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE userName = ?");
+				ps.setString(1, userName);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					return true; // Username exists
+				}
+			} catch (SQLException | ClassNotFoundException ex) {
+				ex.printStackTrace(); // Handle or log the exception properly
+			}
+			return false; // Username does not exist
+		}
+
+//	        isEmailExists
+		public boolean isEmailExists(String email) {
+		    try (Connection conn = DatabaseController.getConn()) {
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE email = ?");
+				ps.setString(1, email);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					return true;
+				}
+			} catch (SQLException | ClassNotFoundException ex) {
+				ex.printStackTrace();
+			}
+			return false;
+		}
+
+		// isPhoneNumberExists
+		public boolean isPhoneNumberExists(String phoneNumber) {
+		    try (Connection conn = DatabaseController.getConn()) {
+				PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE phoneNumber = ?");
+				ps.setString(1, phoneNumber);
+				ResultSet rs = ps.executeQuery();
+				if (rs.next()) {
+					return true;
+				}
+			} catch (SQLException | ClassNotFoundException ex) {
+				ex.printStackTrace();
+			}
+			return false;
+		}
+
 
 	
 	
