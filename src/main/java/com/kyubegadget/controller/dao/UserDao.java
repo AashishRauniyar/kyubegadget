@@ -186,6 +186,20 @@ public class UserDao {
 			}
 			return false;
 		}
+		
+		// delect user
+		public static boolean deleteUser(String userName) {
+			boolean success = false;
+			try (Connection conn = DatabaseController.getConn()) {
+				PreparedStatement ps = conn.prepareStatement(QueryUtils.DELETE_USER);
+				ps.setString(1, userName);
+				int rowsDeleted = ps.executeUpdate();
+				success = rowsDeleted > 0;
+			} catch (SQLException | ClassNotFoundException ex) {
+				ex.printStackTrace();
+			}
+			return success;
+		}
 
 
 	
