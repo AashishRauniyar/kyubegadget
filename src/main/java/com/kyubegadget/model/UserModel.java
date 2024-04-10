@@ -154,8 +154,8 @@ public class UserModel {
 
 
 	public void setAddress(String address) {
-		this.address = address;
-	}
+        this.address = address;
+    }
 	
 	
 	

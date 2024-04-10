@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kyubegadget.controller.dao.ProfileDao;
 import com.kyubegadget.model.UserModel;
+import com.kyubegadget.utils.StringUtils;
 
 
 /**
@@ -59,7 +60,7 @@ public class EditProfileServlet extends HttpServlet {
         if (result > 0) {
             // Profile update successful
             // Redirect back to profile page with a success message
-            response.sendRedirect(request.getContextPath() + "/jsp/profile.jsp?success=1");
+            response.sendRedirect(request.getContextPath() + StringUtils.PROFILE_PAGE);
         } else {
             // Profile update failed
             // Redirect back to profile page with an error message

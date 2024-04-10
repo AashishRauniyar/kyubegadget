@@ -73,6 +73,10 @@ public class StringUtils {
 
  	
  	
+ 	//profile
+ 	
+ 	public static final String PROFILE_PAGE = "/pages/profile.jsp";
+ 	
  	
 
  	

@@ -9,6 +9,21 @@
 </head>
 <body>
 
+<%
+    // Retrieve the existing session variable
+    javax.servlet.http.HttpSession existingSession = request.getSession(false);
+
+    // Check if session exists and if the role is "admin"
+    if (existingSession == null || existingSession.getAttribute("role") == null || !existingSession.getAttribute("role").equals("admin")) {
+        // If not admin, redirect to index page
+        response.sendRedirect(request.getContextPath() +"/pages/index.jsp");
+    } else {
+        // Admin is authenticated, allow access to admin panel
+
+        // Your HTML content for admin panel goes here
+
+        %>
+
 
     <button data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar" aria-controls="default-sidebar"
@@ -178,3 +193,6 @@
     });
 </script>
 </html>
+ <%
+    }
+%>

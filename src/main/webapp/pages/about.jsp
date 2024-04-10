@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@ include file="navbar.jsp"%>
-<h1>this is a about us ok dude</h1>
+<h1 class="text-4xl mt-10">this is a about us ok dude</h1>
 <%@ include file="footer.jsp"%>
 </body>
 </html>
