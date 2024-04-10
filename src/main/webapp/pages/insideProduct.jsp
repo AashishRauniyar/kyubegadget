@@ -9,7 +9,9 @@
     <title>Inside Product</title>
     <link href="../styles/output.css" rel="stylesheet">
 </head>
+
 <body>
+<%@ include file="navbar.jsp"%>
     <div class="container mx-auto py-8">
         <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
             <% 
@@ -22,7 +24,7 @@
             %>
             <div class="flex">
                 <div class="w-1/2">
-                    <img src="../<%= product.getImageUrl() %>" alt="<%= product.getImageUrl() %>" class="w-full">
+                    <img src="../images/<%= product.getImageUrl() %>" alt="<%= product.getImageUrl() %>" class="w-full">
                 </div>
                 <div class="w-1/2 p-8">
                     <h2 class="text-gray-700 font-bold uppercase"><%= product.getProductBrand() %></h2>
@@ -48,5 +50,7 @@
             <% } %>
         </div>
     </div>
+    <%@ include file="footer.jsp"%>
 </body>
+
 </html>

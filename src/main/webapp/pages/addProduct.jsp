@@ -23,6 +23,10 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 <link href="../styles/output.css" rel="stylesheet">
 </head>
 <body>
+
+
+
+
 <div class="bg-white border border-4 rounded-lg shadow relative m-10">
 
     <div class="flex items-start justify-between p-5 border-b rounded-t">
@@ -35,7 +39,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
     </div>
 
     <div class="p-6 space-y-6">
-        <form action="../AddProductServlet" method="post">
+        <form action="../AddProductServlet" method="post" enctype="multipart/form-data">
             <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
                     <label for="product-name" class="text-sm font-medium text-gray-900 block mb-2">Product Name</label>
@@ -68,10 +72,16 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
                     <label for="price" class="text-sm font-medium text-gray-900 block mb-2">Price</label>
                     <input type="number" name="price" id="price" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="2300" required="">
                 </div>
-                <div class="col-span-6 sm:col-span-3">
+                <!-- <div class="col-span-6 sm:col-span-3">
                     <label for="image-url" class="text-sm font-medium text-gray-900 block mb-2">Image URL</label>
                     <input type="text" name="imageUrl" id="image-url" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Image URL" required="">
-                </div>
+                </div> -->
+                <!-- yeta maile image add grna try grdaixu -->
+                <div class="col-span-6 sm:col-span-3">
+                        <label for="image-file" class="text-sm font-medium text-gray-900 block mb-2">Image Upload</label>
+                        <input type="file" name="imageUrl" id="image-file" accept="image/*" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" required="">
+                    </div>
+                
                 <div class="col-span-6 sm:col-span-3">
                     <label for="stock" class="text-sm font-medium text-gray-900 block mb-2">Stock</label>
                     <input type="text" name="stock" id="stock" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="enter quantity" required="">
