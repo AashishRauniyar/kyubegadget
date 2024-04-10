@@ -206,6 +206,7 @@ body {
                 <th scope="row">Email</th>
                 <td><input type="text" name="email" value="<%= userModel != null ? userModel.getEmail() : "" %>"></td>
             </tr>
+            
             <tr>
                 <th scope="row">Address</th>
                 <td><input type="text" name="address" value="<%= userModel != null ? userModel.getAddress(): "" %>"></td>

@@ -17,16 +17,15 @@ public class ProfileDao {
 	 public int updateUserProfile(UserModel userModel) {
 	        try (Connection conn = DatabaseController.getConn()) {
 	            // Update data in the users table
-	            String updateUserQuery = "UPDATE users SET firstName=?, lastName=?, email=?, phoneNumber=?, gender=?, address=? WHERE userName=?";
+	            String updateUserQuery = "UPDATE users SET firstName=?, lastName=?, email=?, phoneNumber=?,  address=? WHERE userName=?";
 	            PreparedStatement userStatement = conn.prepareStatement(updateUserQuery, Statement.RETURN_GENERATED_KEYS);
 
 	            userStatement.setString(1, userModel.getFirstName());
 	            userStatement.setString(2, userModel.getLastName());
 	            userStatement.setString(3, userModel.getEmail());
 	            userStatement.setString(4, userModel.getPhoneNumber());
-	            userStatement.setString(5, userModel.getGender());
-	            userStatement.setString(6, userModel.getAddress());
-	            userStatement.setString(7, userModel.getUserName());
+	            userStatement.setString(5, userModel.getAddress());
+	            userStatement.setString(6, userModel.getUserName());
 	            
 	            
 
