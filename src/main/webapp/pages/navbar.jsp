@@ -22,7 +22,8 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../styles/output.css" rel="stylesheet">
+<!--  <link href="../styles/output.css" rel="stylesheet">  -->
+<link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet">
 </head>
 <body>
 
@@ -40,7 +41,22 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
             </svg>
 			</div>
 			<div class="flex items-center">
-				<input type="text"
+			
+			<!-- Search form -->
+<form action="<%= request.getContextPath() %>/SearchProductServlet" method="GET">
+<div class="flex items-center rounded-full overflow-hidden border border-none">
+
+
+
+    <input type="text" name="query" class="h-[40px] border border-b-gray-200 pl-4 rounded-l-full" placeholder="Search">
+    <button type="submit" class="h-[40px] border border-b-gray-200 rounded-r-full hover:bg-slate-200 hover:border-indigo-700">
+        <img src="https://www.pngall.com/wp-content/uploads/13/Search-Button-Black-PNG-Cutout.png" alt="" class="h-[40px] mx-2">
+    </button>
+    </div>
+</form>
+			
+			
+				<!-- <input type="text"
 					class="h-[40px] border border-b-gray-200 pl-4 rounded-s-full"
 					placeholder="Search">
 				<div
@@ -48,7 +64,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 					<img
 						src="https://www.pngall.com/wp-content/uploads/13/Search-Button-Black-PNG-Cutout.png"
 						alt="" class="h-[40px] p-3">
-				</div>
+				</div> -->
 
 				<%
 				if (userName1 != null) {
@@ -68,7 +84,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 						</a>
 					</div>
 					<div class="">
-						<a href="./profile.jsp"
+						<a href="<%= request.getContextPath() %>/pages/profile.jsp"
 							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24"
@@ -87,7 +103,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 
 				<div class="flex items-center mr-4">
 					<div class="">
-						<a href="./register.jsp"
+						<a href="<%= request.getContextPath() %>/pages/register.jsp"
 							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24"
@@ -99,7 +115,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 						</a>
 					</div>
 					<div class="">
-						<a href="./login.jsp"
+						<a href="<%= request.getContextPath() %>/pages/login.jsp"
 							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24"
@@ -118,7 +134,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 
 
 				<div class="">
-					<a href="./cart.jsp"
+					<a href="<%= request.getContextPath() %>/pages/cart.jsp"
 						class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							viewBox="0 0 24 24"
@@ -141,11 +157,11 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 						Gadget</a>
 					<!-- Navigation Links -->
 					<div class="hidden md:block">
-						<a href="./index.jsp"
+						<a href="<%= request.getContextPath() %>/pages/index.jsp"
 							class="my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">Home</a>
-						<a href="./about.jsp"
+						<a href="<%= request.getContextPath() %>/pages/about.jsp"
 							class="my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">About</a>
-						<a href="#"
+						<a href="<%= request.getContextPath() %>/pages/contact.jsp"
 							class="my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">Contact
 							Us</a>
 						

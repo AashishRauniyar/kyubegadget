@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../styles/output.css" rel="stylesheet">
+<!--  <link href="../styles/output.css" rel="stylesheet">  -->
+<link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet">
 </head>
 <body>
 <div class="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 ">

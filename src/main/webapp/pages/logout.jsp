@@ -6,11 +6,22 @@
     <title>Logout Confirmation</title>
 </head>
 <body>
-<%@ include file="navbar.jsp"%>
+<%-- <%@ include file="navbar.jsp"%>
     <h2>Are you sure you want to logout?</h2>
     <form action="../LogoutServlet" method="GET">
         <button type="submit">Logout</button>
     </form>
-<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp"%> --%>
+
+
+<%
+	
+    session.invalidate();
+%>
+
+<script>
+    // Clear browser history
+    window.location.replace('<%= request.getContextPath() %>/pages/index.jsp');
+</script>
 </body>
 </html>

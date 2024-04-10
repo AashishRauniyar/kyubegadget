@@ -72,4 +72,12 @@ public class StringUtils {
  	public static final String ADD_PRODUCT = "/pages/addProduct.jsp";
 
  	
+ 	
+ 	//profile
+ 	
+ 	public static final String PROFILE_PAGE = "/pages/profile.jsp";
+ 	
+ 	
+
+ 	
 }
