@@ -85,7 +85,7 @@ public class RegisterServlet extends HttpServlet {
 
 		if (result > 0) {
 			HttpSession session = request.getSession();
-			session.setAttribute(StringUtils.userName, userName);
+//			session.setAttribute(StringUtils.userName, userName);
 			session.setAttribute(StringUtils.firstName, firstName);
 			session.setAttribute(StringUtils.lastName, lastName);
 			session.setAttribute(StringUtils.email, email);

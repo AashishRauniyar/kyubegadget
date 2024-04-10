@@ -15,7 +15,7 @@
 
 
 <%
-	session.setAttribute("userName","");
+	
     session.invalidate();
 %>
 
