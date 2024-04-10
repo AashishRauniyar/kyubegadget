@@ -90,4 +90,42 @@ public class ProductDao {
         return product;
     }
     // You can add other methods related to product CRUD operations here
+    
+    
+    
+    //search product
+    public List<ProductModel> searchProductsByName(String productName) {
+        List<ProductModel> products = new ArrayList<>();
+        try (Connection conn = DatabaseController.getConn()) {
+            // Define your SQL query to search for products by name
+            String searchQuery = "SELECT * FROM product WHERE productName LIKE ?";
+            
+            // Create the PreparedStatement with the query
+            PreparedStatement statement = conn.prepareStatement(searchQuery);
+            
+            // Set the search parameter
+            statement.setString(1,  productName + "%");
+            
+            // Execute the query
+            ResultSet resultSet = statement.executeQuery();
+
+            // Iterate through the result set and create ProductModel objects
+            while (resultSet.next()) {
+                ProductModel product = new ProductModel();
+                product.setProductId(resultSet.getInt("productId"));
+                product.setProductName(resultSet.getString("productName"));
+                product.setProductBrand(resultSet.getString("productBrand"));
+                product.setPrice(resultSet.getDouble("price"));
+                product.setProductDescription(resultSet.getString("productDescription"));
+                product.setImageUrl(resultSet.getString("imageUrl"));
+                product.setProductCategoryId(resultSet.getInt("productCategoryId"));
+                product.setStock(resultSet.getInt("stock"));
+                products.add(product);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return products;
+    }
+
 }

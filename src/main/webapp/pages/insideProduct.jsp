@@ -7,7 +7,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Inside Product</title>
-    <link href="../styles/output.css" rel="stylesheet">
+    <!-- <link href="../styles/output.css" rel="stylesheet">  -->
+    <link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet"> 
 </head>
 
 <body>
@@ -24,7 +25,7 @@
             %>
             <div class="flex">
                 <div class="w-1/2">
-                    <img src="../images/<%= product.getImageUrl() %>" alt="<%= product.getImageUrl() %>" class="w-full">
+                    <img src="<%= request.getContextPath() %>/images/<%= product.getImageUrl() %>" alt="<%= product.getImageUrl() %>" class="w-full">
                 </div>
                 <div class="w-1/2 p-8">
                     <h2 class="text-gray-700 font-bold uppercase"><%= product.getProductBrand() %></h2>
