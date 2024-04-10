@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+
 import com.kyubegadget.controller.dao.UserDao;
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.UserModel;
@@ -75,6 +76,82 @@ public class RegisterServlet extends HttpServlet {
 	    System.out.println("Date of Birth: " + dob);
 	    System.out.println("Gender: " + gender);
 	    System.out.println("Address: " + address);
+	    
+	    
+	 // Validation for empty fields
+	 		if (firstName.isEmpty() || lastName.isEmpty() || userName.isEmpty() || dobString.isEmpty() || gender.isEmpty()
+	 				|| email.isEmpty() || phoneNumber.isEmpty() || address.isEmpty() || password.isEmpty()
+	 				|| (rePassword != null && rePassword.isEmpty())) {
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=empty");
+	 			redirectToRegistrationPage(request, response, "Please fill all the fields.");
+	 			return; // Return from the method to stop further execution
+	 		}
+
+	 		// Validation for name format
+	 		if (!isValidName(firstName) || !isValidName(lastName)) {
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=name");
+	 			redirectToRegistrationPage(request, response, "Invalid first name or last name format.");
+	 			return;
+	 		}
+
+	 		// Validation for username format
+	 		if (!isValidUsername(userName)) {
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=username");
+	 			redirectToRegistrationPage(request, response, "Invalid username format.");
+	 			return;
+	 		}
+
+	 		// 3. Birthday Date Restriction
+	 		if (dob.isAfter(LocalDate.now())) {
+	 			// Redirect to the registration page with an error message
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=dob");
+	 			redirectToRegistrationPage(request, response, "Invalid date of birth.");
+	 			return;
+	 		}
+
+	 		// Validation for email format
+	 		if (!email.contains("@") || !email.contains(".")) {
+//	 			response.sendRedirect(request.getContextPath() + "/Register.jsp?error=email");
+	 			redirectToRegistrationPage(request, response, "Invalid email format.");
+
+	 			return;
+	 		}
+
+	 		// Validation for phonenumber format
+	 		if (!isValidPhoneNumber(phoneNumber)) {
+//	 			response.sendRedirect(request.getContextPath() + "/Register.jsp?error=phonenumber");
+	 			redirectToRegistrationPage(request, response, "Invalid phone number format.");
+	 			return;
+	 		}
+
+	 		// Check if the phone number already exists in the database
+	 		if (ud.isPhoneNumberExists(phoneNumber)) {
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=phone_exists");
+	 			redirectToRegistrationPage(request, response, "Phone number already exists.");
+	 			return;
+	 		}
+
+	 		// Check if the email already exists in the database
+	 		if (ud.isEmailExists(email)) {
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=email_exists");
+	 			redirectToRegistrationPage(request, response, "Email already exists.");
+	 			return;
+	 		}
+
+	 		// Check if the username already exists in the database
+	 		if (ud.isUsernameExists(userName)) {
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=username_exists");
+	 			redirectToRegistrationPage(request, response, "Username already exists.");
+	 			return;
+	 		}
+
+	 		// Password complexity and match validation
+	 		if (!isValidPassword(password, rePassword)) {
+//	             response.sendRedirect(request.getContextPath() + "/Register.jsp?error=password");
+	 			redirectToRegistrationPage(request, response, "Invalid password format or passwords don't match.");
+	 			return;
+	 		}
+
 	   
 
 	    UserModel userModel = new UserModel(userName, firstName, lastName, email, phoneNumber, hashedPassword, dob,
@@ -101,6 +178,48 @@ public class RegisterServlet extends HttpServlet {
 			System.out.println("An unexpected server error occurred. ");
 		}
 	}
+	
+
+	// Helper methods for validations
+		private boolean isValidName(String name) {
+			// Implement name validation logic
+			return !name.matches(".*\\d.*") && !name.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
+		}
+
+	//private boolean isValidUsername(String username) {
+//	    // Implement username validation logic
+//	    return username.length() > 6 && !username.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
+	//}
+
+		private boolean isValidUsername(String username) {
+			// Implement username validation logic
+			return username.length() > 6 && !username.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*")
+					&& username.matches(".*[a-zA-Z0-9].*");
+		}
+
+		private void redirectToRegistrationPage(HttpServletRequest request, HttpServletResponse response,
+				String errorMessage) throws ServletException, IOException {
+			request.setAttribute(StringUtils.ERROR_MESSAGE, errorMessage);
+			request.getRequestDispatcher(StringUtils.REGISTER_PAGE).forward(request, response);
+		}
+
+		private boolean isValidPassword(String password, String repassword) {
+			// Implement password validation logic
+			return password.length() > 6 && // Checks if password length is greater than 6
+					password.matches(".*\\d.*") && // Checks if password contains at least one digit
+					password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*") && // Checks if password contains
+																							// at least one special
+																							// character
+					password.matches(".*[A-Z].*") && // Checks if password contains at least one uppercase letter
+					password.equals(repassword); // Checks if password matches the re-entered password
+		}
+
+	//phone number validation
+		private boolean isValidPhoneNumber(String phoneNumber) {
+			// Implement phone number validation logic
+			return phoneNumber.startsWith("+") && phoneNumber.length() == 14;
+		}
+
 	    
 
 }
