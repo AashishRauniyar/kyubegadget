@@ -86,27 +86,6 @@ public class UserDao {
 		}
 	}
 
-	// paxi garamla old ho yo
-//	public int getAdminLoginInfo(String userName, String password) {
-// 		try (Connection conn = DatabaseController.getConn()) {
-// 			PreparedStatement ps = conn.prepareStatement(QueryUtils.GET_LOGIN_ADMIN_INFOS);
-// 			ps.setString(1, userName);
-// 			ps.setString(2, password);
-// 			ResultSet rs = ps.executeQuery();
-//
-// 			if (rs.next()) {
-// 				// User name and password match in the database
-// 				return 1;
-// 			} else {
-// 				// No matching record found
-// 				return 0;
-// 			}
-// 		} catch (SQLException | ClassNotFoundException ex) {
-// 			ex.printStackTrace(); // Log the exception for debugging
-// 			return -1;
-//
-// 		}
-// 	}
 
 	// new code
 
@@ -136,50 +115,41 @@ public class UserDao {
 		}
 	}
 	
-	// username already exists
-		public boolean isUsernameExists(String userName) {
-		    try (Connection conn = DatabaseController.getConn()) {
-				PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE userName = ?");
-				ps.setString(1, userName);
-				ResultSet rs = ps.executeQuery();
-				if (rs.next()) {
-					return true; // Username exists
-				}
-			} catch (SQLException | ClassNotFoundException ex) {
-				ex.printStackTrace(); // Handle or log the exception properly
-			}
-			return false; // Username does not exist
-		}
+	 public boolean isUsernameExists(String userName) {
+	        try (Connection conn = DatabaseController.getConn()) {
+	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE userName = ?");
+	            ps.setString(1, userName);
+	            ResultSet rs = ps.executeQuery();
+	            return rs.next(); // true if username exists, false otherwise
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            ex.printStackTrace(); // Handle or log the exception properly
+	            return false;
+	        }
+	    }
 
-//	        isEmailExists
-		public boolean isEmailExists(String email) {
-		    try (Connection conn = DatabaseController.getConn()) {
-				PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE email = ?");
-				ps.setString(1, email);
-				ResultSet rs = ps.executeQuery();
-				if (rs.next()) {
-					return true;
-				}
-			} catch (SQLException | ClassNotFoundException ex) {
-				ex.printStackTrace();
-			}
-			return false;
-		}
+	    public boolean isEmailExists(String email) {
+	        try (Connection conn = DatabaseController.getConn()) {
+	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE email = ?");
+	            ps.setString(1, email);
+	            ResultSet rs = ps.executeQuery();
+	            return rs.next(); // true if email exists, false otherwise
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            ex.printStackTrace();
+	            return false;
+	        }
+	    }
 
-		// isPhoneNumberExists
-		public boolean isPhoneNumberExists(String phoneNumber) {
-		    try (Connection conn = DatabaseController.getConn()) {
-				PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE phoneNumber = ?");
-				ps.setString(1, phoneNumber);
-				ResultSet rs = ps.executeQuery();
-				if (rs.next()) {
-					return true;
-				}
-			} catch (SQLException | ClassNotFoundException ex) {
-				ex.printStackTrace();
-			}
-			return false;
-		}
+	    public boolean isPhoneNumberExists(String phoneNumber) {
+	        try (Connection conn = DatabaseController.getConn()) {
+	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE phoneNumber = ?");
+	            ps.setString(1, phoneNumber);
+	            ResultSet rs = ps.executeQuery();
+	            return rs.next(); // true if phone number exists, false otherwise
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            ex.printStackTrace();
+	            return false;
+	        }
+	    }
 		
 		// delect user
 		public static boolean deleteUser(String userName) {
@@ -196,49 +166,6 @@ public class UserDao {
 		}
 
 
-	// username already exists
-	public boolean isUsernameExists(String userName) {
-		try (Connection conn = DatabaseController.getConn()) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE userName = ?");
-			ps.setString(1, userName);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return true; // Username exists
-			}
-		} catch (SQLException | ClassNotFoundException ex) {
-			ex.printStackTrace(); // Handle or log the exception properly
-		}
-		return false; // Username does not exist
-	}
 
-//	        isEmailExists
-	public boolean isEmailExists(String email) {
-		try (Connection conn = DatabaseController.getConn()) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE email = ?");
-			ps.setString(1, email);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return true;
-			}
-		} catch (SQLException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		return false;
-	}
-
-	// isPhoneNumberExists
-	public boolean isPhoneNumberExists(String phoneNumber) {
-		try (Connection conn = DatabaseController.getConn()) {
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE phoneNumber = ?");
-			ps.setString(1, phoneNumber);
-			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				return true;
-			}
-		} catch (SQLException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		return false;
-	}
 
 }
