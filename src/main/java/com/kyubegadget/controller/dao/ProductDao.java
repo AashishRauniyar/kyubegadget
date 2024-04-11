@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.ProductModel;
@@ -128,6 +130,55 @@ public class ProductDao {
         }
         return products;
     }
+    
+    //// Retrieve cart items from session
+   // List<Map<String, Object>> cartItems = (List<Map<String, Object>>) session.getAttribute("cartItems");
+    
+	// Add product to cart
+	public void addProductToCart(ProductModel product, int quantity, List<Map<String, Object>> cartItems) {
+		Map<String, Object> cartItem = new HashMap<>();
+		cartItem.put("product", product);
+		cartItem.put("quantity", quantity);
+		cartItems.add(cartItem);
+	}
+
+	// Remove product from cart
+	public void removeProductFromCart(ProductModel product, List<Map<String, Object>> cartItems) {
+		for (Map<String, Object> cartItem : cartItems) {
+			ProductModel cartProduct = (ProductModel) cartItem.get("product");
+			if (cartProduct.getProductId() == product.getProductId()) {
+				cartItems.remove(cartItem);
+				break;
+			}
+		}
+	}
+
+	// Update product quantity in cart
+	public void updateProductQuantityInCart(ProductModel product, int quantity, List<Map<String, Object>> cartItems) {
+		for (Map<String, Object> cartItem : cartItems) {
+			ProductModel cartProduct = (ProductModel) cartItem.get("product");
+			if (cartProduct.getProductId() == product.getProductId()) {
+				cartItem.put("quantity", quantity);
+				break;
+			}
+		}
+	}
+
+	// Clear cart
+	public void clearCart(List<Map<String, Object>> cartItems) {
+		cartItems.clear();
+	}
+
+	// Calculate total price of items in cart
+	public double calculateTotalPrice(List<Map<String, Object>> cartItems) {
+		double totalPrice = 0.0;
+		for (Map<String, Object> cartItem : cartItems) {
+			ProductModel product = (ProductModel) cartItem.get("product");
+			int quantity = (int) cartItem.get("quantity");
+			totalPrice += product.getPrice() * quantity;
+		}
+		return totalPrice;
+	}
 
 
 }

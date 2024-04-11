@@ -103,6 +103,7 @@
 
             for (ProductModel product : products) {
         %>
+        <form action="../AddToCartServlet" method="post">
         <div class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
             <%-- <a href="insideProduct.jsp?id=<%= product.getProductId() %>"> --%>
             <a href="<%= request.getContextPath() %>/pages/insideProduct.jsp?id=<%= product.getProductId() %>">
@@ -115,12 +116,15 @@
                     <div class="flex items-center">
                         <p class="my-3 cursor-auto text-lg font-semibold text-black">$<%= product.getPrice() %></p>
                         <div class="ml-auto">
-                            <button class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add to Cart</button>
+                            <button class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add to Cart</button> 
+                           
+                            
                         </div>
                     </div>
                 </div>
             </a>
         </div>
+        </form>
         <% 
             }
         %>
