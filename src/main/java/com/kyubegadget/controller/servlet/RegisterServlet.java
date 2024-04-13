@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.kyubegadget.controller.dao.UserDao;
-import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.UserModel;
 import com.kyubegadget.utils.StringUtils;
 /**
