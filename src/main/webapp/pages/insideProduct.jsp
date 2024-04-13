@@ -19,7 +19,7 @@
                 // Retrieve the product ID from the request parameter
                 String productId = request.getParameter("id");
                 // Fetch the product details using the ID
-                ProductDao productDao = new ProductDao();
+                ProductDao productDao = new ProductDao(null);
                 ProductModel product = productDao.getProductById(productId);
                 if (product != null) { // Check if product exists
             %>

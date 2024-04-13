@@ -20,7 +20,7 @@ public class SearchProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	
-	 ProductDao productDao = new ProductDao();
+	 ProductDao productDao = new ProductDao(null);
     /**
      * @see HttpServlet#HttpServlet()
      */

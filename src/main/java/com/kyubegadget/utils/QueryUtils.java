@@ -64,4 +64,7 @@ public class QueryUtils {
     
     // delete user
     public static final String DELETE_USER = "DELETE FROM Users WHERE userName = ?";
+    
+    //Cart
+    public static final String GET_CART_PRODUCT = "SELECT * FROM product WHERE productId = ?";
 }
