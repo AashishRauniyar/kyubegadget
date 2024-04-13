@@ -16,14 +16,14 @@ String userName1 = (String) session.getAttribute("userName");
 // Fetch categories from the database or wherever they are stored
 CategoryDao categoryDao = new CategoryDao();
 List<ProductCategoryModel> categories = categoryDao.getAllCategories();
-
 %>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!--  <link href="../styles/output.css" rel="stylesheet">  -->
-<link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/styles/output.css"
+	rel="stylesheet">
 </head>
 <body>
 
@@ -41,21 +41,28 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
             </svg>
 			</div>
 			<div class="flex items-center">
-			
-			<!-- Search form -->
-<form action="<%= request.getContextPath() %>/SearchProductServlet" method="GET">
-<div class="flex items-center rounded-full overflow-hidden border border-none">
+
+				<!-- Search form -->
+				<form action="<%=request.getContextPath()%>/SearchProductServlet"
+					method="GET">
+					<div
+						class="flex items-center rounded-full overflow-hidden border border-none">
 
 
 
-    <input type="text" name="query" class="h-[40px] border border-b-gray-200 pl-4 rounded-l-full" placeholder="Search">
-    <button type="submit" class="h-[40px] border border-b-gray-200 rounded-r-full hover:bg-slate-200 hover:border-indigo-700">
-        <img src="https://www.pngall.com/wp-content/uploads/13/Search-Button-Black-PNG-Cutout.png" alt="" class="h-[40px] mx-2">
-    </button>
-    </div>
-</form>
-			
-			
+						<input type="text" name="query"
+							class="h-[40px] border border-b-gray-200 pl-4 rounded-l-full"
+							placeholder="Search">
+						<button type="submit"
+							class="h-[40px] border border-b-gray-200 rounded-r-full hover:bg-slate-200 hover:border-indigo-700">
+							<img
+								src="https://www.pngall.com/wp-content/uploads/13/Search-Button-Black-PNG-Cutout.png"
+								alt="" class="h-[40px] mx-2">
+						</button>
+					</div>
+				</form>
+
+
 				<!-- <input type="text"
 					class="h-[40px] border border-b-gray-200 pl-4 rounded-s-full"
 					placeholder="Search">
@@ -84,7 +91,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 						</a>
 					</div>
 					<div class="">
-						<a href="<%= request.getContextPath() %>/pages/profile.jsp"
+						<a href="<%=request.getContextPath()%>/pages/profile.jsp"
 							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24"
@@ -103,7 +110,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 
 				<div class="flex items-center mr-4">
 					<div class="">
-						<a href="<%= request.getContextPath() %>/pages/register.jsp"
+						<a href="<%=request.getContextPath()%>/pages/register.jsp"
 							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24"
@@ -115,7 +122,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 						</a>
 					</div>
 					<div class="">
-						<a href="<%= request.getContextPath() %>/pages/login.jsp"
+						<a href="<%=request.getContextPath()%>/pages/login.jsp"
 							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 								viewBox="0 0 24 24"
@@ -134,9 +141,11 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 
 
 				<div class="">
-					<a href="<%= request.getContextPath() %>/pages/cart.jsp"
+
+					<a href="<%=request.getContextPath()%>/pages/cart.jsp"
 						class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+						<span id="cart-counter" style="display: none; color: red;">0</span> <svg
+							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							viewBox="0 0 24 24"
 							style="fill: rgba(0, 0, 0, 1); transform:; msFilter:;">
                         <path
@@ -144,8 +153,10 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
                         <circle cx="10.5" cy="19.5" r="1.5"></circle>
                         <circle cx="17.5" cy="19.5" r="1.5"></circle>
                     </svg>
+
 						<p class="ml-2">Cart</p>
 					</a>
+
 				</div>
 			</div>
 		</div>
@@ -157,44 +168,47 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 						Gadget</a>
 					<!-- Navigation Links -->
 					<div class="hidden md:block">
-						<a href="<%= request.getContextPath() %>/pages/index.jsp"
+						<a href="<%=request.getContextPath()%>/pages/index.jsp"
 							class="my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">Home</a>
-						<a href="<%= request.getContextPath() %>/pages/about.jsp"
+						<a href="<%=request.getContextPath()%>/pages/about.jsp"
 							class="my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">About</a>
-						<a href="<%= request.getContextPath() %>/pages/contact.jsp"
+						<a href="<%=request.getContextPath()%>/pages/contact.jsp"
 							class="my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">Contact
 							Us</a>
-						
-						
+
+
 						<!-- Categories Dropdown -->
 						<div class="relative inline-block">
 							<button
 								class="dropdown-button my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500 focus:outline-none">Categories</button>
-							<div class="dropdown-menu absolute hidden z-10 left-0  mt-2 w-40 bg-white shadow-md rounded-md">
+							<div
+								class="dropdown-menu absolute hidden z-10 left-0  mt-2 w-40 bg-white shadow-md rounded-md">
 								<!-- Iterate over categories and dynamically generate dropdown items -->
-								
-									
-									<%
-								for(ProductCategoryModel pm: categories){
+
+
+								<%
+								for (ProductCategoryModel pm : categories) {
 								%>
-									
-										 
-										<a href="#"
-										class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-										
-										<%out.println(pm.getCategoryName());%>
-										
-										</a>
-									
+
+
+								<a href="#"
+									class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+
 									<%
-								}
+									out.println(pm.getCategoryName());
 									%>
-									
+
+								</a>
+
+								<%
+								}
+								%>
+
 								<ul>
-								
-								
+
+
 								</ul>
-								
+
 
 							</div>
 						</div>

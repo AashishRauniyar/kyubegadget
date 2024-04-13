@@ -59,5 +59,8 @@ public class StringUtils {
 
 	public static final String PROFILE_PAGE = "/pages/profile.jsp";
 	public static final String SUCCESS_MESSAGE = "successMessage";
+	
+	//cart
+	public static final String CART_PAGE = "/pages/cart.jsp";
 
 }

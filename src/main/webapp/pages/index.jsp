@@ -130,8 +130,8 @@
 							if (session.getAttribute("userName") != null) {
 							%>
 							<a
-								href="../AddToCartServlet?productId=<%=product.getProductId()%>"
-								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add
+								href="<%=request.getContextPath()%>/AddToCartServlet?productId=<%=product.getProductId()%>"
+								class="flex items-center text-sm text-white bg-gray-900 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded" onclick="addToCart()">Add
 								to Cart</a>
 
 							<%
@@ -164,4 +164,19 @@
 	<%@ include file="footer.jsp"%>
 
 </body>
+<script>
+function addToCart() {
+    // Add your logic to add the item to the cart here
+
+    // Increment the counter
+    var counterElement = document.getElementById('cart-counter');
+    var currentCount = parseInt(counterElement.innerText);
+    counterElement.innerText = currentCount + 1;
+    
+    if (currentCount === 0) {
+        counterElement.style.display = 'inline'; // Show the counter
+    }
+}
+
+</script>
 </html>
