@@ -82,7 +82,7 @@ try {
             <td><%= rs.getString("username") %></td>
             <td><%= rs.getString("address") %></td>
             <td><%= rs.getString("gender") %></td>
-            <td><%= rs.getInt("usertype") == 1 ? "Admin" : "User" %></td> <!-- Display user type as Admin or User -->
+            <td><%= rs.getInt("usertype") == 1 ? "Admin" : "User" %></td> 
         </tr>
 <%
     }

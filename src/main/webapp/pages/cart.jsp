@@ -30,18 +30,22 @@ if (cartList != null) {
 %>
 
 <%
-// Define tax rate and shipping charge
 double taxRate = 0.12; // 12%
-double shippingCharge = 20; // $20
+double shippingCharge = 0; // Default shipping charge
 
 // Initialize total variable
 double total = 0;
-if (productList != null) {
-	for (Cart item : productList) {
-		double totalPrice = item.getPrice() * item.getStock();
-		total += totalPrice; // Increment total by adding total price of each item
-	}
+if (productList != null && !productList.isEmpty()) {
+    // If the cart is not empty, calculate the total and apply shipping charge
+    for (Cart item : productList) {
+        double totalPrice = item.getPrice() * item.getStock();
+        total += totalPrice; // Increment total by adding total price of each item
+    }
+    shippingCharge = 20; // Set shipping charge to $20 if the cart is not empty
 }
+
+// Calculate the total price including tax and shipping
+double totalPriceWithTaxAndShipping = total + (total * taxRate) + shippingCharge;
 %>
 <!DOCTYPE html>
 <html>
@@ -62,11 +66,11 @@ body {
 	background-color: #f4f4f4;
 }
 
-.container {
+/* .container {
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 20px;
-}
+} */
 
 h1 {
 	text-align: center;
@@ -237,7 +241,7 @@ select option:checked {
 						%>
 				</select></td>
 				<td id="totalPrice_<%=item.getProductId()%>">$<%=totalPrice%></td>
-				<td><a href="remove-from-cart?id=<%=item.getProductId()%>"
+				<td><a href="<%=request.getContextPath()%>/remove-from-cart?productId=<%=item.getProductId()%>"
 					class="btn btn-sm btn-danger">Remove</a></td>
 			</tr>
 			<%
