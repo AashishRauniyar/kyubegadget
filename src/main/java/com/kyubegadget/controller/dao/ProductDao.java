@@ -22,6 +22,8 @@ public class ProductDao {
         this.conn = conn;
     }
 
+    
+    // this method is used in admin panel to add products
 	public int addProduct(ProductModel product) {
 		try (Connection conn = DatabaseController.getConn()) {
 			String addProductQuery = QueryUtils.ADD_PRODUCT;
@@ -43,7 +45,8 @@ public class ProductDao {
 		}
 	}
 
-	// get all product
+	
+	// get all product, used in index page to show product
 	public List<ProductModel> getAllProducts() {
 		List<ProductModel> products = new ArrayList<>();
 		try (Connection conn = DatabaseController.getConn()) {
@@ -69,6 +72,8 @@ public class ProductDao {
 		return products;
 	}
 
+	
+	
 	public ProductModel getProductById(String productId) {
 		ProductModel product = null;
 		try (Connection conn = DatabaseController.getConn()) {

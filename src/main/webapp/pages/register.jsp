@@ -66,6 +66,7 @@ body {
 </style>
 </head>
 <body>
+<%@ include file="navbar.jsp"%>
 
 	<div class="cont">
 
@@ -308,6 +309,6 @@ body {
     });
     </script>
 
-
+<%@ include file="footer.jsp"%>
 </body>
 </html>

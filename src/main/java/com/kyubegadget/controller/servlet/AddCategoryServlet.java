@@ -55,9 +55,7 @@ public class AddCategoryServlet extends HttpServlet {
 		int result = categoryDao.addCategory(productCategoryModel);
 		
 		if(result>0) {
-//			HttpSession session = request.getSession();
-//	        
-//	        session.setAttribute("categoryName", CategoryName);
+
 			
 			 List<ProductCategoryModel> categories = categoryDao.getAllCategories() ;
 
@@ -71,8 +69,7 @@ public class AddCategoryServlet extends HttpServlet {
                     + StringUtils.ERROR_MESSAGE + "=" + StringUtils.SUCCESS_ADD_CATEGORY);
 
 			
-			// yo kaam xaina hai
-//			 request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
+			
 		}else {
 	        // Redirect to register page with error message
 	        response.sendRedirect(request.getContextPath() + "/pages/productCategory.jsp" + "?" + StringUtils.ERROR_MESSAGE
