@@ -36,6 +36,8 @@ public class ProductModel {
 	}
 	
 	
+
+
 	public int getProductId() {
 		return productId;
 	}

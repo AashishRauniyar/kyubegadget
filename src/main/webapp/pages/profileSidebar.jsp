@@ -9,7 +9,7 @@
 </head>
 <style>
 .sidebar {
-	height: 100vh;
+	height: 80vh;
     width: 100%;
     background-color: #2c3e50;
     color: #fff;
@@ -60,8 +60,8 @@
     <div class="options">
         <ul>
             <li><a href="./profile.jsp" id="edit-profile">Edit Profile</a></li>
-            <li><a href="DeleteUser.jsp" id="delete-profile">Delete Account</a></li>
-            <li><a href="#">Customer Care</a></li>
+            <li><a href="./DeleteUser.jsp" id="delete-profile">Delete Account</a></li>
+            <li><a href="./CustomerCare.jsp">Customer Care</a></li>
             <li><a href="./logout.jsp">Logout</a></li>
             
         </ul>

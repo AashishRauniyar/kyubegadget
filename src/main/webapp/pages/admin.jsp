@@ -56,7 +56,7 @@
                         </svg> <span class="ms-3">Admin Panel</span>
                 </a></li>
 
-                <li><a href="#"
+                <li><a href="./UserList.jsp"
                     class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                         <svg
                             class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
