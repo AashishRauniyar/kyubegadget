@@ -37,6 +37,8 @@ public class AddToCartServlet extends HttpServlet {
             if (cartList == null) {
                 cartList = new ArrayList<>();
                 session.setAttribute("cartList", cartList);
+                //30 minutes
+                session.setMaxInactiveInterval(30 * 60);
             }
 
             boolean productExists = cartList.stream().anyMatch(c -> c.getProductId() == productId);

@@ -270,8 +270,8 @@ select option:checked {
 		<h3>
 			Total Price (including tax and shipping): $<span id="totalWithTax"><%=total + (total * taxRate) + shippingCharge%></span>
 		</h3>
-		<a href="<%=StringUtils.WELCOME_PAGE%>"  class="btn btn-primary">Continue Shopping</a> <a
-			href="#!" class="btn btn-primary">Proceed
+		<a href="<%=request.getContextPath()+StringUtils.WELCOME_PAGE%>"  class="btn btn-primary">Continue Shopping</a> <a
+			href="<%=request.getContextPath()%>/check-out" class="btn btn-primary">Proceed
 			to Checkout</a>
 	</div>
 

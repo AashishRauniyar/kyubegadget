@@ -164,6 +164,22 @@ public class ProductDao {
 	    }
 	    return product;
 	}
+	
+	
+
+    //Creating universal method to query for inserting or updating information in mysql database
+	public int insertOrUpdate(String query, Object... parameters) {
+		try (Connection conn = DatabaseController.getConn()) {
+			PreparedStatement statement = conn.prepareStatement(query);
+			for (int i = 0; i < parameters.length; i++) {
+				statement.setObject(i + 1, parameters[i]);
+			}
+			return statement.executeUpdate();
+		} catch (SQLException | ClassNotFoundException ex) {
+			ex.printStackTrace();
+			return -1;
+		}
+	}
 
 
 
