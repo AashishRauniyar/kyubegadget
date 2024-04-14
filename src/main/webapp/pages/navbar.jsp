@@ -144,7 +144,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 
 					<a href="<%=request.getContextPath()%>/pages/cart.jsp"
 						class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
-						<span id="cart-counter" style="display: none; color: red;">0</span> <svg
+						<span id="cart-counter" style=" color: red;">0</span> <svg
 							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 							viewBox="0 0 24 24"
 							style="fill: rgba(0, 0, 0, 1); transform:; msFilter:;">
