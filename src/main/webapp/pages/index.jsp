@@ -111,7 +111,7 @@
 			class="w-72 rounded-xl bg-white shadow-md duration-500 hover:scale-105 hover:shadow-xl">
 			<%-- <a href="insideProduct.jsp?id=<%= product.getProductId() %>"> --%>
 			<a
-				href="<%=request.getContextPath()%>/pages/insideProduct.jsp?id=<%=product.getProductId()%>"></a>
+				href="<%=request.getContextPath()%>/pages/insideProduct.jsp?id=<%=product.getProductId()%>">
 
 			<%-- <img src="../images/<%= product.getImageUrl() %>" alt="<%= product.getProductName() %>" class="h-80 w-72 rounded-t-xl object-cover" /> --%>
 			<img
@@ -152,7 +152,7 @@
 					</div>
 				</div>
 			</div>
-
+</a>
 		</div>
 		<!-- 		</form> -->
 		<%

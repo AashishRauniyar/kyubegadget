@@ -69,6 +69,18 @@ public class UserModel {
 
 
 
+	public int getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+
+
 	public void setUserType(String userType) {
 		this.userType = userType;
 	}

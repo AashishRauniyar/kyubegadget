@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.UserModel;
@@ -151,18 +153,54 @@ public class UserDao {
 	        }
 	    }
 		
-		// delect user
-		public static boolean deleteUser(String userName) {
-			boolean success = false;
-			try (Connection conn = DatabaseController.getConn()) {
-				PreparedStatement ps = conn.prepareStatement(QueryUtils.DELETE_USER);
-				ps.setString(1, userName);
-				int rowsDeleted = ps.executeUpdate();
-				success = rowsDeleted > 0;
-			} catch (SQLException | ClassNotFoundException ex) {
-				ex.printStackTrace();
-			}
-			return success;
+		
+		
+		
+		
+		public boolean deleteUserByUserName(String userName) {
+		    try (Connection conn = DatabaseController.getConn()) {
+		        String deleteQuery = QueryUtils.DELETE_USER;
+		        PreparedStatement pstmt = conn.prepareStatement(deleteQuery);
+		        pstmt.setString(1, userName);
+		        
+		        int rowsAffected = pstmt.executeUpdate();
+		        
+		        // If rowsAffected > 0, it means a user was deleted successfully
+		        return rowsAffected > 0;
+		    } catch (SQLException | ClassNotFoundException ex) {
+		        ex.printStackTrace();
+		        return false;
+		    }
+		}
+
+
+
+		
+		//method to get all users and put in in a array list
+		public List<UserModel> getAllUsers() {
+		    List<UserModel> users = new ArrayList<>();
+		    try (Connection conn = DatabaseController.getConn()) {
+		        String getAllUsersQuery = QueryUtils.GET_USER;
+		        PreparedStatement statement = conn.prepareStatement(getAllUsersQuery);
+		        ResultSet resultSet = statement.executeQuery();
+
+		        while (resultSet.next()) {
+		            UserModel user = new UserModel();
+		            user.setUserId(resultSet.getInt("userId"));
+		            user.setUserName(resultSet.getString("userName"));
+		            user.setFirstName(resultSet.getString("firstName"));
+		            user.setLastName(resultSet.getString("lastName"));
+		            user.setEmail(resultSet.getString("email"));
+		            user.setPhoneNumber(resultSet.getString("phoneNumber"));
+		            user.setDob(resultSet.getDate("dob").toLocalDate());
+		            user.setGender(resultSet.getString("gender"));
+		            user.setAddress(resultSet.getString("address"));
+		            users.add(user);
+		        }
+		    } catch (SQLException | ClassNotFoundException ex) {
+		        ex.printStackTrace();
+		    }
+		    return users;
 		}
 
 

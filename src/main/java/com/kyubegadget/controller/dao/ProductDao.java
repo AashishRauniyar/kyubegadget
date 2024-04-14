@@ -180,6 +180,41 @@ public class ProductDao {
 			return -1;
 		}
 	}
+	
+	
+	// to delete a product using productId
+	public boolean deleteProduct(int productId) {
+	    try (Connection conn = DatabaseController.getConn()) {
+	        String deleteQuery = QueryUtils.DELETE_PRODUCT;
+	        PreparedStatement pstmt = conn.prepareStatement(deleteQuery);
+	        pstmt.setInt(1, productId);
+	        
+	        int rowsAffected = pstmt.executeUpdate();
+	        
+	        // If rowsAffected > 0, it means a product was deleted successfully
+	        return rowsAffected > 0;
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace();
+	        return false;
+	    }
+	}
+	// Method to fetch category name based on category ID
+	private String getCategoryNameById(int categoryId) {
+	    String categoryName = "";
+	    try (Connection conn = DatabaseController.getConn()) {
+	        String getCategoryNameQuery = "SELECT categoryName FROM productCategory WHERE categoryId = ?";
+	        PreparedStatement statement = conn.prepareStatement(getCategoryNameQuery);
+	        statement.setInt(1, categoryId);
+	        ResultSet resultSet = statement.executeQuery();
+	        if (resultSet.next()) {
+	            categoryName = resultSet.getString("categoryName");
+	        }
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace();
+	    }
+	    return categoryName;
+	}
+
 
 
 
