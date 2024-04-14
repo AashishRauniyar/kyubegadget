@@ -15,6 +15,7 @@ import com.kyubegadget.utils.QueryUtils;
 
 public class CategoryDao {
 
+	
 	public int addCategory(ProductCategoryModel productCategoryModel) {
 		try (Connection conn = DatabaseController.getConn()) {
             // Update data in the users table
