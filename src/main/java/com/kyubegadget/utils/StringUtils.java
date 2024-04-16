@@ -62,5 +62,8 @@ public class StringUtils {
 	
 	//cart
 	public static final String CART_PAGE = "/pages/cart.jsp";
+	
+	//user list to show in admin
+	public static final String USER_LIST = "/pages/UserList.jsp";
 
 }

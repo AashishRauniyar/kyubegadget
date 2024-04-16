@@ -112,7 +112,7 @@ String formattedTotalPrice = String.format("%.2f", totalPriceWithTaxAndShipping)
                 <p class="text-gray-700">$<%= total %></p>
             </div>
             <div class="flex justify-between">
-                <p class="text-gray-700">Tax (12%)</p>
+                <p class="text-gray-700">Tax (10%)</p>
                 <p class="text-gray-700">$<%= total * taxRate %></p>
             </div>
             <hr class="my-4">

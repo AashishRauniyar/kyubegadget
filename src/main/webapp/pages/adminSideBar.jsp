@@ -4,31 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Sidebar</title>
 <link href="<%=request.getContextPath()%>/styles/output.css"
 	rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
-
-<%
-    // Retrieve the existing session variable
-    javax.servlet.http.HttpSession existingSession = request.getSession(false);
-
-    // Check if session exists and if the role is "admin"
-    if (existingSession == null || existingSession.getAttribute("role") == null || !existingSession.getAttribute("role").equals("admin")) {
-        // If not admin, redirect to index page
-        response.sendRedirect(request.getContextPath() +"/pages/index.jsp");
-    } else {
-        // Admin is authenticated, allow access to admin panel
-
-        // Your HTML content for admin panel goes here
-
-        %>
-
-
-
-
 
 <div class="sidebar w-64 h-[100vh] relative"> 
   <div class="flex  h-[70px] border border-y-black items-center p-3 ">
@@ -49,17 +30,5 @@
     <a class="nav-link dropdown-toggle ml-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin name</a>
   </div>
 </div>
-
-
-    
 </body>
-
-<script>
-	
-
-</script>
-
 </html>
- <%
-    }
-%>

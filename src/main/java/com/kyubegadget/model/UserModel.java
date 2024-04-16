@@ -46,6 +46,10 @@ public class UserModel {
 	
 	
 	
+	
+
+
+
 	public UserModel( String userName, String firstName, String lastName, String email, String phoneNumber,
 			String password, LocalDate dob, String gender, String address, String userType) {
 		super();
@@ -61,6 +65,16 @@ public class UserModel {
 		this.userType = userType;
 	}
 
+	
+	public int getUserId() {
+		return userId;
+	}
+
+
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 
 	public String getUserType() {

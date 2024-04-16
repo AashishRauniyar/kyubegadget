@@ -180,6 +180,58 @@ public class ProductDao {
 			return -1;
 		}
 	}
+	
+	
+
+	// to delete a product using productId
+	public boolean deleteProduct(int productId) {
+	    try (Connection conn = DatabaseController.getConn()) {
+	        String deleteQuery = QueryUtils.DELETE_PRODUCT;
+	        PreparedStatement pstmt = conn.prepareStatement(deleteQuery);
+	        pstmt.setInt(1, productId);
+
+	        int rowsAffected = pstmt.executeUpdate();
+
+	        // If rowsAffected > 0, it means a product was deleted successfully
+	        return rowsAffected > 0;
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace();
+	        return false;
+	    }
+	}
+	
+	
+	public List<ProductModel> getProductsByCategoryId(int categoryId) {
+	    List<ProductModel> products = new ArrayList<>();
+	    try (Connection conn = DatabaseController.getConn()) {
+	        String getProductsByCategoryQuery = QueryUtils.GET_PRODUCTS_BY_CATEGORY_ID;
+	        PreparedStatement statement = conn.prepareStatement(getProductsByCategoryQuery);
+	        statement.setInt(1, categoryId);
+	        ResultSet resultSet = statement.executeQuery();
+
+	        while (resultSet.next()) {
+	            ProductModel product = new ProductModel();
+	            product.setProductId(resultSet.getInt("productId"));
+	            product.setProductName(resultSet.getString("productName"));
+	            product.setProductBrand(resultSet.getString("productBrand"));
+	            product.setPrice(resultSet.getDouble("price"));
+	            product.setProductDescription(resultSet.getString("productDescription"));
+	            product.setImageUrl(resultSet.getString("imageUrl"));
+	            product.setProductCategoryId(resultSet.getInt("productCategoryId"));
+	            product.setStock(resultSet.getInt("stock"));
+	            products.add(product);
+	        }
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace();
+	    }
+	    return products;
+	}
+
+	
+	
+	
+	
+
 
 
 

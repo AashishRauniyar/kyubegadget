@@ -646,6 +646,14 @@ video {
   top: 0px;
 }
 
+.bottom-10 {
+  bottom: 2.5rem;
+}
+
+.right-10 {
+  right: 2.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1591,6 +1599,11 @@ video {
 .text-green-50 {
   --tw-text-opacity: 1;
   color: rgb(240 253 244 / var(--tw-text-opacity));
+}
+
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 
 .line-through {

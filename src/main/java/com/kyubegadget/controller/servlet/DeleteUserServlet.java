@@ -30,36 +30,38 @@ public class DeleteUserServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Get the user name parameter from the request
+        String userName = request.getParameter("userName");
+
+        if (userName != null && !userName.isEmpty()) {
+            try {
+                // Call the UserDao to delete the user by userName
+                UserDao userDao = new UserDao();
+                boolean deleted = userDao.deleteUserByUserName(userName);
+                if (deleted) {
+                    // User successfully deleted
+                    response.sendRedirect(request.getContextPath()+StringUtils.USER_LIST); // Redirect to the user list page
+                } else {
+                    // Error occurred while deleting user
+                    response.getWriter().println("Failed to delete user");
+                }
+            } catch (Exception e) {
+                response.getWriter().println("An error occurred: " + e.getMessage());
+            }
+        } else {
+            response.getWriter().println("User name parameter is missing");
+        }
+    }
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        response.setContentType("text/html");
-	        PrintWriter out = response.getWriter();
-	        
-	        try {
-	            // Get the user name parameter from the request
-	            String userName = request.getParameter("userName");
-	            
-	            // Call the method to delete the user from the database
-	            boolean deleted = UserDao.deleteUser(userName);
-	            
-	            if (deleted) {
-	                response.sendRedirect(StringUtils.WELCOME_PAGE); // Redirect to a success page
-	            } else {
-	                response.sendRedirect(StringUtils.PROFILE_PAGE); // Redirect to a failure page
-	                out.println("<h1>Failed to delete user</h1>");
-	            }
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	            // Redirect to an error page in case of IO exception
-	            response.sendRedirect(StringUtils.ERROR_PAGE);
-	        }
-	    }
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+	
 }
