@@ -1,9 +1,9 @@
 <%@page import="com.kyubegadget.controller.dao.ProductDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!-- Import the necessary classes -->
 <%@ page
-	import="com.kyubegadget.controller.dbcontroller.DatabaseController"%>
+    import="com.kyubegadget.controller.dbcontroller.DatabaseController"%>
 <%@ page import="com.kyubegadget.model.*"%>
 <%@ page import="com.kyubegadget.utils.StringUtils"%>
 <%@ page import="java.util.ArrayList"%>
@@ -13,7 +13,7 @@
 <%
 String username = (String) session.getAttribute("userName");
 if (username == null) {
-	response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
+    response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
 }
 
 ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
@@ -21,16 +21,16 @@ List<Cart> productList = null;
 
 if (cartList != null) {
 
-	ProductDao productDao = new ProductDao(DatabaseController.getConn());
+    ProductDao productDao = new ProductDao(DatabaseController.getConn());
 
-	productList = productDao.getCartProduct(cartList);
-	request.setAttribute("cartList", cartList);
-	session.setAttribute("cartList", cartList);
+    productList = productDao.getCartProduct(cartList);
+    request.setAttribute("cartList", cartList);
+    session.setAttribute("cartList", cartList);
 }
 %>
 
 <%
-double taxRate = 0.12; // 12%
+double taxRate = 0.10; // 10%
 double shippingCharge = 0; // Default shipping charge
 
 // Initialize total variable
@@ -44,259 +44,90 @@ if (productList != null && !productList.isEmpty()) {
     shippingCharge = 20; // Set shipping charge to $20 if the cart is not empty
 }
 
-// Calculate the total price including tax and shipping
+
+//Calculate the total price including tax and shipping
 double totalPriceWithTaxAndShipping = total + (total * taxRate) + shippingCharge;
+String formattedTotalPrice = String.format("%.2f", totalPriceWithTaxAndShipping);
+
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Shopping Cart</title>
-<style>
-.cart-item {
-	border: 1px solid #ccc;
-	padding: 10px;
-	margin-bottom: 10px;
-}
-
-body {
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-	background-color: #f4f4f4;
-}
-
-/* .container {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 20px;
-} */
-
-h1 {
-	text-align: center;
-}
-
-table {
-	width: 95%;
-	border-collapse: collapse;
-	margin-bottom: 20px;
-	background-color: #fff;
-	margin-left: 20px;
-}
-
-table th, table td {
-	padding: 10px;
-	text-align: left;
-	border-bottom: 1px solid #ddd;
-}
-
-table th {
-	background-color: #f0f0f0;
-}
-
-table td {
-	vertical-align: middle;
-}
-
-img {
-	max-width: 100px;
-	height: auto;
-}
-
-.btn {
-	display: inline-block;
-	padding: 8px 20px;
-	background-color: #007bff;
-	color: #fff;
-	text-decoration: none;
-	border: none;
-	border-radius: 4px;
-	cursor: pointer;
-}
-
-.btn:hover {
-	background-color: #0056b3;
-}
-
-.btn-danger {
-	background-color: #dc3545;
-}
-
-.btn-danger:hover {
-	background-color: #c82333;
-}
-
-.cart-total {
-	margin-top: 20px;
-	padding: 20px;
-	background-color: #fff;
-	border-radius: 4px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.cart-total h3 {
-	margin-bottom: 10px;
-}
-
-.cart-total p {
-	margin-bottom: 5px;
-}
-
-th:nth-child(1), td:nth-child(1) {
-	display: none;
-}
-
-.cart-summary {
-	top: 0;
-	right: 0;
-	margin-left: 900px;
-	margin-right: 60px;
-	padding: 20px;
-	background-color: #f9f9f9;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
-/* Style for the select element */
-select {
-	padding: 8px;
-	font-size: 16px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	background-color: #fff;
-	color: #333;
-	cursor: pointer;
-	width: 100%; /* Adjust width as needed */
-}
-
-/* Style for the dropdown arrow */
-select::-ms-expand {
-	display: none; /* Hide default arrow in IE10 and IE11 */
-}
-
-select::-webkit-select {
-	appearance: none; /* Remove default arrow in Chrome and Safari */
-}
-
-select::-moz-select {
-	appearance: none; /* Remove default arrow in Firefox */
-}
-
-/* Style for the dropdown options */
-select option {
-	padding: 8px;
-	font-size: 14px;
-	background-color: #fff;
-	color: #333;
-}
-
-/* Style for selected option */
-select option:checked {
-	background-color: #007bff;
-	color: #fff;
-}
-</style>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-gray-100">
 
-	<h1>Shopping Cart</h1>
-	<table border="1">
-		<thead>
-			<tr>
-				<th>Product ID</th>
-				<th>Image</th>
-				<th>Name</th>
-				<th>Brand</th>
-				<th>Price</th>
-				<th>Quantity</th>
-				<th>Total Price</th>
-				<th>Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%
-			if (productList != null) {
-				for (Cart item : productList) {
-					double totalPrice = item.getPrice() * item.getStock();
-			%>
-			<tr>
-				<td><%=item.getProductId()%></td>
-				<td><img
-					src="<%=request.getContextPath()%>/images/<%=item.getImageUrl()%>"
-					alt="<%=item.getImageUrl()%>" class="w-full"></td>
-				<td><%=item.getProductName()%></td>
-				<td><%=item.getProductBrand()%></td>
-				<td>$<%=item.getPrice()%></td>
-				<td><select name="quantity"
-					id="quantity_<%=item.getProductId()%>"
-					onchange="updateTotal(<%=item.getPrice()%>, <%=item.getProductId()%>)">
-						<%-- Add options for quantity selection --%>
-						<%
-						for (int i = 1; i <= 10; i++) {
-						%>
-						<option value="<%=i%>"
-							<%=(i == item.getStock()) ? "selected" : ""%>><%=i%></option>
-						<%
-						}
-						%>
-				</select></td>
-				<td id="totalPrice_<%=item.getProductId()%>">$<%=totalPrice%></td>
-				<td><a href="<%=request.getContextPath()%>/remove-from-cart?productId=<%=item.getProductId()%>"
-					class="btn btn-sm btn-danger">Remove</a></td>
-			</tr>
-			<%
-			}
-			} else {
-			%>
-			<tr>
-				<td colspan="6">Your cart is empty</td>
-			</tr>
-			<%
-			}
-			%>
-		</tbody>
-	</table>
+    <h1 class="mb-10 text-center text-2xl font-bold">Shopping Cart</h1>
+    <div class="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
+        <div class="rounded-lg md:w-2/3">
+            <table class="w-full mb-6 bg-white rounded-lg shadow-md">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="px-4 py-2">Product ID</th>
+                        <th class="px-4 py-2">Image</th>
+                        <th class="px-4 py-2">Name</th>
+                        <th class="px-4 py-2">Brand</th>
+                        <th class="px-4 py-2">Price</th>
+                        <th class="px-4 py-2">Quantity</th>
+                        <th class="px-4 py-2">Total Price</th>
+                        <th class="px-4 py-2">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (productList != null) {
+                        for (Cart item : productList) {
+                            double totalPrice = item.getPrice() * item.getStock();
+                    %>
+                            <tr>
+                                <td class="px-4 py-2"><%= item.getProductId() %></td>
+                                <td class="px-4 py-2"><img src="<%= request.getContextPath() %>/images/<%= item.getImageUrl() %>" alt="<%= item.getImageUrl() %>" class="w-24"></td>
+                                <td class="px-4 py-2"><%= item.getProductName() %></td>
+                                <td class="px-4 py-2"><%= item.getProductBrand() %></td>
+                                <td class="px-4 py-2">$<%= item.getPrice() %></td>
+                                <td class="px-4 py-2">
+                                    <div class="flex items-center border-gray-100">
+                                        <span class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"> - </span>
+                                        <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" value="<%= item.getStock() %>" min="1" />
+                                        <span class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"> + </span>
+                                    </div>
+                                </td>
+                                <td class="px-4 py-2">$<%= totalPrice %></td>
+                                <td class="px-4 py-2"><a href="<%= request.getContextPath() %>/remove-from-cart?productId=<%= item.getProductId() %>" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Remove</a></td>
+                            </tr>
+                    <% }
+                    } else { %>
+                        <tr>
+                            <td colspan="8" class="px-4 py-2 text-center">Your cart is empty</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <div class="mt-6 h-full rounded-lg border bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+            <div class="mb-2 flex justify-between">
+                <p class="text-gray-700">Subtotal</p>
+                <p class="text-gray-700">$<%= total %></p>
+            </div>
+            <div class="flex justify-between">
+                <p class="text-gray-700">Tax (12%)</p>
+                <p class="text-gray-700">$<%= total * taxRate %></p>
+            </div>
+            <hr class="my-4">
+            <div class="flex justify-between">
+                <p class="text-lg font-bold">Total</p>
+                <div>
+                    <p class="mb-1 text-lg font-bold">$<%= formattedTotalPrice %></p>
 
-	<div class="cart-summary">
-		<h3>
-			Total Price (before tax and shipping): $<span id="subtotal"><%=total%></span>
-		</h3>
-		<p>
-			Tax (12%): $<span id="tax"><%=total * taxRate%></span>
-		</p>
-		<p>
-			Shipping Charge:
-			<%=shippingCharge%></p>
-		<h3>
-			Total Price (including tax and shipping): $<span id="totalWithTax"><%=total + (total * taxRate) + shippingCharge%></span>
-		</h3>
-		<a href="<%=request.getContextPath()+StringUtils.WELCOME_PAGE%>"  class="btn btn-primary">Continue Shopping</a> <a
-			href="<%=request.getContextPath()%>/check-out" class="btn btn-primary">Proceed
-			to Checkout</a>
-	</div>
-
+                    <p class="text-sm text-gray-700">including shipping</p>
+                </div>
+            </div>
+            <a href="<%= request.getContextPath() + StringUtils.WELCOME_PAGE %>" class="mt-6 w-full rounded-md bg-blue-500 py-2 font-medium text-blue-50 hover:bg-blue-600 block text-center">Continue Shopping</a>
+            <a href="<%= request.getContextPath() %>/check-out" class="mt-2 w-full rounded-md bg-green-500 py-2 font-medium text-green-50 hover:bg-green-600 block text-center">Proceed to Checkout</a>
+        </div>
+    </div>
 
 </body>
-<script>
-function updateTotal(price, productId) {
-    var quantity = document.getElementById("quantity_" + productId).value;
-    var totalPrice = price * quantity;
-    document.getElementById("totalPrice_" + productId).innerHTML = "$" + totalPrice.toFixed(2);
-    recalculateTotal();
-}
-
-function recalculateTotal() {
-    var total = 0;
-    var elements = document.querySelectorAll("[id^=totalPrice_]");
-    elements.forEach(function(element) {
-        total += parseFloat(element.innerHTML.replace("$", ""));
-    });
-    var tax = total * <%=taxRate%>;
-    var totalWithTax = total + tax + <%=shippingCharge%>;
-    document.getElementById("subtotal").innerHTML = "$" + total.toFixed(2);
-    document.getElementById("tax").innerHTML = "$" + tax.toFixed(2);
-    document.getElementById("totalWithTax").innerHTML = "$" + totalWithTax.toFixed(2);
-}
-</script>
-
 </html>
