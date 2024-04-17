@@ -21,7 +21,7 @@ List<Cart> productList = null;
 
 if (cartList != null) {
 
-    ProductDao productDao = new ProductDao(DatabaseController.getConn());
+    ProductDao productDao = new ProductDao();
 
     productList = productDao.getCartProduct(cartList);
     request.setAttribute("cartList", cartList);
@@ -48,7 +48,8 @@ if (productList != null && !productList.isEmpty()) {
 //Calculate the total price including tax and shipping
 double totalPriceWithTaxAndShipping = total + (total * taxRate) + shippingCharge;
 String formattedTotalPrice = String.format("%.2f", totalPriceWithTaxAndShipping);
-
+//Set total amount to session
+session.setAttribute("totalAmount", totalPriceWithTaxAndShipping);
 
 %>
 <!DOCTYPE html>
@@ -56,7 +57,8 @@ String formattedTotalPrice = String.format("%.2f", totalPriceWithTaxAndShipping)
 <head>
 <meta charset="UTF-8">
 <title>Shopping Cart</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/styles/output.css"
+	rel="stylesheet">
 </head>
 <body class="bg-gray-100">
 
@@ -125,7 +127,7 @@ String formattedTotalPrice = String.format("%.2f", totalPriceWithTaxAndShipping)
                 </div>
             </div>
             <a href="<%= request.getContextPath() + StringUtils.WELCOME_PAGE %>" class="mt-6 w-full rounded-md bg-blue-500 py-2 font-medium text-blue-50 hover:bg-blue-600 block text-center">Continue Shopping</a>
-            <a href="<%= request.getContextPath() %>/check-out" class="mt-2 w-full rounded-md bg-green-500 py-2 font-medium text-green-50 hover:bg-green-600 block text-center">Proceed to Checkout</a>
+            <a href="<%= request.getContextPath() %>/CheckoutServlet" class="mt-2 w-full rounded-md bg-green-500 py-2 font-medium text-green-50 hover:bg-green-600 block text-center">Proceed to Checkout</a>
         </div>
     </div>
 

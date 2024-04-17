@@ -36,7 +36,7 @@ public class DeleteProductServlet extends HttpServlet {
             try {
                 int productId = Integer.parseInt(productIdStr);
                 // Call the ProductDao to delete the product by ID
-                ProductDao productDao = new ProductDao(null);
+                ProductDao productDao = new ProductDao();
                 boolean deleted = productDao.deleteProduct(productId);
                 if (deleted) {
                     // Product successfully deleted

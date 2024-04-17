@@ -151,7 +151,7 @@ function addToCart(productId) {
     String searchQuery = request.getParameter("query");
 
     // Initialize variables
-    ProductDao productDao = new ProductDao(null);
+    ProductDao productDao = new ProductDao();
     List<ProductModel> products = null;
     String message = "";
 
@@ -189,6 +189,18 @@ function addToCart(productId) {
 
 %>
 
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Home page</title>
+
+<link href="<%=request.getContextPath()%>/styles/output.css"
+	rel="stylesheet">
+
+
+</head>
+<body>
 <%@ include file="navbar.jsp" %>
 
 <!-- Grid Section - Starts Here -->
@@ -225,6 +237,8 @@ function addToCart(productId) {
 
 <%@ include file="footer.jsp" %>
 
+</body>
+
 <script>
     function addToCart(productId) {
         fetch('<%=request.getContextPath()%>/AddToCartServlet?productId=' + productId)
@@ -242,4 +256,4 @@ function addToCart(productId) {
             });
     }
 </script>
- 
+</html>

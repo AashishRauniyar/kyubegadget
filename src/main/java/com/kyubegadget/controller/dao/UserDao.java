@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.UserModel;
 import com.kyubegadget.utils.QueryUtils;
@@ -212,6 +214,39 @@ public class UserDao {
 		    }
 		    return users;
 		}
+	    
+	    
+	    public int getUserIdFromUserName(String userName) {
+	        try (Connection conn = DatabaseController.getConn()) {
+	            String query = "SELECT userId FROM Users WHERE userName = ?";
+	            PreparedStatement statement = conn.prepareStatement(query);
+	            statement.setString(1, userName);
+	            ResultSet resultSet = statement.executeQuery();
+
+	            if (resultSet.next()) {
+	                return resultSet.getInt("userId");
+	            } else {
+	                // Handle the case when userName is not found in the database
+	                return -1; // Or any other appropriate default value or error handling
+	            }
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            ex.printStackTrace(); // Log the exception for debugging
+	            return -1; // Or any other appropriate default value or error handling
+	        }
+	    }
+	    
+	    // to get username fomr serssion
+	    public int getUserIdFromSession(HttpSession session) {
+	        String userName = (String) session.getAttribute("userName");
+	        if (userName != null) {
+	            // Assuming you have a method to retrieve the userId from the userName
+	            return getUserIdFromUserName(userName); // Replace 'ud' with your UserDao instance
+	        } else {
+	            // Handle the case when userName is not found in session
+	            return -1; // Or any other appropriate default value or error handling
+	        }
+	    }
+
 	    
 
 }

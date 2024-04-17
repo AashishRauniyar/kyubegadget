@@ -28,7 +28,7 @@ import java.io.OutputStream;
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
-	ProductDao productDao = new ProductDao(null);
+	ProductDao productDao = new ProductDao();
 	
 	
     /**

@@ -15,12 +15,15 @@ import com.kyubegadget.utils.QueryUtils;
 
 public class ProductDao {
 	
-    private Connection conn;
-
-    // Constructor that accepts a Connection object
-    public ProductDao(Connection conn) {
-        this.conn = conn;
-    }
+	/*
+	 * private Connection conn;
+	 * 
+	 * // Constructor that accepts a Connection object public ProductDao(Connection
+	 * conn) { this.conn = conn; }
+	 */
+    
+	
+    
 
     
     // this method is used in admin panel to add products
@@ -136,6 +139,27 @@ public class ProductDao {
 		return products;
 	}
 
+	/*
+	 * public List<Cart> getCartProduct(ArrayList<Cart> cartList) { List<Cart>
+	 * product = new ArrayList<>(); try (Connection conn =
+	 * DatabaseController.getConn()) { if (cartList.size() > 0) { for (Cart item :
+	 * cartList) { String getCartProductQuery = QueryUtils.GET_CART_PRODUCT;
+	 * PreparedStatement statement = conn.prepareStatement(getCartProductQuery); //
+	 * Set productId parameter in the query statement.setInt(1,
+	 * item.getProductId()); ResultSet resultSet = statement.executeQuery();
+	 * 
+	 * while (resultSet.next()) { Cart cart = new Cart();
+	 * cart.setProductId(resultSet.getInt("productId"));
+	 * cart.setProductName(resultSet.getString("productName"));
+	 * cart.setProductBrand(resultSet.getString("productBrand"));
+	 * cart.setPrice(resultSet.getDouble("price") * item.getStock());
+	 * cart.setImageUrl(resultSet.getString("imageUrl"));
+	 * cart.setStock(item.getStock()); product.add(cart); } } } } catch
+	 * (SQLException | ClassNotFoundException ex) { ex.printStackTrace(); } return
+	 * product; }
+	 */
+	
+	
 	public List<Cart> getCartProduct(ArrayList<Cart> cartList) {
 	    List<Cart> product = new ArrayList<>();
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -152,7 +176,8 @@ public class ProductDao {
 	                    cart.setProductId(resultSet.getInt("productId"));
 	                    cart.setProductName(resultSet.getString("productName"));
 	                    cart.setProductBrand(resultSet.getString("productBrand"));
-	                    cart.setPrice(resultSet.getDouble("price") * item.getStock());
+	                    // Fetch the price directly from the database without considering stock
+	                    cart.setPrice(resultSet.getDouble("price"));
 	                    cart.setImageUrl(resultSet.getString("imageUrl"));
 	                    cart.setStock(item.getStock());
 	                    product.add(cart);
@@ -164,22 +189,10 @@ public class ProductDao {
 	    }
 	    return product;
 	}
-	
+
 	
 
-    //Creating universal method to query for inserting or updating information in mysql database
-	public int insertOrUpdate(String query, Object... parameters) {
-		try (Connection conn = DatabaseController.getConn()) {
-			PreparedStatement statement = conn.prepareStatement(query);
-			for (int i = 0; i < parameters.length; i++) {
-				statement.setObject(i + 1, parameters[i]);
-			}
-			return statement.executeUpdate();
-		} catch (SQLException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-			return -1;
-		}
-	}
+    
 	
 	
 
@@ -225,6 +238,39 @@ public class ProductDao {
 	        ex.printStackTrace();
 	    }
 	    return products;
+	}
+
+	/*
+	 * public double getProductPriceFromDatabase(int productId) { double price =
+	 * 0.0; try { // Prepare SQL query to retrieve price from the database based on
+	 * productId String query = "SELECT price FROM product WHERE productId = ?";
+	 * PreparedStatement statement = conn.prepareStatement(query);
+	 * statement.setInt(1, productId);
+	 * 
+	 * // Execute the query ResultSet resultSet = statement.executeQuery();
+	 * 
+	 * // Check if any result is returned if (resultSet.next()) { // Retrieve the
+	 * price from the result set price = resultSet.getDouble("price"); }
+	 * 
+	 * // Close the resources resultSet.close(); statement.close(); } catch
+	 * (SQLException e) { e.printStackTrace(); } return price; }
+	 */
+	
+	public double getProductPriceFromDatabase(int productId) {
+	    double price = 0.0;
+	    try (Connection conn = DatabaseController.getConn()) {
+	        String getPriceQuery = "SELECT price FROM product WHERE productId = ?";
+	        PreparedStatement statement = conn.prepareStatement(getPriceQuery);
+	        statement.setInt(1, productId);
+	        ResultSet resultSet = statement.executeQuery();
+
+	        if (resultSet.next()) {
+	            price = resultSet.getDouble("price");
+	        }
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace();
+	    }
+	    return price;
 	}
 
 	
