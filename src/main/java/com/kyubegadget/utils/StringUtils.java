@@ -66,5 +66,9 @@ public class StringUtils {
 	
 	//user list to show in admin
 	public static final String USER_LIST = "/pages/UserList.jsp";
+	///orderList.jsp
+	public static final String ORDER_LIST = "/pages/orderList.jsp";
+	//bill
+	public static final String BILL_PAGE = "/pages/Bill.jsp";
 
 }

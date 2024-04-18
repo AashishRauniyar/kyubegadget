@@ -97,7 +97,6 @@
 //
 //}
 
-
 package com.kyubegadget.controller.servlet;
 
 import java.io.IOException;
@@ -121,42 +120,41 @@ import com.kyubegadget.utils.StringUtils;
 
 @WebServlet("/CheckoutServlet")
 public class CheckoutServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    UserDao ud = new UserDao();
-    OrderDao od = new OrderDao();
-    OrderLineDao ol = new OrderLineDao();
+	UserDao ud = new UserDao();
+	OrderDao od = new OrderDao();
+	OrderLineDao ol = new OrderLineDao();
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		response.setContentType("text/html; charset=UTF-8");
 
-        try {
-            HttpSession session = request.getSession();
-            int userId = ud.getUserIdFromSession(session);
+		try {
+			HttpSession session = request.getSession();
+			int userId = ud.getUserIdFromSession(session);
 
-            ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
+			ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
 
-            if (cartList == null || cartList.isEmpty()) {
-                response.sendRedirect(request.getContextPath() + StringUtils.WELCOME_PAGE);
-                return;
-            }
+			if (cartList == null || cartList.isEmpty()) {
+				response.sendRedirect(request.getContextPath() + StringUtils.WELCOME_PAGE);
+				return;
+			}
 
-            double totalAmount = (double) session.getAttribute("totalAmount"); // Retrieve totalAmount from session
-            OrderModel order = new OrderModel(0, new Date(), userId, totalAmount, "Pending");
-            int orderId = od.saveOrderToDatabase(order);
+			double totalAmount = (double) session.getAttribute("totalAmount"); // Retrieve totalAmount from session
+			OrderModel order = new OrderModel(0, new Date(), userId, totalAmount, "Pending");
+			int orderId = od.saveOrderToDatabase(order);
 
-            for (Cart cartItem : cartList) {
-                OrderLineModel orderLine = new OrderLineModel(0, orderId, cartItem.getProductId(), cartItem.getStock());
-                ol.saveOrderLineToDatabase(orderLine);
-            }
+			for (Cart cartItem : cartList) {
+				OrderLineModel orderLine = new OrderLineModel(0, orderId, cartItem.getProductId(), cartItem.getStock());
+				ol.saveOrderLineToDatabase(orderLine);
+			}
 
-            session.removeAttribute("cartList");
-            response.sendRedirect(request.getContextPath() + "/pages/orderSuccessful.jsp");
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal Server Error");
-        }
-    }
+			response.sendRedirect(request.getContextPath() + StringUtils.BILL_PAGE);
+//			session.removeAttribute("cartList"); // Remove cartList from session after successful checkout
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal Server Error");
+		}
+	}
 }
-
