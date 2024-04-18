@@ -1,6 +1,8 @@
 package com.kyubegadget.controller.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +13,7 @@ import com.kyubegadget.controller.dao.UserDao;
 import com.kyubegadget.utils.StringUtils;
 
 /**
- * Servlet implementation class DeleteUserServlet
+ * Servlet implementation class DeleteUser
  */
 @WebServlet("/DeleteUserServlet")
 public class DeleteUserServlet extends HttpServlet {
@@ -32,7 +34,7 @@ public class DeleteUserServlet extends HttpServlet {
             throws ServletException, IOException {
         // Get the user name parameter from the request
         String userName = request.getParameter("userName");
-        
+
         if (userName != null && !userName.isEmpty()) {
             try {
                 // Call the UserDao to delete the user by userName
@@ -61,5 +63,5 @@ public class DeleteUserServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	
 }

@@ -48,8 +48,13 @@ public class QueryUtils {
 //    public static final String GET_ALL_CATEGORIES = "SELECT categoryName from productCategory";
     
     
-    //new
+    //new for categories
     public static final String GET_ALL_CATEGORIES = "SELECT productCategoryId,categoryName from productCategory";
+    public static final String GET_CATEGORY_NAME = "SELECT categoryName from productCategory where productCategoryId = ?";
+    
+    public static final String DELETE_PRODUCT = "DELETE FROM product WHERE productId = ?";
+
+
 
     
     
@@ -62,11 +67,11 @@ public class QueryUtils {
     
     public static final String GET_PRODUCT_BY_ID = "SELECT * FROM product WHERE productId = ?";
     
-    public static final String DELETE_PRODUCT = "DELETE FROM product WHERE productId = ?";
-    
-    
     // delete user
     public static final String DELETE_USER = "DELETE FROM Users WHERE userName = ?";
+    
+    
+    public static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM product WHERE productCategoryId = ?";    
     
     //Cart
     public static final String GET_CART_PRODUCT = "SELECT * FROM product WHERE productId = ?";

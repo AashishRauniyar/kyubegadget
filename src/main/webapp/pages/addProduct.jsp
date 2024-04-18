@@ -19,14 +19,15 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 <head>
 <meta charset="UTF-8">
 <title>Add Product</title>
-<link href="../styles/output.css" rel="stylesheet">
+<link href="<%=request.getContextPath()%>/styles/output.css"
+	rel="stylesheet">
 </head>
 <body>
 
 
 
 
-	<div class="bg-white border border-4 rounded-lg shadow relative m-10">
+	<div class="ml-64 bg-white border border-4 rounded-lg shadow relative m-10">
 
 		<div class="flex items-start justify-between p-5 border-b rounded-t">
 			<h3 class="text-2xl font-semibold">Add new product</h3>

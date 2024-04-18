@@ -30,7 +30,7 @@ ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
 List<Cart> productList = null;
 
 if (cartList != null) {
-    ProductDao productDao = new ProductDao(DatabaseController.getConn());
+    ProductDao productDao = new ProductDao();
     productList = productDao.getCartProduct(cartList);
     request.setAttribute("cartList", cartList);
     session.setAttribute("cartList", cartList);
@@ -192,7 +192,7 @@ if (cartList != null) {
 
     <div class="button-container">
         <button onclick="cancel()">Cancel</button>
-        <button onclick="printBill()">Print Bill</button>
+        <button onclick="saveBill()">Save Bill</button>
     </div>
 
     <div class="thank-you">
@@ -206,10 +206,45 @@ if (cartList != null) {
             window.location.href = "<%=request.getContextPath()%>/home.jsp";
         }
 
-        function printBill() {
-            // Add functionality to print bill button (e.g., open print dialog)
-            window.print();
+        function saveBill() {
+            // Generate bill content
+            var billContent = "Bill\n\n";
+            billContent += "User Information\n";
+            billContent += "Name: <%= user.getFirstName() + ' ' + user.getLastName() %>\n";
+            billContent += "Address: <%= user.getAddress() %>\n";
+            billContent += "Phone Number: <%= user.getPhoneNumber() %>\n";
+            billContent += "Email: <%= user.getEmail() %>\n";
+            billContent += "Order Date: <%= java.time.LocalDate.now() %> <%= java.time.LocalTime.now() %>\n\n";
+
+            billContent += "Bill Details\n";
+            billContent += "Name\tBrand\tPrice\tQuantity\tTotal Price\n";
+            <%-- Iterate over the cart items and add details to the bill content --%>
+            <% if (productList != null) { %>
+                <% for (Cart item : productList) { %>
+                    var totalPrice_<%=item.getProductId()%> = <%=item.getPrice()%> * <%=item.getStock()%>;
+                    billContent += "<%=item.getProductName()%>\t<%=item.getProductBrand()%>\t$" + <%=item.getPrice()%> + "\t" + <%=item.getStock()%> + "\t$" + totalPrice_<%=item.getProductId()%> + "\n";
+                <% } %>
+            <% } %>
+
+            // Create a new Blob object containing the bill content
+            var blob = new Blob([billContent], { type: "text/plain;charset=utf-8" });
+
+            // Create a link element to download the text file
+            var link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob);
+
+            // Set the filename for the text file
+            var fileName = "bill.txt";
+            link.download = fileName;
+
+            // Append the link to the document body and trigger the click event to initiate download
+            document.body.appendChild(link);
+            link.click();
+
+            // Remove the link element from the document body
+            document.body.removeChild(link);
         }
+
     </script>
 
 </body>

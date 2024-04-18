@@ -1,5 +1,6 @@
 package com.kyubegadget.controller.servlet;
 
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,7 @@ import com.kyubegadget.controller.dao.ProductDao;
 @WebServlet("/DeleteProductServlet")
 public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -30,16 +31,16 @@ public class DeleteProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the product ID parameter from the request
         String productIdStr = request.getParameter("productId");
-        
+
         if (productIdStr != null && !productIdStr.isEmpty()) {
             try {
                 int productId = Integer.parseInt(productIdStr);
                 // Call the ProductDao to delete the product by ID
-                ProductDao productDao = new ProductDao(null);
+                ProductDao productDao = new ProductDao();
                 boolean deleted = productDao.deleteProduct(productId);
                 if (deleted) {
                     // Product successfully deleted
-                    response.sendRedirect(request.getContextPath()+ "/pages/testManageProduct.jsp"); // Redirect to the product list page
+                    response.sendRedirect(request.getContextPath()+ "/pages/manageProduct.jsp"); // Redirect to the product list page
                 } else {
                     // Error occurred while deleting product
                     response.getWriter().println("Failed to delete product");

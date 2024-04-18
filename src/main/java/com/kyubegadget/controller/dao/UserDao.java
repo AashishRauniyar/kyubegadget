@@ -1,3 +1,4 @@
+
 package com.kyubegadget.controller.dao;
 
 import java.sql.Connection;
@@ -6,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.UserModel;
@@ -153,18 +156,29 @@ public class UserDao {
 	        }
 	    }
 		
+		// delect user
+//		public static boolean deleteUser(String userName) {
+//			boolean success = false;
+//			try (Connection conn = DatabaseController.getConn()) {
+//				PreparedStatement ps = conn.prepareStatement(QueryUtils.DELETE_USER);
+//				ps.setString(1, userName);
+//				int rowsDeleted = ps.executeUpdate();
+//				success = rowsDeleted > 0;
+//			} catch (SQLException | ClassNotFoundException ex) {
+//				ex.printStackTrace();
+//			}
+//			return success;
+//		}
+
 		
-		
-		
-		
-		public boolean deleteUserByUserName(String userName) {
+	    public boolean deleteUserByUserName(String userName) {
 		    try (Connection conn = DatabaseController.getConn()) {
 		        String deleteQuery = QueryUtils.DELETE_USER;
 		        PreparedStatement pstmt = conn.prepareStatement(deleteQuery);
 		        pstmt.setString(1, userName);
-		        
+
 		        int rowsAffected = pstmt.executeUpdate();
-		        
+
 		        // If rowsAffected > 0, it means a user was deleted successfully
 		        return rowsAffected > 0;
 		    } catch (SQLException | ClassNotFoundException ex) {
@@ -175,9 +189,8 @@ public class UserDao {
 
 
 
-		
-		//method to get all users and put in in a array list
-		public List<UserModel> getAllUsers() {
+
+	    public List<UserModel> getAllUsers() {
 		    List<UserModel> users = new ArrayList<>();
 		    try (Connection conn = DatabaseController.getConn()) {
 		        String getAllUsersQuery = QueryUtils.GET_USER;
@@ -202,8 +215,39 @@ public class UserDao {
 		    }
 		    return users;
 		}
+	    
+	    
+	    public int getUserIdFromUserName(String userName) {
+	        try (Connection conn = DatabaseController.getConn()) {
+	            String query = "SELECT userId FROM Users WHERE userName = ?";
+	            PreparedStatement statement = conn.prepareStatement(query);
+	            statement.setString(1, userName);
+	            ResultSet resultSet = statement.executeQuery();
 
+	            if (resultSet.next()) {
+	                return resultSet.getInt("userId");
+	            } else {
+	                // Handle the case when userName is not found in the database
+	                return -1; // Or any other appropriate default value or error handling
+	            }
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            ex.printStackTrace(); // Log the exception for debugging
+	            return -1; // Or any other appropriate default value or error handling
+	        }
+	    }
+	    
+	    // to get username fomr serssion
+	    public int getUserIdFromSession(HttpSession session) {
+	        String userName = (String) session.getAttribute("userName");
+	        if (userName != null) {
+	            // Assuming you have a method to retrieve the userId from the userName
+	            return getUserIdFromUserName(userName); // Replace 'ud' with your UserDao instance
+	        } else {
+	            // Handle the case when userName is not found in session
+	            return -1; // Or any other appropriate default value or error handling
+	        }
+	    }
 
-
+	    
 
 }

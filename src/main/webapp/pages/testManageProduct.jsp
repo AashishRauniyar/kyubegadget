@@ -43,7 +43,7 @@
             </thead>
             <tbody>
                 <%
-                    ProductDao productDao = new ProductDao(null);
+                    ProductDao productDao = new ProductDao();
                     List<ProductModel> products = productDao.getAllProducts();
                     for (ProductModel product : products) {
                 %>

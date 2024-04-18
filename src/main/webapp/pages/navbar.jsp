@@ -41,6 +41,9 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
             </svg>
 			</div>
 			<div class="flex items-center">
+			
+
+				<button class="color-black bg-purple-500 pb-1 pr-2" onclick="sortProducts()">Sort</button>
 
 				<!-- Search form -->
 				<form action="<%=request.getContextPath()%>/SearchProductServlet"
@@ -191,23 +194,18 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 								%>
 
 
-								<a href="#"
-									class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-
-									<%
-									out.println(pm.getCategoryName());
-									%>
-
+								
+								<a href="<%=request.getContextPath()%>/pages/index.jsp?categoryId=<%=pm.getProductCategoryId()%>"
+   									class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+   											<%= pm.getCategoryName() %>
 								</a>
+								
 
 								<%
 								}
 								%>
 
-								<ul>
-
-
-								</ul>
+								
 
 
 							</div>
@@ -253,5 +251,29 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 		}
 	});
 </script>
+<!-- <script>
+    function sortProducts() {
+        var currentUrl = window.location.href;
+        var sortOrder = "asc"; // Default sort order is ascending
+        // Check if the current URL already contains a sort parameter
+        if (currentUrl.includes("?")) {
+            // Check if the current sort order is ascending
+            if (currentUrl.includes("sort=asc")) {
+                // Change sort order to descending
+                sortOrder = "desc";
+            }
+            // Remove existing sort parameter from the URL
+            currentUrl = currentUrl.replace(/[\?&]sort=[^\?&]+/, "");
+        } else {
+            // Add a question mark to the URL if it doesn't contain any query parameters
+            currentUrl += "?";
+        }
+        // Append the new sort parameter to the URL
+        currentUrl += "sort=" + sortOrder;
+        // Reload the page with the updated URL
+        window.location.href = currentUrl;
+    }
+</script>
+ -->
 
 </html>

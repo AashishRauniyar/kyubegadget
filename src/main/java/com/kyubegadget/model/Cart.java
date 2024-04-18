@@ -3,6 +3,8 @@ package com.kyubegadget.model;
 public class Cart extends ProductModel {
 	private int stock;
 
+	
+	
 	public Cart() {}
 
 	
@@ -14,6 +16,15 @@ public class Cart extends ProductModel {
 	public void setStock(int stock) {
 		this.stock = stock;
 	}
+
+
+
+	
+	
+	
+	
+	
+	
 
 
 }

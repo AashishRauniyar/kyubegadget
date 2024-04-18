@@ -1,7 +1,7 @@
+
 package com.kyubegadget.controller.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -28,6 +28,8 @@ public class AddToCartServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             int productId = Integer.parseInt(request.getParameter("productId"));
+            
+            
 
             Cart cart = new Cart();
             cart.setProductId(productId);

@@ -15,6 +15,7 @@ import com.kyubegadget.utils.QueryUtils;
 
 public class CategoryDao {
 
+	
 	public int addCategory(ProductCategoryModel productCategoryModel) {
 		try (Connection conn = DatabaseController.getConn()) {
             // Update data in the users table
@@ -35,6 +36,8 @@ public class CategoryDao {
         }
     }
 	
+	
+	//get all categories
 	public List<ProductCategoryModel> getAllCategories() {
 	    List<ProductCategoryModel> categories = new ArrayList<>();
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -59,7 +62,29 @@ public class CategoryDao {
 	    return categories;
 	}
 	
+	// Method to retrieve category name by category ID
+    public String getCategoryNameById(int categoryId) {
+        String categoryName = null;
+        try (Connection conn = DatabaseController.getConn()) {
+            // Prepare SQL query to select category name based on category ID
+            String query = QueryUtils.GET_CATEGORY_NAME;
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setInt(1, categoryId);
 
+            // Execute query and retrieve result set
+            ResultSet resultSet = statement.executeQuery();
+
+            // Check if result set has next row (should have only one)
+            if (resultSet.next()) {
+                // Retrieve category name from result set
+                categoryName = resultSet.getString("categoryName");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return categoryName;
+    }
+	
 
 
            
