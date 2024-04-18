@@ -33,7 +33,7 @@ if (session.getAttribute("userName") != null && session.getAttribute("userName")
         // Instantiate ProductDao with the required parameters
         Connection conn = null; // Initialize the connection object
         // You need to implement DatabaseController to get the connection
-        ProductDao productDao = new ProductDao(conn);
+        ProductDao productDao = new ProductDao();
         
         // Retrieve the product by ID
         product = productDao.getProductById(String.valueOf(productId)); // Convert int to String
