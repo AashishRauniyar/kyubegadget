@@ -35,6 +35,18 @@
 		</servlet-mapping>
 
 
+		<servlet>
+			<servlet-name>AdminEditUserServlet</servlet-name>
+			<servlet-class>com.kyubegadget.controller.servlet.AdminEditUserServlet
+			</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AdminEditUserServlet</servlet-name>
+			<url-pattern>/AdminEditUserServlet</url-pattern>
+		</servlet-mapping>
+
+
+
 
 	</web-app>
 
@@ -54,5 +66,6 @@
 	</web-app>
 
 </element>
+
 
 

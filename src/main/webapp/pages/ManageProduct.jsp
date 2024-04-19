@@ -87,16 +87,18 @@
 <title>Product Information</title>
 <link href="<%=request.getContextPath()%>/styles/output.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100">
-    <div id="content" class="relative overflow-x-auto shadow-md sm:rounded-lg ml-64">
+
+
+<body class="bg-gray-100 flex">
+<%@include file="adminSideBar.jsp"%>
+    <div id="content" class="relative overflow-x-auto shadow-md sm:rounded-lg ">
         <div class="pb-4 bg-white"></div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="p-4">
                         <div class="flex items-center">
-                            <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
+          
                         </div>
                     </th>
                     <th scope="col" class="px-6 py-3">Product ID</th>
@@ -111,15 +113,14 @@
             <tbody>
                 <%
                 	ProductDao productDao = new ProductDao();
-                    CategoryDao categoryDao = new CategoryDao();
+                    CategoryDao cD = new CategoryDao();
                     List<ProductModel> products = productDao.getAllProducts();
                     for (ProductModel product : products) {
                 %>
                 <tr class="bg-white border-b hover:bg-gray-50">
                     <td class="w-4 p-4">
                         <div class="flex items-center">
-                            <input id="checkbox-table-search-1" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-                            <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
+                            
                         </div>
                     </td>
                     <td class="px-6 py-4"><%= product.getProductId() %></td>
@@ -127,7 +128,7 @@
                     <td class="px-6 py-4"><%= product.getPrice() %></td>
                     <td class="px-6 py-4"><%= product.getProductBrand() %></td>
                     <td class="px-6 py-4"><%= product.getProductDescription() %></td>
-                    <td class="px-6 py-4"><%= categoryDao.getCategoryNameById(product.getProductCategoryId()) %></td> <!-- Call getCategoryNameById method -->
+                    <td class="px-6 py-4"><%= cD.getCategoryNameById(product.getProductCategoryId()) %></td> <!-- Call getCategoryNameById method -->
                     <td class="px-6 py-4"><a href="../DeleteProductServlet?productId=<%= product.getProductId() %>" class="font-medium text-red-600 hover:underline">Delete</a></td>
                 </tr>
                 <%
@@ -136,5 +137,8 @@
             </tbody>
         </table>
     </div>
-</body>
+
+ <%@include file="ManageCategory.jsp"%>
+ 
+ </body>
 </html>

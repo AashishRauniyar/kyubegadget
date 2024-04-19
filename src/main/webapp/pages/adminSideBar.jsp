@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 </head>
 <body>
-
+<div class="flex">
 <div class="sidebar w-64 h-[100vh] relative"> 
   <div class="flex  h-[70px] border border-y-black items-center p-3 ">
     <p class="text-purple-600 font-bold text-xl ml-3">Kyube Gadget</p>
@@ -20,15 +20,17 @@
       <li class="flex flex-col">
         <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-home mr-3'></i>Home</a>
         <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bxs-dashboard mr-3'></i>Dashboard</a>
-        <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-list-ol mr-3' ></i>Orders</a>
-        <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-customize mr-3'></i>Product</a>
-        <a href="<%=request.getContextPath()%>/pages/UserList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-user-circle mr-3'></i></i>Customer</a>
+        <a href="<%=request.getContextPath()%>/pages/orderList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-list-ol mr-3' ></i>Orders</a>
+        <a href="<%=request.getContextPath()%>/pages/ManageProduct.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-customize mr-3'></i>Product</a>
+        <a href="<%=request.getContextPath()%>/pages/UserList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-user-circle mr-3'></i>Customer</a>
+        <a href="<%=request.getContextPath()%>/pages/SalesList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class="icon-[carbon--sales-ops]"></i>Sales</a>
       </li>
     </ul>
   </div>
   <div class="h-[70px] absolute inset-x-0 bottom-0 flex items-center p-3 border border-y-black">
     <a class="nav-link dropdown-toggle ml-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin name</a>
   </div>
+</div>
 </div>
 </body>
 </html>

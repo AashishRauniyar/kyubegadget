@@ -44,8 +44,19 @@ if (productList != null && !productList.isEmpty()) {
 
 }
 
+// Set unitprice in cartList
+if (cartList != null) {
+	for (Cart item : cartList) {
+		for (Cart product : productList) {
+	if (item.getProductId() == product.getProductId()) {
+		item.setPrice(product.getPrice());
+	}
+		}
+	}
+}
+
 //Calculate the total price including tax and shipping
-double totalPriceWithTax = total + (total * taxRate) ;
+double totalPriceWithTax = total + (total * taxRate);
 String formattedTotalPrice = String.format("%.2f", totalPriceWithTax);
 //Set total amount to session
 session.setAttribute("totalAmount", totalPriceWithTax);

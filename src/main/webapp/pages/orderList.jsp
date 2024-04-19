@@ -70,17 +70,17 @@
     <!-- OR -->
     <!-- <link href="<%=request.getContextPath()%>/styles/output.css" rel="stylesheet"> -->
 </head>
+<%@include file="adminSideBar.jsp"%>
 
-<body class="bg-gray-100">
-    <div id="content" class="relative overflow-x-auto shadow-md sm:rounded-lg ml-64">
+<body class="bg-gray-100 flex">
+    <div id="content" class="relative overflow-x-auto shadow-md sm:rounded-lg h-[100vh] ">
         <div class="pb-4 bg-white"></div>
         <table class="w-full text-sm text-left rtl:text-right text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" class="p-4">
                         <div class="flex items-center">
-                            <input id="checkbox-all-search" type="checkbox"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
+                            
                             <label for="checkbox-all-search" class="sr-only">checkbox</label>
                         </div>
                     </th>

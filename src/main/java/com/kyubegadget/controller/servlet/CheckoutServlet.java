@@ -100,6 +100,8 @@
 package com.kyubegadget.controller.servlet;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -112,6 +114,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kyubegadget.controller.dao.OrderDao;
 import com.kyubegadget.controller.dao.OrderLineDao;
+import com.kyubegadget.controller.dao.SalesDao;
 import com.kyubegadget.controller.dao.UserDao;
 import com.kyubegadget.model.Cart;
 import com.kyubegadget.model.OrderLineModel;
@@ -149,6 +152,25 @@ public class CheckoutServlet extends HttpServlet {
 				OrderLineModel orderLine = new OrderLineModel(0, orderId, cartItem.getProductId(), cartItem.getStock());
 				ol.saveOrderLineToDatabase(orderLine);
 			}
+// retrieve the unit price from the 
+			
+			
+			
+			
+			
+			// Store the sale information in the sales table
+			for (Cart cartItem : cartList) {
+			    
+			    // Calculate total price
+			    double totalPrice = totalAmount * cartItem.getStock();
+
+			    // Convert java.util.Date to java.time.LocalDate
+			    LocalDate saleDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+			    // Call the insertSaletoDatabase method with the calculated total price
+			    SalesDao.insertSaletoDatabase(cartItem.getProductId(), userId, saleDate, cartItem.getStock(), cartItem.getPrice(), totalPrice);
+			}
+
 
 			response.sendRedirect(request.getContextPath() + StringUtils.BILL_PAGE);
 //			session.removeAttribute("cartList"); // Remove cartList from session after successful checkout

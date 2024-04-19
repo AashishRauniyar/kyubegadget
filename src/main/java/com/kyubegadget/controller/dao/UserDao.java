@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -247,7 +248,34 @@ public class UserDao {
 	            return -1; // Or any other appropriate default value or error handling
 	        }
 	    }
+	    
+	    //user update by admin
+	    
+
+	        public void updateUserbyadmin(UserModel user) throws ClassNotFoundException {
+	            try (Connection conn = DatabaseController.getConn()){
+	                String query = "UPDATE users SET firstName=?, lastName=?, dob=?, email=?, address=?, phoneNumber=?, gender=? WHERE userName=?";
+	                PreparedStatement ps = conn.prepareStatement(query);
+	                ps.setString(1, user.getFirstName());
+	                ps.setString(2, user.getLastName());
+	                if (user.getDob() != null) {
+	                    ps.setDate(3, java.sql.Date.valueOf(user.getDob()));
+	                } else {
+	                    ps.setNull(3, Types.DATE);
+	                }
+	                ps.setString(4, user.getEmail());
+	                ps.setString(5, user.getAddress());
+	                ps.setString(6, user.getPhoneNumber());
+	                ps.setString(7, user.getGender());
+	                ps.setString(8, user.getUserName());
+	                ps.executeUpdate();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+
 
 	    
 
-}
+
