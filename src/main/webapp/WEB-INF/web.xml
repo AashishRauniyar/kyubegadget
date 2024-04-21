@@ -25,6 +25,26 @@
 			<servlet-name>AddToCartServlet</servlet-name>
 			<url-pattern>/AddToCartServlet</url-pattern>
 		</servlet-mapping>
+		<servlet>
+			<servlet-name>CheckoutServlet</servlet-name>
+			<servlet-class>CheckoutServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>CheckoutServlet</servlet-name>
+			<url-pattern>/CheckoutServlet</url-pattern>
+		</servlet-mapping>
+
+
+		<servlet>
+			<servlet-name>AdminEditUserServlet</servlet-name>
+			<servlet-class>com.kyubegadget.controller.servlet.AdminEditUserServlet
+			</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>AdminEditUserServlet</servlet-name>
+			<url-pattern>/AdminEditUserServlet</url-pattern>
+		</servlet-mapping>
+
 
 
 
