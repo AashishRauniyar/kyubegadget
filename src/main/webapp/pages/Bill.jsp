@@ -30,7 +30,7 @@ ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
 List<Cart> productList = null;
 
 if (cartList != null) {
-    ProductDao productDao = new ProductDao(DatabaseController.getConn());
+    ProductDao productDao = new ProductDao();
     productList = productDao.getCartProduct(cartList);
     request.setAttribute("cartList", cartList);
     session.setAttribute("cartList", cartList);
