@@ -15,7 +15,7 @@
         <%-- Retrieve product ID from request parameter --%>
         <% String productId = request.getParameter("productId"); %>
         <%-- Retrieve product details using product ID --%>
-        <% ProductDao productDao = new ProductDao(null); %>
+        <% ProductDao productDao = new ProductDao(); %>
         <% ProductModel product = productDao.getProductById(productId); %>
         <%-- Display form fields pre-filled with product details --%>
         <input type="hidden" name="productId" value="<%= product.getProductId() %>">

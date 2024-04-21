@@ -46,7 +46,6 @@ public class UserModel {
 	
 	
 	
-	
 
 
 
@@ -177,4 +176,3 @@ public class UserModel {
    
 
 }
-
