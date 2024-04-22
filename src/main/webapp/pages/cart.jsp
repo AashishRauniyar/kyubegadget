@@ -105,13 +105,9 @@ System.out.println("Total Price: " + totalPriceWithTax);
 						<td class="px-4 py-2">$<%=item.getPrice()%></td>
 						<td class="px-4 py-2">
 							<div class="flex items-center border-gray-100">
-								<span
-									class="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50">
-									- </span> <input
+								 <input
 									class="h-8 w-8 border bg-white text-center text-xs outline-none"
-									type="number" value="<%=item.getStock()%>" min="1" /> <span
-									class="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50">
-									+ </span>
+									type="number" value="<%=item.getStock()%>" min="1" /> 
 							</div>
 						</td>
 						<td class="px-4 py-2">$<%=totalPrice%></td>
