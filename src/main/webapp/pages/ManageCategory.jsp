@@ -10,6 +10,27 @@
     <title>Category Information</title>
     <link href="<%=request.getContextPath()%>/styles/output.css" rel="stylesheet">
 </head>
+<style>
+input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+/* Style for the input field on focus */
+input[type="text"]:focus {
+    outline: none;
+    border-color: #4a90e2; /* Change border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25); /* Add a box shadow on focus */
+}
+
+
+</style>
 <body class="bg-gray-100 flex">
 <div id="content" class="relative overflow-x-auto shadow-md sm:rounded-lg ">
     <div class="pb-4 bg-white"></div>
@@ -49,6 +70,48 @@
         %>
         </tbody>
     </table>
+<%--     <a href="<%=request.getContextPath()%>/pages/productCategory.jsp" class="fixed right-4 bottom-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Add Category</a>
+ --%>
+ 
+ <div id="categoryForm">
+    <div class="form-group">
+        <input class="border border-red-300" type="text" id="categoryName" name="categoryName" placeholder="Add Category" required>
+    </div>
+    <button onclick="addCategory()" class="text-white bg-indigo-500 hover:bg-indigo-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Add Category</button>
 </div>
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ </div>
+
 </body>
+<script>
+function addCategory() {
+    // Get the category name input value
+    var categoryName = document.getElementById("categoryName").value;
+
+    // Send AJAX request to the servlet
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../AddCategoryServlet", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle response from servlet
+          
+            // Optional: Reload page or update UI
+            location.reload(); // Reload the page
+        }
+    };
+    xhr.send("categoryName=" + categoryName); // Send category name as POST parameter
+}
+
+    </script>
 </html>

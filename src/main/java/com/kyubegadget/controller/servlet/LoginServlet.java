@@ -45,9 +45,9 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userName = request.getParameter(StringUtils.userName);
-        String password = request.getParameter(StringUtils.password);
+        
         String hashedPasswordDB = ud.getHashedPassword(userName);
-
+        System.out.println(hashedPasswordDB);
         if (hashedPasswordDB != null && hashedPasswordDB.contains("$")) {
             String[] parts = hashedPasswordDB.split("\\$");
             String extractedSalt = parts[2];

@@ -136,6 +136,7 @@
                 %>
             </tbody>
         </table>
+        
     </div>
 
  <%@include file="ManageCategory.jsp"%>

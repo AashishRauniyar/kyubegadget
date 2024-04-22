@@ -27,10 +27,10 @@
         %>
 
 
+	<%@include file="adminSideBar.jsp"%>
 
 
-
-<div class="sidebar w-64 h-[100vh] relative"> 
+<%-- <div class="sidebar w-64 h-[100vh] relative"> 
   <div class="flex  h-[70px] border border-y-black items-center p-3 ">
     <p class="text-purple-600 font-bold text-xl ml-3">Kyube Gadget</p>
   </div>
@@ -48,7 +48,10 @@
   <div class="h-[70px] absolute inset-x-0 bottom-0 flex items-center p-3 border border-y-black">
     <a class="nav-link dropdown-toggle ml-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin name</a>
   </div>
-</div>
+</div> --%>
+
+
+
 
 
     
