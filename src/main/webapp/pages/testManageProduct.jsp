@@ -2,6 +2,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.sql.*, com.kyubegadget.controller.dbcontroller.DatabaseController"%>
 <%@ page import="com.kyubegadget.controller.dao.ProductDao"%>
+<%@ page import="com.kyubegadget.controller.dao.CategoryDao" %>
 <%@ page import="com.kyubegadget.model.ProductModel"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,9 +16,11 @@
     
 </head>
 
-<body class="bg-gray-100">
+<%@include file="adminSideBar.jsp"%>
+<body class="bg-gray-100 flex ">
+    
     <div id="content"
-        class="relative overflow-x-auto shadow-md sm:rounded-lg ml-64">
+        class="relative overflow-x-auto shadow-md sm:rounded-lg ">
         <div class="pb-4 bg-white">
             
         </div>
@@ -41,7 +44,7 @@
                     <th scope="col" class="px-6 py-3">Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <%-- <tbody>
                 <%
                     ProductDao productDao = new ProductDao();
                     List<ProductModel> products = productDao.getAllProducts();
@@ -66,9 +69,38 @@
                 <%
                     }
                 %>
+            </tbody> --%>
+            <tbody>
+                <%
+                	ProductDao productDao = new ProductDao();
+                    CategoryDao cD = new CategoryDao();
+                    List<ProductModel> products = productDao.getAllProducts();
+                    for (ProductModel product : products) {
+                %>
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td class="w-4 p-4">
+                        <div class="flex items-center">
+                            
+                        </div>
+                    </td>
+                    <td class="px-6 py-4"><%= product.getProductId() %></td>
+                    <td class="px-6 py-4"><%= product.getProductName() %></td>
+                    <td class="px-6 py-4"><%= product.getPrice() %></td>
+                    <td class="px-6 py-4"><%= product.getProductBrand() %></td>
+                    <td class="px-6 py-4"><%= product.getProductDescription() %></td>
+                    <td class="px-6 py-4"><%= cD.getCategoryNameById(product.getProductCategoryId()) %></td> <!-- Call getCategoryNameById method -->
+                    <td class="px-6 py-4"><a href="../DeleteProductServlet?productId=<%= product.getProductId() %>" class="font-medium text-red-600 hover:underline">Delete</a></td>
+                </tr>
+                <%
+                    }
+                %>
             </tbody>
         </table>
-    </div>
+        <a href="<%=request.getContextPath()%>/pages/addProduct.jsp"
+		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Add
+		Product</a>
+	</div>
+    
 </body>
 
 </html>

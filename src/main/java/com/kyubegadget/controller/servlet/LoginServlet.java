@@ -91,6 +91,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userName = request.getParameter(StringUtils.userName);
+
         String password = request.getParameter(StringUtils.password);
 
         // Retrieve hashed password from the database
@@ -111,6 +112,7 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + StringUtils.ADMIN_PAGE);
                     return;
                 } else {
+
                     // Successful user login
                     HttpSession session = request.getSession();
                     session.setAttribute(StringUtils.userName, userName);
