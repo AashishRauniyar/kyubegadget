@@ -45,6 +45,16 @@
 			<url-pattern>/AdminEditUserServlet</url-pattern>
 		</servlet-mapping>
 
+		<filter>
+			<filter-name>LoginFilter</filter-name>
+			<filter-class>com.kyubegadget.controller.Filter.LoginFilter</filter-class>
+		</filter>
+		<filter-mapping>
+			<filter-name>LoginFilter</filter-name>
+			<url-pattern>/LoginFilter</url-pattern>
+		</filter-mapping>
+
+
 
 
 

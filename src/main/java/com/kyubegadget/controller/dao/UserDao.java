@@ -52,17 +52,12 @@ public class UserDao {
 			PreparedStatement st = conn.prepareStatement(QueryUtils.GET_HASHED_PASSWORD);
 			st.setString(1, userName);
 			ResultSet rs = st.executeQuery();
-			/*
-			 * String password = rs.getString("hashed_password"); System.out.println(
-			 * password);
-			 */
 			if (rs.next()) {
 				return rs.getString("password");
 			} else {
 				// Username not found
-				System.out.print("ppppp");
+				System.out.print("UserName not found");
 				return null;
-
 			}
 		} catch (SQLException | ClassNotFoundException ex) {
 			ex.printStackTrace();
