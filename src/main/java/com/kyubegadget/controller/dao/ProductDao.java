@@ -274,6 +274,19 @@ public class ProductDao {
 	}
 
 	
+	// to show total product in category dao
+	public static int getTotalProducts() throws SQLException, ClassNotFoundException {
+	    int totalProducts = 0;
+	    String sql = "SELECT COUNT(*) FROM product"; // Assuming 'products' is the table name
+	    try (Connection conn = DatabaseController.getConn();
+	         PreparedStatement pstmt = conn.prepareStatement(sql);
+	         ResultSet rs = pstmt.executeQuery()) {
+	        if (rs.next()) {
+	            totalProducts = rs.getInt(1);
+	        }
+	    }
+	    return totalProducts;
+	}
 	
 	
 	

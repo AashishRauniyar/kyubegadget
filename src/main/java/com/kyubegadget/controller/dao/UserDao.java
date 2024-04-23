@@ -268,7 +268,29 @@ public class UserDao {
 	                e.printStackTrace();
 	            }
 	        }
-	    }
+	        // show total users in dashboard
+
+	        public static int getTotalUsers() throws SQLException, ClassNotFoundException {
+	            int totalUsers = 0;
+	            String sql = "SELECT COUNT(*) FROM users"; // Assuming 'users' is the table name
+	            try (Connection conn = DatabaseController.getConn();
+	                 PreparedStatement pstmt = conn.prepareStatement(sql);
+	                 ResultSet rs = pstmt.executeQuery()) {
+	                if (rs.next()) {
+	                    totalUsers = rs.getInt(1);
+	                }
+	            }
+	            return totalUsers;
+	        }
+
+
+
+}
+
+
+
+
+		
 
 
 	    

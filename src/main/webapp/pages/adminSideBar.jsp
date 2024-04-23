@@ -13,13 +13,13 @@
 <div class="flex">
 <div class="sidebar w-64 h-[100vh] relative"> 
   <div class="flex  h-[70px] border border-y-black items-center p-3 ">
-    <p class="text-purple-600 font-bold text-xl ml-3">Kyube Gadget</p>
+    <p class="text-indigo-500 font-bold text-xl ml-3">Kyube Gadget</p>
   </div>
   <div class="p-3">
     <ul>
       <li class="flex flex-col">
         <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-home mr-3'></i>Home</a>
-        <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bxs-dashboard mr-3'></i>Dashboard</a>
+        <a href="<%=request.getContextPath()%>/pages/dashbpoard.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bxs-dashboard mr-3'></i>Dashboard</a>
         <a href="<%=request.getContextPath()%>/pages/orderList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-list-ol mr-3' ></i>Orders</a>
         <a href="<%=request.getContextPath()%>/pages/testManageProduct.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-customize mr-3'></i>Product</a>
         <a href="<%=request.getContextPath()%>/pages/UserList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-user-circle mr-3'></i>Customer</a>

@@ -18,13 +18,4 @@ public class Cart extends ProductModel {
 	}
 
 
-
-	
-	
-	
-	
-	
-	
-
-
 }

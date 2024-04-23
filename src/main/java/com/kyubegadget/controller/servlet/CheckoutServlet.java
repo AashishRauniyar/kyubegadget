@@ -162,7 +162,8 @@ public class CheckoutServlet extends HttpServlet {
 			for (Cart cartItem : cartList) {
 			    
 			    // Calculate total price
-			    double totalPrice = totalAmount * cartItem.getStock();
+				/* double totalPrice = totalAmount * cartItem.getStock(); */
+				double totalPrice = cartItem.getPrice() * cartItem.getStock();
 
 			    // Convert java.util.Date to java.time.LocalDate
 			    LocalDate saleDate = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

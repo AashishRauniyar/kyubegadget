@@ -44,7 +44,7 @@
     
  
     
-    /* // sorting code
+    // sorting code
     // Get the sort order parameter from the request
     String sortOrder = request.getParameter("sort");
 
@@ -57,7 +57,7 @@
             // Sort products in descending order by price
             products.sort((p1, p2) -> Double.compare(p2.getPrice(), p1.getPrice()));
         }
-    } */
+    } 
 
 %>
 
@@ -76,7 +76,7 @@
 <body class="">
 <%@ include file="navbar.jsp" %>
 
-<div style="padding: 10px;" class="grid grid-cols-2 gap-2   bg-indigo-500 mt-10 ">
+<div style="padding: 10px;" class="grid grid-row-2 gap-2   bg-indigo-500 mt-10 ">
  <h1 class = " text-center  text-white"> Welcome to Kyube gadget</h1>
  <div id="addToCartMessage" style="display: none;">Added to Cart</div>
 </div>
@@ -113,11 +113,11 @@
                             <!-- <button class=" flex items-center text-sm text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600">Add to Cart</button> -->
                             
                             <%-- Check if the user is logged in --%>
-<% if (session.getAttribute("userName") != null) { %>
-    <a href="#" class="flex items-center text-sm text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded role=" alert" onclick="addToCartWithAlert('<%=product.getProductId()%>'); return false;">Add to Cart</a>
-<% } else { %>
-    <a href="<%=request.getContextPath()%>/pages/login.jsp" class="flex items-center text-sm text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add to Cart</a>
-<% } %>
+			<% if (session.getAttribute("userName") != null) { %>
+    			<a href="#" class="flex items-center text-sm text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded role=" alert" onclick="addToCartWithAlert('<%=product.getProductId()%>'); return false;">Add to Cart</a>
+			<% } else { %>
+    			<a href="<%=request.getContextPath()%>/pages/login.jsp" class="flex items-center text-sm text-white bg-indigo-500 border-0 py-1 px-2 focus:outline-none hover:bg-gray-600 rounded">Add to Cart</a>
+			<% } %>
                         <% } %>
                     </div>
                 </div>      

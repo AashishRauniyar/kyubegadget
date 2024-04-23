@@ -147,7 +147,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 
 					<a href="<%=request.getContextPath()%>/pages/cart.jsp"
 						class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
-						<span id="cart-counter" style=" color: red;">0</span> 
+						<!-- <span id="cart-counter" style=" color: red;">0</span>  -->
 						
 						<svg
 							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -275,7 +275,73 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
         // Reload the page with the updated URL
         window.location.href = currentUrl;
     }
+</script> -->
+
+<script>
+
+/* function sortProducts() {
+     var currentUrl = window.location.href;
+    var newUrl;
+
+    // Check if the current URL already contains a sort parameter
+    if (currentUrl.includes("?")) {
+        // Remove existing sort parameter from the URL
+        newUrl = currentUrl.replace(/[\?&]sort=[^\?&]+/, "");
+    } else {
+        // Add a question mark to the URL if it doesn't contain any query parameters
+        newUrl = currentUrl + "?";
+    }
+
+    // Append the new sort parameter to the URL
+    newUrl += "sort=asc";
+
+    // Preserve category and search query parameters if they exist
+    if (currentUrl.includes("categoryId=")) {
+        // Preserve the category parameter
+        newUrl += "&categoryId=" + currentUrl.match(/categoryId=\d+/)[0].split("=")[1];
+    }
+
+    if (currentUrl.includes("query=")) {
+        // Preserve the search query parameter
+        newUrl += "&query=" + currentUrl.match(/query=[^&]+/)[0].split("=")[1];
+    }
+
+    // Reload the page with the updated URL
+    window.location.href = newUrl;
+} */
+
+function sortProducts() {
+    var currentUrl = window.location.href;
+    var newUrl;
+
+    // Check if the current URL already contains a sort parameter
+    if (currentUrl.includes("?")) {
+        // Remove existing sort parameter from the URL
+        newUrl = currentUrl.replace(/[\?&]sort=[^\?&]+/, "");
+    } else {
+        // Add a question mark to the URL if it doesn't contain any query parameters
+        newUrl = currentUrl + "?";
+    }
+
+    // Append the new sort parameter to the URL
+    newUrl += "&sort=asc"; // Changed from "sort=asc" to "&sort=asc"
+
+    // Preserve category and search query parameters if they exist
+    if (currentUrl.includes("categoryId=")) {
+        // Preserve the category parameter
+        newUrl += "&" + currentUrl.match(/categoryId=\d+/)[0]; // Append with "&"
+    }
+
+    if (currentUrl.includes("query=")) {
+        // Preserve the search query parameter
+        newUrl += "&" + currentUrl.match(/query=[^&]+/)[0]; // Append with "&"
+    }
+
+    // Reload the page with the updated URL
+    window.location.href = newUrl;
+}
+
+
 </script>
- -->
 
 </html>

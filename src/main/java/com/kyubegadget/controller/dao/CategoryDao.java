@@ -85,6 +85,19 @@ public class CategoryDao {
         return categoryName;
     }
 	
+    
+    public static int getTotalCategories() throws SQLException, ClassNotFoundException {
+        int totalCategories = 0;
+        String sql = "SELECT COUNT(*) FROM productcategory"; // Assuming 'product_categories' is the table name
+        try (Connection conn = DatabaseController.getConn();
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                totalCategories = rs.getInt(1);
+            }
+        }
+        return totalCategories;
+    }
 
 
            
