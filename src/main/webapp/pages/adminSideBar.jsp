@@ -19,7 +19,7 @@
     <ul>
       <li class="flex flex-col">
         <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-home mr-3'></i>Home</a>
-        <a href="<%=request.getContextPath()%>/pages/dashbpoard.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bxs-dashboard mr-3'></i>Dashboard</a>
+        <a href="<%=request.getContextPath()%>/pages/dashboard.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bxs-dashboard mr-3'></i>Dashboard</a>
         <a href="<%=request.getContextPath()%>/pages/orderList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-list-ol mr-3' ></i>Orders</a>
         <a href="<%=request.getContextPath()%>/pages/testManageProduct.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-customize mr-3'></i>Product</a>
         <a href="<%=request.getContextPath()%>/pages/UserList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-user-circle mr-3'></i>Customer</a>

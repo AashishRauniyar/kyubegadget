@@ -31,6 +31,7 @@
                 </p>
             </div>
             
+            
             <!-- Total Categories Card -->
             <div class="bg-white rounded-lg shadow-md p-6">
                 <h2 class="text-lg font-semibold mb-4">Total Categories</h2>

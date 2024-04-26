@@ -46,7 +46,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 				<button class="color-black  pb-1 pr-2" onclick="sortProducts()">Sort</button>
 
 				<!-- Search form -->
-				<form action="<%=request.getContextPath()%>/SearchProductServlet"
+				 <form action="<%=request.getContextPath()%>/SearchProductServlet"
 					method="GET">
 					<div
 						class="flex items-center rounded-full overflow-hidden border border-none">
@@ -63,8 +63,15 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 								alt="" class="h-[40px] mx-2">
 						</button>
 					</div>
-				</form>
+				</form> 
+				
 
+
+
+
+
+
+				
 
 				<!-- <input type="text"
 					class="h-[40px] border border-b-gray-200 pl-4 rounded-s-full"
