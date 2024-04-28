@@ -275,7 +275,7 @@ System.out.println("Total Price: " + totalPriceWithTax);
         class="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div class="rounded-lg md:w-2/3">
             <table class="w-full mb-6 bg-white rounded-lg shadow-md">
-                <thead class="bg-gray-200">
+                <thead  class="bg-orange-500">
                     <tr>
                         <th class="px-4 py-2">Product ID</th>
                         <th class="px-4 py-2">Image</th>

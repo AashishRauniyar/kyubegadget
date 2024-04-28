@@ -12,8 +12,8 @@
 <body>
 <div class="flex">
 <div class="sidebar w-64 h-[100vh] relative"> 
-  <div class="flex  h-[70px] border border-y-black items-center p-3 ">
-    <p class="text-indigo-500 font-bold text-xl ml-3">Kyube Gadget</p>
+  <div  class="flex bg-orange-500 h-[70px]  border border-y-white items-center p-3 ">
+    <p class="text-white font-bold text-xl ml-3 ">Kyube Gadget</p>
   </div>
   <div class="p-3">
     <ul>

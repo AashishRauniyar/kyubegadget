@@ -289,6 +289,33 @@ public class ProductDao {
 	}
 	
 	
+	// get products sorted by price
+	
+	public List<ProductModel> getAllProductsSortedByPrice() {
+        List<ProductModel> products = new ArrayList<>();
+        String sql = "SELECT * FROM product ORDER BY price";
+
+        try (Connection conn = DatabaseController.getConn()) {
+             PreparedStatement pstmt = conn.prepareStatement(sql);
+             ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setProductId(rs.getInt("productId"));
+                product.setProductName(rs.getString("productName"));
+                product.setPrice(rs.getDouble("price"));
+                product.setImageUrl(rs.getString("imageUrl"));
+                // Set other product attributes as needed
+                products.add(product);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace(); // Handle or log the exception as needed
+        }
+
+        return products;
+    }
+	
+	
 	
 
 

@@ -42,10 +42,13 @@ public class SearchProductServlet extends HttpServlet {
         }
 
         // Forward the request to the index.jsp page
-        request.getRequestDispatcher("/pages/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/pages/shop.jsp").forward(request, response);
         
     }
-
+    
+    
+    
+    
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -1,8 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.kyubegadget.model.UserModel" %>
+<%@ page import="com.kyubegadget.utils.StringUtils"%>
 <%@ page import="com.kyubegadget.controller.dao.ProfileDao" %>
-
+<%
+    String username = (String) session.getAttribute("userName");
+    if (username == null) {
+    	response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
+    } else {
+    	ProfileDao profileDao = new ProfileDao();
+        UserModel userModel = profileDao.getUserByUsername(username);
+        if (userModel != null) {
+            session.setAttribute("userModel", userModel);
+        }
+        // Redirect to login page if the session doesn't exist
+        
+    
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +36,7 @@ body {
 
 	display: flex;
 	min-height: 70vh;
-	margin-top: 20px;
+	
 	/* Ensure container stretches to at least full viewport height */
 }
 
@@ -105,7 +119,7 @@ body {
 
 </head>
 <body>
-<%@ include file="./navbar.jsp"%>
+<%@ include file="./navigationbar.jsp"%>
 	<div class="cont-profile">
 	
 	
@@ -130,20 +144,7 @@ body {
         }
     %> --%>
     
-    <%
-    String username = (String) session.getAttribute("userName");
-    if (username == null) {
-    	response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
-    } else {
-    	ProfileDao profileDao = new ProfileDao();
-        UserModel userModel = profileDao.getUserByUsername(username);
-        if (userModel != null) {
-            session.setAttribute("userModel", userModel);
-        }
-        // Redirect to login page if the session doesn't exist
-        
     
-%>
     
     
     

@@ -11,7 +11,7 @@
 .sidebar {
 	height: 80vh;
     width: 100%;
-    background-color: #2c3e50;
+    background-color: #fb923c;
     color: #fff;
     padding: 20px;
     display: flex;

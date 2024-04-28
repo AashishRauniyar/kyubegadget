@@ -20,6 +20,7 @@ public class OrderLineDao {
 
             int rowsInserted = statement.executeUpdate();
             if (rowsInserted <= 0) {
+            	
                 // Handle the case when order line insertion fails
             }
         } catch (SQLException | ClassNotFoundException ex) {

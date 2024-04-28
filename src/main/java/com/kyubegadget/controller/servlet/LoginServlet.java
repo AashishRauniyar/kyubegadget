@@ -118,7 +118,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute(StringUtils.userName, userName);
                     session.setAttribute("role", "user");
                     session.setMaxInactiveInterval(30 * 60);
-                    response.sendRedirect(request.getContextPath() + StringUtils.WELCOME_PAGE);
+                    response.sendRedirect(request.getContextPath() + StringUtils.HOME_PAGE);
                     return;
                 }
             }

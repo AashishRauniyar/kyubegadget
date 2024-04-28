@@ -46,7 +46,7 @@ public class AddToCartServlet extends HttpServlet {
             boolean productExists = cartList.stream().anyMatch(c -> c.getProductId() == productId);
             if (!productExists) {
                 cartList.add(cart);
-                response.sendRedirect(request.getContextPath()+StringUtils.WELCOME_PAGE);
+                response.sendRedirect(request.getContextPath()+StringUtils.SHOP_PAGE);
             } else {
                 for (Cart c : cartList) {
                     if (c.getProductId() == productId) {
@@ -54,7 +54,7 @@ public class AddToCartServlet extends HttpServlet {
                         break;
                     }
                 }
-                response.sendRedirect(request.getContextPath()+StringUtils.WELCOME_PAGE);
+                response.sendRedirect(request.getContextPath()+StringUtils.SHOP_PAGE);
             }
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid product ID");

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="navbar.jsp"%>
+<%@ include file="navigationbar.jsp"%>
 <h1 class="text-4xl mt-10">Call us dude</h1>
 <%@ include file="footer.jsp"%>
 </body>

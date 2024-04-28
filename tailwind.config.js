@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/main/webapp/pages/**/*.{html,jsp}"],
   theme: {
-    extend: {},
+    extend: {
+		colors: {
+        	customcolor: '#fb923c',
+      },
+	},
   },
   plugins: [],
 }

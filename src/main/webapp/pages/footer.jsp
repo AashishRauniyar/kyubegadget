@@ -19,7 +19,7 @@
           <rect x="14" y="1" width="7" height="6"></rect>
           <rect x="14" y="11" width="7" height="12"></rect>
         </svg>
-        <span class="ml-2 text-xl font-bold tracking-wide text-indigo-500 uppercase">Kyube Gadget</span>
+        <span style="color:#fb923c" class="ml-2 text-xl font-bold tracking-wide uppercase">Kyube Gadget</span>
       </a>
       <div class="mt-6 lg:max-w-sm">
         <p class="text-sm text-gray-800">
@@ -29,7 +29,7 @@
       </div>
     </div>
     <div class="space-y-2 text-sm">
-      <p class="text-base font-bold tracking-wide text-indigo-500">Contacts</p>
+      <p style="color:#fb923c" class="text-base font-bold tracking-wide ">Contacts</p>
       <div class="flex">
         <p class="mr-1 text-gray-800">Phone:</p>
         <a href="#" aria-label="Our phone" title="Our phone" class="transition-colors duration-300 text-deep-purple-accent-400 hover:text-deep-purple-800">+9779876543210</a>
@@ -46,7 +46,7 @@
       </div>
     </div>
     <div>
-      <span class="text-base font-bold tracking-wide text-indigo-500">Social</span>
+      <span style="color:#fb923c" class="text-base font-bold tracking-wide ">Social</span>
       <div class="flex items-center mt-1 space-x-3">
         <a href="/" class="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-400">
           <svg viewBox="0 0 24 24" fill="currentColor" class="h-5">
@@ -77,7 +77,7 @@
     </div>
   </div>
   <div class="flex flex-col-reverse justify-between pt-5 pb-10 border-t lg:flex-row">
-    <p class="text-sm text-indigo-500">
+    <p style="color:#fb923c" class="text-sm ">
       © Copyright 2024 Kyube Gadget. All rights reserved.
     </p>
     <ul class="flex flex-col mb-3 space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row">

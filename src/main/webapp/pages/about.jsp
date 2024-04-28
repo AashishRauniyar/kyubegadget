@@ -9,7 +9,7 @@
     <link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet"> 
 </head>
 <body>
-<%@ include file="navbar.jsp"%>
+<%@ include file="navigationbar.jsp"%>
 
         <div class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
             <div class="flex flex-col lg:flex-row justify-between gap-8">
