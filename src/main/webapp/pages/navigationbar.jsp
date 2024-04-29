@@ -1,3 +1,7 @@
+
+<%
+String userName1 = (String) session.getAttribute("userName");
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,7 +14,7 @@
 </head>
 <body>
 
-<nav style="background-color:#fb923c" class="">
+<nav style="background-color:#fb923c" class="p-3">
         <div class="max-w-7xl mx-auto px-4">
           <div class="flex justify-between items-center h-16">
             <!-- Logo -->
@@ -37,20 +41,99 @@
                 <li><a href="<%=request.getContextPath()%>/pages/shop.jsp" class="text-white hover:text-gray-200">Shop</a></li>
                 <li><a href="<%=request.getContextPath()%>/pages/about.jsp" class="text-white hover:text-gray-200">About</a></li>
                 <li><a href="<%=request.getContextPath()%>/pages/contact.jsp" class="text-white hover:text-gray-200">Contact Us</a></li>
-                <li ><a href="<%=request.getContextPath()%>/pages/login.jsp">
-                  <div class="flex ml-2">
-      
-                    <div><svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-                    </svg> 
-                  </div>
-                  <div class="text-white">Login</div>
-                </div>
-                  
                 
-                </a></li>
+                <%
+				if (userName1 != null) {
+				%>
+
+				<div class="flex items-center mr-4">
+					<div class="">
+						<a href="#"
+							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24"
+								style="fill: rgba(0, 0, 0, 1); transform:; msFilter:;">
+                <path
+									d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+            </svg>
+							<p class="ml-2"><%=userName1%></p>
+						</a>
+					</div>
+					<div class="">
+						<a href="<%=request.getContextPath()%>/pages/profile.jsp"
+							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24"
+								style="fill: rgba(0, 0, 0, 1); transform:; msFilter:;">
+                <path
+									d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+            </svg>
+							<p class="ml-2">Profile</p>
+						</a>
+					</div>
+				</div>
+
+				<%
+				} else {
+				%>
+
+				<div class="flex items-center mr-4">
+					<div class="">
+						<a href="<%=request.getContextPath()%>/pages/register.jsp"
+							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24"
+								style="fill: rgba(0, 0, 0, 1); transform:; msFilter:;">
+                <path
+									d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+            </svg>
+							<p class="ml-2">Register</p>
+						</a>
+					</div>
+					<div class="">
+						<a href="<%=request.getContextPath()%>/pages/login.jsp"
+							class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+								viewBox="0 0 24 24"
+								style="fill: rgba(0, 0, 0, 1); transform:; msFilter:;">
+                <path
+									d="M12 2a5 5 0 1 0 5 5 5 5 0 0 0-5-5zm0 8a3 3 0 1 1 3-3 3 3 0 0 1-3 3zm9 11v-1a7 7 0 0 0-7-7h-4a7 7 0 0 0-7 7v1h2v-1a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v1z"></path>
+            </svg>
+							<p class="ml-2">Login</p>
+						</a>
+					</div>
+				</div>
+
+				<%
+				}
+				%>
+
+
+				<div class="">
+
+					<a href="<%=request.getContextPath()%>/pages/cart.jsp"
+						class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
+						<!-- <span id="cart-counter" style=" color: red;">0</span>  -->
+						
+						<svg
+							xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+							viewBox="0 0 24 24"
+							style="fill: rgba(0, 0, 0, 1); transform:; msFilter:;">
+                        <path
+								d="M21.822 7.431A1 1 0 0 0 21 7H7.333L6.179 4.23A1.994 1.994 0 0 0 4.333 3H2v2h2.333l4.744 11.385A1 1 0 0 0 10 17h8c.417 0 .79-.259.937-.648l3-8a1 1 0 0 0-.115-.921zM17.307 15h-6.64l-2.5-6h11.39l-2.25 6z"></path>
+                        <circle cx="10.5" cy="19.5" r="1.5"></circle>
+                        <circle cx="17.5" cy="19.5" r="1.5"></circle>
+                    </svg>
+
+						<p class="ml-2">Cart</p>
+					</a>
+
+				</div>
+			</div>
+		</div>
+                
       
-                <li ><a href="./cart.jsp">
+                <!-- <li ><a href="./cart.jsp">
                   <div class="flex ml-2">
       
                     <div>
@@ -62,7 +145,7 @@
                 </div>
                   
                 
-                </a></li>
+                </a></li> -->
       
       
       

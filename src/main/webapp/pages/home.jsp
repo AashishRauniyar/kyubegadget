@@ -87,6 +87,10 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
             
             
             
+             
+            <% if (session.getAttribute("userName") != null) { %>
+            
+            
             <a href="#" class="flex items-center justify-center rounded-md bg-orange-400 px-3 py-1.5 text-center text-xs font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                 onclick="addToCartWithAlert('<%=product.getProductId()%>'); return false;">
                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
@@ -96,6 +100,30 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
                 </svg>
                 Add to cart
             </a>
+            
+            <% } else { %>
+            <% if (session.getAttribute("userName") != null) { %>
+            <a href="#" class="flex items-center justify-center rounded-md bg-orange-400 px-3 py-1.5 text-center text-xs font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                onclick="addToCartWithAlert('<%=product.getProductId()%>'); return false;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Add to cart
+            </a>
+            <% } else { %>
+            <a href="<%=request.getContextPath()%>/pages/login.jsp" class="flex items-center justify-center rounded-md bg-orange-400 px-3 py-1.5 text-center text-xs font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Add to cart
+            </a>
+            <% } %>
+                        <% } %>
         </div>
     </div>
     <% } %>
@@ -141,5 +169,34 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
     // Event listeners for prev/next buttons
     prevBtn.addEventListener('click', prevSlide);
     nextBtn.addEventListener('click', nextSlide);
+    
+    
+    // for add to cart
+    function addToCart(productId) {
+        fetch('<%=request.getContextPath()%>/AddToCartServlet?productId=' + productId)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to add item to cart');
+                }
+                return response.json();
+            })
+            .then(data => {
+                updateCartCount(data.count);
+                
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+     
+     
+
+    
+    function addToCartWithAlert(productId) {
+        addToCart(productId); // Call the addToCart function
+		
+        // Display the message
+        showAddToCartMessage();
+    }
   </script>
 </html>

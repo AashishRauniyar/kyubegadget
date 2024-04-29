@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
+import com.kyubegadget.model.OrderModel;
 import com.kyubegadget.model.UserModel;
 import com.kyubegadget.utils.QueryUtils;
 
@@ -69,6 +72,37 @@ public class ProfileDao {
 	            ex.printStackTrace(); // Log the exception for debugging
 	            return null;
 	        }
+	    }
+	    
+	    
+	    
+	 // Get user's order history from the database
+	    public List<OrderModel> getUserOrderHistory(int userId) {
+	        List<OrderModel> orderHistory = new ArrayList<>();
+	        try (Connection conn = DatabaseController.getConn()) {
+	            PreparedStatement ps = conn.prepareStatement("SELECT orderId, orderDate, totalAmount, orderStatus\r\n"
+	            		+ "FROM Orders\r\n"
+	            		+ "WHERE userId = ?\r\n"
+	            		+ "ORDER BY orderDate DESC;");
+	            ps.setInt(1, userId);
+	            ResultSet rs = ps.executeQuery();
+
+	            while (rs.next()) {
+	                OrderModel order = new OrderModel(
+	                        rs.getInt("orderId"),
+	                        rs.getDate("orderDate"),
+	                        rs.getInt("userId"),
+	                        rs.getDouble("totalAmount"),
+	                        rs.getString("orderStatus")
+	                );
+
+	                // Add the order to the order history list
+	                orderHistory.add(order);
+	            }
+	        } catch (SQLException | ClassNotFoundException ex) {
+	            ex.printStackTrace(); // Log the exception for debugging
+	        }
+	        return orderHistory;
 	    }
 	    
 	    

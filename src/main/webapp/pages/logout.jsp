@@ -21,7 +21,7 @@
 
 <script>
     // Clear browser history
-    window.location.replace('<%= request.getContextPath() %>/pages/index.jsp');
+    window.location.replace('<%= request.getContextPath() %>/pages/home.jsp');
 </script>
 </body>
 </html>

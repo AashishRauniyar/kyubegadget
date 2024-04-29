@@ -38,7 +38,7 @@
                     </div>
                     <div class="flex justify-between mt-8">
                         <button class="bg-gray-900 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800">Add to Cart</button>
-                        <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Buy Now</button>
+                        <button class="bg-orange-500 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600">Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
 </head>
 
 <body>
-<%@ include file="navbar.jsp"%>
+<%@ include file="navigationbar.jsp"%>
     <div class="container mx-auto py-8">
         <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
             <% 
@@ -97,7 +97,7 @@
                     </div>
                     <div class="flex justify-between mt-8">
                         <button class="bg-gray-900 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800" onclick="addToCart('<%= product.getProductId() %>')">Add to Cart</button>
-                        <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Buy Now</button>
+                        <button class="bg-orange-500 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600">Buy Now</button>
                     </div>
                 </div>
             </div>

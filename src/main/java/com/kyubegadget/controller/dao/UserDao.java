@@ -247,29 +247,40 @@ public class UserDao {
 	    //user update by admin
 	    
 
-	        public void updateUserbyadmin(UserModel user) throws ClassNotFoundException {
-	            try (Connection conn = DatabaseController.getConn()){
-	                String query = "UPDATE users SET firstName=?, lastName=?, dob=?, email=?, address=?, phoneNumber=?, gender=? WHERE userName=?";
-	                PreparedStatement ps = conn.prepareStatement(query);
-	                ps.setString(1, user.getFirstName());
-	                ps.setString(2, user.getLastName());
-	                if (user.getDob() != null) {
-	                    ps.setDate(3, java.sql.Date.valueOf(user.getDob()));
-	                } else {
-	                    ps.setNull(3, Types.DATE);
-	                }
-	                ps.setString(4, user.getEmail());
-	                ps.setString(5, user.getAddress());
-	                ps.setString(6, user.getPhoneNumber());
-	                ps.setString(7, user.getGender());
-	                ps.setString(8, user.getUserName());
-	                ps.executeUpdate();
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-	        }
+	      
+	        
+	        public int updateUserbyadmin(UserModel userModel) {
+	    		try (Connection conn = DatabaseController.getConn()) {
+	    			// Insert user data
+	    			String insertUserQuery = "UPDATE users SET firstName=?, lastName=?,  email=?, address=?, phoneNumber=?,  WHERE userName=?";
+	    			PreparedStatement userStatement = conn.prepareStatement(insertUserQuery);
+
+	    			
+	    			userStatement.setString(1, userModel.getFirstName());
+	    			userStatement.setString(2, userModel.getLastName());
+	    			userStatement.setString(3, userModel.getEmail());
+	    			userStatement.setString(4, userModel.getPhoneNumber());
+	    			
+	    			
+	    		
+	    			userStatement.setString(5, userModel.getAddress());
+	    			userStatement.setString(6, userModel.getUserName()); 
+	    			int userInserted = userStatement.executeUpdate();
+
+	    			// Retrieve the generated userId
+
+	    			return userInserted; // Return the generated userId
+
+	    		} catch (SQLException | ClassNotFoundException ex) {
+	    			ex.printStackTrace();
+	    			return -1; // or handle the exception as needed
+	    		}
+	    	}
+	        
+	        
 	        // show total users in dashboard
 
+	        
 	        public static int getTotalUsers() throws SQLException, ClassNotFoundException {
 	            int totalUsers = 0;
 	            String sql = "SELECT COUNT(*) FROM users"; // Assuming 'users' is the table name
