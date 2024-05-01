@@ -41,7 +41,7 @@ public class CheckoutServlet extends HttpServlet {
 			ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
 
 			if (cartList == null || cartList.isEmpty()) {
-				response.sendRedirect(request.getContextPath() + StringUtils.WELCOME_PAGE);
+				response.sendRedirect(request.getContextPath() + StringUtils.HOME_PAGE);
 				return;
 			}
 
@@ -53,12 +53,7 @@ public class CheckoutServlet extends HttpServlet {
 				OrderLineModel orderLine = new OrderLineModel(0, orderId, cartItem.getProductId(), cartItem.getStock());
 				ol.saveOrderLineToDatabase(orderLine);
 			}
-// retrieve the unit price from the 
-			
-			
-			
-			
-			
+				
 			// Store the sale information in the sales table
 			for (Cart cartItem : cartList) {
 			    

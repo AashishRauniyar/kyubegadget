@@ -31,7 +31,7 @@ input[type="text"]:focus {
 
 
 </style>
-<body class="bg-gray-100 flex">
+<body class="bg-gray-100 flex w-full">
 <div id="content" class="relative overflow-x-auto shadow-md sm:rounded-lg ">
     <div class="pb-4 bg-white"></div>
     <table class="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -83,11 +83,7 @@ input[type="text"]:focus {
 
  
  
- 
- 
- 
- 
- 
+
  
  
  </div>

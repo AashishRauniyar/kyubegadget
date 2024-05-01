@@ -77,30 +77,56 @@ public class ProductDao {
 
 	
 	
-	public ProductModel getProductById(String productId) {
-		ProductModel product = null;
-		try (Connection conn = DatabaseController.getConn()) {
-			String getProductByIdQuery = QueryUtils.GET_PRODUCT_BY_ID;
-			PreparedStatement statement = conn.prepareStatement(getProductByIdQuery);
-			statement.setString(1, productId);
-			ResultSet resultSet = statement.executeQuery();
+//	public ProductModel getProductById(String productId) {
+//		ProductModel product = null;
+//		try (Connection conn = DatabaseController.getConn()) {
+//			String getProductByIdQuery = QueryUtils.GET_PRODUCT_BY_ID;
+//			PreparedStatement statement = conn.prepareStatement(getProductByIdQuery);
+//			statement.setString(1, productId);
+//			ResultSet resultSet = statement.executeQuery();
+//
+//			if (resultSet.next()) {
+//				product = new ProductModel();
+//				product.setProductId(resultSet.getInt("productId"));
+//				product.setProductName(resultSet.getString("productName"));
+//				product.setProductBrand(resultSet.getString("productBrand"));
+//				product.setPrice(resultSet.getDouble("price"));
+//				product.setProductDescription(resultSet.getString("productDescription"));
+//				product.setImageUrl(resultSet.getString("imageUrl"));
+//				product.setProductCategoryId(resultSet.getInt("productCategoryId"));
+//				product.setStock(resultSet.getInt("stock"));
+//			}
+//		} catch (SQLException | ClassNotFoundException ex) {
+//			ex.printStackTrace();
+//		}
+//		return product;
+//	}
+	
+	public ProductModel getProductById(int productId) {
+	    ProductModel product = null;
+	    try (Connection conn = DatabaseController.getConn()) {
+	        String getProductByIdQuery = QueryUtils.GET_PRODUCT_BY_ID;
+	        PreparedStatement statement = conn.prepareStatement(getProductByIdQuery);
+	        statement.setInt(1, productId);
+	        ResultSet resultSet = statement.executeQuery();
 
-			if (resultSet.next()) {
-				product = new ProductModel();
-				product.setProductId(resultSet.getInt("productId"));
-				product.setProductName(resultSet.getString("productName"));
-				product.setProductBrand(resultSet.getString("productBrand"));
-				product.setPrice(resultSet.getDouble("price"));
-				product.setProductDescription(resultSet.getString("productDescription"));
-				product.setImageUrl(resultSet.getString("imageUrl"));
-				product.setProductCategoryId(resultSet.getInt("productCategoryId"));
-				product.setStock(resultSet.getInt("stock"));
-			}
-		} catch (SQLException | ClassNotFoundException ex) {
-			ex.printStackTrace();
-		}
-		return product;
+	        if (resultSet.next()) {
+	            product = new ProductModel();
+	            product.setProductId(resultSet.getInt("productId"));
+	            product.setProductName(resultSet.getString("productName"));
+	            product.setProductBrand(resultSet.getString("productBrand"));
+	            product.setPrice(resultSet.getDouble("price"));
+	            product.setProductDescription(resultSet.getString("productDescription"));
+	            product.setImageUrl(resultSet.getString("imageUrl"));
+	            product.setProductCategoryId(resultSet.getInt("productCategoryId"));
+	            product.setStock(resultSet.getInt("stock"));
+	        }
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace();
+	    }
+	    return product;
 	}
+
 
 	// You can add other methods related to product CRUD operations here
 
@@ -109,7 +135,7 @@ public class ProductDao {
 		List<ProductModel> products = new ArrayList<>();
 		try (Connection conn = DatabaseController.getConn()) {
 			// Define your SQL query to search for products by name
-			String searchQuery = "SELECT * FROM product WHERE productName LIKE ?";
+			String searchQuery = QueryUtils.SEARCH_PRODUCT_BY_NAME;
 
 			// Create the PreparedStatement with the query
 			PreparedStatement statement = conn.prepareStatement(searchQuery);
@@ -259,7 +285,7 @@ public class ProductDao {
 	public double getProductPriceFromDatabase(int productId) {
 	    double price = 0.0;
 	    try (Connection conn = DatabaseController.getConn()) {
-	        String getPriceQuery = "SELECT price FROM product WHERE productId = ?";
+	        String getPriceQuery = QueryUtils.GET_PRODUCT_PRICE;
 	        PreparedStatement statement = conn.prepareStatement(getPriceQuery);
 	        statement.setInt(1, productId);
 	        ResultSet resultSet = statement.executeQuery();
@@ -293,7 +319,7 @@ public class ProductDao {
 	
 	public List<ProductModel> getAllProductsSortedByPrice() {
         List<ProductModel> products = new ArrayList<>();
-        String sql = "SELECT * FROM product ORDER BY price";
+        String sql = QueryUtils.GET_PRODUCT_SORTBY_PRICE;
 
         try (Connection conn = DatabaseController.getConn()) {
              PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -313,9 +339,30 @@ public class ProductDao {
         }
 
         return products;
-    }
+    } 
 	
 	
+	
+	public boolean updateProduct(ProductModel product) {
+	    try (Connection conn = DatabaseController.getConn()) {
+	        String updateProductQuery = "UPDATE product SET productName=?, productBrand=?, price=?, productDescription=?, imageUrl=?, productCategoryId=?, stock=? WHERE productId=?";
+	        PreparedStatement statement = conn.prepareStatement(updateProductQuery);
+	        statement.setString(1, product.getProductName());
+	        statement.setString(2, product.getProductBrand());
+	        statement.setDouble(3, product.getPrice());
+	        statement.setString(4, product.getProductDescription());
+	        statement.setString(5, product.getImageUrl());
+	        statement.setInt(6, product.getProductCategoryId());           
+	        statement.setInt(7, product.getStock());
+	        statement.setInt(8, product.getProductId());
+
+	        int rowsUpdated = statement.executeUpdate();
+	        return rowsUpdated > 0;
+	    } catch (SQLException | ClassNotFoundException ex) {
+	        ex.printStackTrace();
+	        return false;
+	    }
+	}
 	
 
 

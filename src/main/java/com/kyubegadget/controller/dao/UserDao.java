@@ -12,6 +12,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
+import com.kyubegadget.model.OrderLineModel;
+import com.kyubegadget.model.OrderModel;
+import com.kyubegadget.model.ProductModel;
+import com.kyubegadget.model.SalesModel;
 import com.kyubegadget.model.UserModel;
 import com.kyubegadget.utils.QueryUtils;
 
@@ -118,7 +122,7 @@ public class UserDao {
 	
 	 public boolean isUsernameExists(String userName) {
 	        try (Connection conn = DatabaseController.getConn()) {
-	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE userName = ?");
+	            PreparedStatement ps = conn.prepareStatement(QueryUtils.GET_USERDATA_BY_USERNAME);
 	            ps.setString(1, userName);
 	            ResultSet rs = ps.executeQuery();
 	            return rs.next(); // true if username exists, false otherwise
@@ -130,7 +134,7 @@ public class UserDao {
 
 	    public boolean isEmailExists(String email) {
 	        try (Connection conn = DatabaseController.getConn()) {
-	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE email = ?");
+	            PreparedStatement ps = conn.prepareStatement(QueryUtils.GET_USERDATA_BY_EMAIL);
 	            ps.setString(1, email);
 	            ResultSet rs = ps.executeQuery();
 	            return rs.next(); // true if email exists, false otherwise
@@ -142,7 +146,7 @@ public class UserDao {
 
 	    public boolean isPhoneNumberExists(String phoneNumber) {
 	        try (Connection conn = DatabaseController.getConn()) {
-	            PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE phoneNumber = ?");
+	            PreparedStatement ps = conn.prepareStatement(QueryUtils.GET_USERDATA_BY_PHONENUMBER);
 	            ps.setString(1, phoneNumber);
 	            ResultSet rs = ps.executeQuery();
 	            return rs.next(); // true if phone number exists, false otherwise
@@ -215,7 +219,7 @@ public class UserDao {
 	    
 	    public int getUserIdFromUserName(String userName) {
 	        try (Connection conn = DatabaseController.getConn()) {
-	            String query = "SELECT userId FROM Users WHERE userName = ?";
+	            String query = QueryUtils.GET_USERID_BY_USERNAME;
 	            PreparedStatement statement = conn.prepareStatement(query);
 	            statement.setString(1, userName);
 	            ResultSet resultSet = statement.executeQuery();
@@ -252,7 +256,7 @@ public class UserDao {
 	        public int updateUserbyadmin(UserModel userModel) {
 	    		try (Connection conn = DatabaseController.getConn()) {
 	    			// Insert user data
-	    			String insertUserQuery = "UPDATE users SET firstName=?, lastName=?,  email=?, address=?, phoneNumber=?,  WHERE userName=?";
+	    			String insertUserQuery = QueryUtils.UPDATE_USER_BY_USERNAME;
 	    			PreparedStatement userStatement = conn.prepareStatement(insertUserQuery);
 
 	    			
@@ -283,7 +287,7 @@ public class UserDao {
 	        
 	        public static int getTotalUsers() throws SQLException, ClassNotFoundException {
 	            int totalUsers = 0;
-	            String sql = "SELECT COUNT(*) FROM users"; // Assuming 'users' is the table name
+	            String sql = QueryUtils.COUNT_TOTAL_USERS; // Assuming 'users' is the table name
 	            try (Connection conn = DatabaseController.getConn();
 	                 PreparedStatement pstmt = conn.prepareStatement(sql);
 	                 ResultSet rs = pstmt.executeQuery()) {
@@ -294,6 +298,66 @@ public class UserDao {
 	            return totalUsers;
 	        }
 
+	        //working
+	        public List<OrderModel> getUserOrderHistory(String userName) {
+	            List<OrderModel> orderHistory = new ArrayList<>();
+	            try (Connection conn = DatabaseController.getConn()) {
+	                int userId = getUserIdFromUserName(userName);
+	                if (userId != -1) {
+	                    String query = "SELECT orderId, orderDate, totalAmount, orderStatus FROM Orders WHERE userId = ? ORDER BY orderDate DESC";
+	                    PreparedStatement statement = conn.prepareStatement(query);
+	                    statement.setInt(1, userId);
+	                    ResultSet resultSet = statement.executeQuery();
+
+	                    while (resultSet.next()) {
+	                        OrderModel order = new OrderModel(
+	                                resultSet.getInt("orderId"),
+	                                resultSet.getDate("orderDate"),
+	                                userId,
+	                                resultSet.getDouble("totalAmount"),
+	                                resultSet.getString("orderStatus")
+	                        );
+	                        orderHistory.add(order);
+	                    }
+	                }
+	            } catch (SQLException | ClassNotFoundException ex) {
+	                ex.printStackTrace(); // Log the exception for debugging
+	            }
+	            return orderHistory;
+	        }
+	        
+	        public List<SalesModel> getUserOrderSalesHistory(String userName) {
+	            List<SalesModel> orderHistory = new ArrayList<>();
+	            try (Connection conn = DatabaseController.getConn()) {
+	                int userId = getUserIdFromUserName(userName);
+	                if (userId != -1) {
+	                    String query = "SELECT saleId, productId, userId, saleDate, quantity, unitPrice, totalPrice FROM sales WHERE userId = ? ORDER BY saleDate DESC";
+	                    PreparedStatement statement = conn.prepareStatement(query);
+	                    statement.setInt(1, userId);
+	                    ResultSet resultSet = statement.executeQuery();
+
+	                    while (resultSet.next()) {
+	                        SalesModel sales = new SalesModel(
+	                                resultSet.getInt("saleId"),
+	                                resultSet.getInt("productId"),
+	                                userId,
+	                                resultSet.getDate("saleDate").toLocalDate(), // Convert java.sql.Date to LocalDate
+	                                resultSet.getInt("quantity"),
+	                                resultSet.getDouble("unitPrice"), // Correct the column name
+	                                resultSet.getDouble("totalPrice")
+	                        );
+	                        orderHistory.add(sales);
+	                    }
+	                }
+	            } catch (SQLException | ClassNotFoundException ex) {
+	                ex.printStackTrace(); // Log the exception for debugging
+	            }
+	            return orderHistory;
+	        }
+
+	        
+	        
+	        
 
 
 }

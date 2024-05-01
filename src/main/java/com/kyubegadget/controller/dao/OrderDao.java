@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.OrderModel;
+import com.kyubegadget.utils.QueryUtils;
 
 public class OrderDao {
 
@@ -18,7 +19,7 @@ public class OrderDao {
 	
 	public int saveOrderToDatabase(OrderModel order) {
         try (Connection conn = DatabaseController.getConn()) {
-            String query = "INSERT INTO Orders (orderDate, userId, totalAmount, orderStatus) VALUES (?, ?, ?, ?)";
+            String query = QueryUtils.INSERT_ORDER_QUERY;
             PreparedStatement statement = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setTimestamp(1, new Timestamp(order.getOrderDate().getTime()));
             statement.setInt(2, order.getUserId());
@@ -59,7 +60,7 @@ public class OrderDao {
 	public List<OrderModel> getAllOrders() {
 	    List<OrderModel> orderList = new ArrayList<>();
 	    try (Connection conn = DatabaseController.getConn()) {
-	        String query = "SELECT * FROM Orders";
+	        String query = QueryUtils.GET_ALL_ORDERS;
 	        PreparedStatement statement = conn.prepareStatement(query);
 	        ResultSet resultSet = statement.executeQuery();
 	        while (resultSet.next()) {
@@ -81,7 +82,7 @@ public class OrderDao {
 	 public boolean updateOrderStatus(int orderId, String newStatus) {
 	        boolean updated = false;
 	        // SQL query to update the order status
-	        String query = "UPDATE Orders SET orderStatus = ? WHERE orderId = ?";
+	        String query = QueryUtils.UPDATE_ORDER_STATUS;
 	        try (Connection conn = DatabaseController.getConn();
 	             PreparedStatement statement = conn.prepareStatement(query)) {
 	            // Set parameters

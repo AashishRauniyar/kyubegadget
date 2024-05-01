@@ -1,17 +1,33 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.kyubegadget.controller.dao.*" %>
 <!DOCTYPE html>
 <html>
+
+<%
+    // Retrieve the existing session variable
+    javax.servlet.http.HttpSession existingSession = request.getSession(false);
+
+    // Check if session exists and if the role is "admin"
+    if (existingSession == null || existingSession.getAttribute("role") == null || !existingSession.getAttribute("role").equals("admin")) {
+        // If not admin, redirect to index page
+        response.sendRedirect(request.getContextPath() +"/pages/shop.jsp");
+    } else {
+        // Admin is authenticated, allow access to admin panel
+
+        // Your HTML content for admin panel goes here
+
+        %>
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <link href="<%=request.getContextPath()%>/styles/output.css" rel="stylesheet">
     <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
 </head>
-<body class="bg-gray-100 flex">
-   <%@include file="adminSideBar.jsp"%> 
-
+<body class=" flex">
+<%@include file="adminSideBar.jsp"%>
+  
     <div class="container mx-auto mt-10 px-4">
         <h1 class="text-2xl font-semibold mb-4">Admin Dashboard</h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -46,3 +62,6 @@
     </div>
 </body>
 </html>
+ <%
+    }
+%>

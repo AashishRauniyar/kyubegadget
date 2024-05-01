@@ -18,7 +18,7 @@
     // Check if session exists and if the role is "admin"
     if (existingSession == null || existingSession.getAttribute("role") == null || !existingSession.getAttribute("role").equals("admin")) {
         // If not admin, redirect to index page
-        response.sendRedirect(request.getContextPath() +"/pages/index.jsp");
+        response.sendRedirect(request.getContextPath() +"/pages/shop.jsp");
     } else {
         // Admin is authenticated, allow access to admin panel
 

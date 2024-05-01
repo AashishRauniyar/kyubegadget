@@ -20,7 +20,7 @@ public class ProfileDao {
 	 public int updateUserProfile(UserModel userModel) {
 	        try (Connection conn = DatabaseController.getConn()) {
 	            // Update data in the users table
-	            String updateUserQuery = "UPDATE users SET firstName=?, lastName=?, email=?, phoneNumber=?,  address=? WHERE userName=?";
+	            String updateUserQuery = QueryUtils.UPDATE_USER_BY_USERNAME;
 	            PreparedStatement userStatement = conn.prepareStatement(updateUserQuery, Statement.RETURN_GENERATED_KEYS);
 
 	            userStatement.setString(1, userModel.getFirstName());
@@ -77,33 +77,7 @@ public class ProfileDao {
 	    
 	    
 	 // Get user's order history from the database
-	    public List<OrderModel> getUserOrderHistory(int userId) {
-	        List<OrderModel> orderHistory = new ArrayList<>();
-	        try (Connection conn = DatabaseController.getConn()) {
-	            PreparedStatement ps = conn.prepareStatement("SELECT orderId, orderDate, totalAmount, orderStatus\r\n"
-	            		+ "FROM Orders\r\n"
-	            		+ "WHERE userId = ?\r\n"
-	            		+ "ORDER BY orderDate DESC;");
-	            ps.setInt(1, userId);
-	            ResultSet rs = ps.executeQuery();
-
-	            while (rs.next()) {
-	                OrderModel order = new OrderModel(
-	                        rs.getInt("orderId"),
-	                        rs.getDate("orderDate"),
-	                        rs.getInt("userId"),
-	                        rs.getDouble("totalAmount"),
-	                        rs.getString("orderStatus")
-	                );
-
-	                // Add the order to the order history list
-	                orderHistory.add(order);
-	            }
-	        } catch (SQLException | ClassNotFoundException ex) {
-	            ex.printStackTrace(); // Log the exception for debugging
-	        }
-	        return orderHistory;
-	    }
+	 
 	    
 	    
 	    

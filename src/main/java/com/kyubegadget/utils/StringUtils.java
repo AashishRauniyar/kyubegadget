@@ -72,5 +72,11 @@ public class StringUtils {
 	public static final String ORDER_LIST = "/pages/orderList.jsp";
 	//bill
 	public static final String BILL_PAGE = "/pages/Bill.jsp";
+	
+	
+	
+	// admin
+	
+	public static final String PRODUCT_LIST_PAGE = "/pages/testManageProduct.jsp";
 
 }

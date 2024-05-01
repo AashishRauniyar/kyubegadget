@@ -2,7 +2,6 @@ package com.kyubegadget.utils;
 
 public class QueryUtils {
 
-	public static final String insertUserQuery = "INSERT INTO Users (userName, firstName, lastName, email, phoneNumber,password, dob, gender, address) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
 	
 	
 	
@@ -16,16 +15,10 @@ public class QueryUtils {
 	// to fetch admin data
 	
 	
-	public static final String GET_LOGIN_USER_INFOS = "SELECT userName, password FROM Users WHERE userName = ? And password = ?";
 
 
-	public static final String GET_USER = "SELECT * from Users";
-
-	public static final String GET_HASHED_PASSWORD = "SELECT password FROM Users WHERE userName = ?";
-
-	public static final String GET_DETAILS_BYUSERNAME = "SELECT * FROM Users WHERE userName = ?";
 	
-	public static final String GET_LOGIN_ADMIN_INFOS = "SELECT userType FROM users WHERE userName = ? AND password = ?";
+	
 
 	
 	
@@ -51,12 +44,44 @@ public class QueryUtils {
     //new for categories
     public static final String GET_ALL_CATEGORIES = "SELECT productCategoryId,categoryName from productCategory";
     public static final String GET_CATEGORY_NAME = "SELECT categoryName from productCategory where productCategoryId = ?";
+    public static final String COUNT_ALL_CATEGORIES = "SELECT COUNT(*) FROM productcategory";
     
-    public static final String DELETE_PRODUCT = "DELETE FROM product WHERE productId = ?";
-
 
 
     
+    //for user DAO
+	public static final String insertUserQuery = "INSERT INTO Users (userName, firstName, lastName, email, phoneNumber,password, dob, gender, address) VALUES (?,?, ?, ?, ?, ?, ?, ?, ?)";
+
+	public static final String GET_HASHED_PASSWORD = "SELECT password FROM Users WHERE userName = ?";
+
+	public static final String GET_LOGIN_USER_INFOS = "SELECT userName, password FROM Users WHERE userName = ? And password = ?";
+
+	public static final String GET_LOGIN_ADMIN_INFOS = "SELECT userType FROM users WHERE userName = ? AND password = ?";
+
+	public static final String GET_USERDATA_BY_USERNAME ="SELECT * FROM users WHERE userName = ?";
+	
+	
+	public static final String GET_USERDATA_BY_EMAIL = "SELECT * FROM users WHERE email = ?";
+	
+	public static final String GET_USERDATA_BY_PHONENUMBER = "SELECT * FROM users WHERE phoneNumber = ?";
+	
+	public static final String GET_USERID_BY_USERNAME = "SELECT userId FROM Users WHERE userName = ?";
+	
+	public static final String GET_USER = "SELECT * from Users";
+
+	public static final String GET_DETAILS_BYUSERNAME = "SELECT * FROM Users WHERE userName = ?";
+	
+	public static final String UPDATE_USER_BY_USERNAME = "UPDATE users SET firstName=?, lastName=?,  email=?, address=?, phoneNumber=? WHERE userName= ?";
+
+	
+	public static final String COUNT_TOTAL_USERS = "SELECT COUNT(*) FROM users";
+	
+	
+	
+	
+	
+	
+	
     
     // for product
     
@@ -64,8 +89,16 @@ public class QueryUtils {
     
     public static final String GET_ALL_PRODUCTS = "SELECT * from product";
     
-    
     public static final String GET_PRODUCT_BY_ID = "SELECT * FROM product WHERE productId = ?";
+    
+    public static final String DELETE_PRODUCT = "DELETE FROM product WHERE productId = ?";
+    
+    public static final String SEARCH_PRODUCT_BY_NAME = "SELECT * FROM product WHERE productName LIKE ?";
+    public static final String GET_PRODUCT_PRICE = "SELECT price FROM product WHERE productId = ?";
+    public static final String GET_PRODUCT_SORTBY_PRICE = "SELECT * FROM product ORDER BY price";
+    
+    
+    
     
     // delete user
     public static final String DELETE_USER = "DELETE FROM Users WHERE userName = ?";
@@ -75,4 +108,31 @@ public class QueryUtils {
     
     //Cart
     public static final String GET_CART_PRODUCT = "SELECT * FROM product WHERE productId = ?";
+
+    
+    
+    
+    // for sales dao
+    
+    public static final String INSERT_SALES_QUERY = "INSERT INTO Sales (productId, userId, saleDate, quantity, unitPrice, totalPrice) VALUES (?, ?, ?, ?, ?, ?)";
+    
+    
+    public static final String GET_ALL_SALES = "SELECT * FROM Sales";
+    
+    
+    //for order dao
+    
+    public static final String INSERT_ORDER_QUERY = "INSERT INTO Orders (orderDate, userId, totalAmount, orderStatus) VALUES (?, ?, ?, ?)";
+    
+    public static final String GET_ALL_ORDERS = "SELECT * FROM Orders";
+    
+    public static final String UPDATE_ORDER_STATUS = "UPDATE Orders SET orderStatus = ? WHERE orderId = ?";
+    
+    
+    
+    
+    // for order line dao
+    
+    public static final String INSERT_ORDERLINE_QUERY = "INSERT INTO OrderLine (orderId, productId, quantity) VALUES (?, ?, ?)";
+
 }

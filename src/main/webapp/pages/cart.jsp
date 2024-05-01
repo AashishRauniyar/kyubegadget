@@ -317,7 +317,7 @@ System.out.println("Total Price: " + totalPriceWithTax);
                                 <button type="button" onclick="incrementQuantity(<%=item.getProductId()%>)">+</button>
                             </form>
                         </td>
-                        <td class="px-4 py-2">$<%=totalPrice%></td>
+                        <td class="px-4 py-2">$<%= String.format("%.2f", totalPrice) %>  </td>
                         <td class="px-4 py-2"><a
                             href="<%=request.getContextPath()%>/remove-from-cart?productId=<%=item.getProductId()%>"
                             class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Remove</a></td>
@@ -341,19 +341,26 @@ System.out.println("Total Price: " + totalPriceWithTax);
             <div class="mb-2 flex justify-between">
                 <p class="text-gray-700">Subtotal</p>
                 <p class="text-gray-700">
-                    $<%=total%></p>
+                    <%-- $<%=total%></p> --%>
+                    $<%= String.format("%.2f", total) %>
             </div>
             <div class="flex justify-between">
                 <p class="text-gray-700">Tax (10%)</p>
                 <p class="text-gray-700">
-                    $<%=total * taxRate%></p>
+                    <%-- $<%=total * taxRate%></p> --%>
+                    $<%= String.format("%.2f", total * taxRate) %>
             </div>
             <hr class="my-4">
             <div class="flex justify-between">
                 <p class="text-lg font-bold">Total</p>
                 <div>
-                    <p class="mb-1 text-lg font-bold">
-                        $<%=formattedTotalPrice%></p>
+                    <%-- <p class="mb-1 text-lg font-bold">
+                    
+                        $<%=formattedTotalPrice%></p> --%>
+                        
+                         <p class="mb-1 text-lg font-bold">
+            					$<%= String.format("%.2f", totalPriceWithTax) %>
+        			</p>
                 </div>
             </div>
             <a href="<%=request.getContextPath() + StringUtils.WELCOME_PAGE%>"

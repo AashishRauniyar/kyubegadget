@@ -35,7 +35,7 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
 <body>
 <%@ include file="navigationbar.jsp" %>
 
-
+<div id="addToCartMessage" style="display: none;">Added to Cart</div>
 
 <div class="max-w-7xl mt-4 mx-auto relative overflow-hidden">
   <div id="slider" class="w-full flex">
@@ -198,5 +198,15 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
         // Display the message
         showAddToCartMessage();
     }
+    
+    
+    function showAddToCartMessage() {
+        var messageElement = document.getElementById("addToCartMessage");
+        messageElement.style.display = "block"; // Show the message
+        setTimeout(function() {
+            messageElement.style.display = "none"; // Hide the message after 3 seconds (adjust as needed)
+        }, 3000);
+    }
+    
   </script>
 </html>

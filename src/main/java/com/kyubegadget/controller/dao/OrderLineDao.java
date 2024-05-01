@@ -6,13 +6,14 @@ import java.sql.SQLException;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.OrderLineModel;
+import com.kyubegadget.utils.QueryUtils;
 
 public class OrderLineDao {
 	
 	
 	public void saveOrderLineToDatabase(OrderLineModel orderLine) {
         try (Connection conn = DatabaseController.getConn()) {
-            String query = "INSERT INTO OrderLine (orderId, productId, quantity) VALUES (?, ?, ?)";
+            String query = QueryUtils.INSERT_ORDERLINE_QUERY;
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, orderLine.getOrderId());
             statement.setInt(2, orderLine.getProductId());

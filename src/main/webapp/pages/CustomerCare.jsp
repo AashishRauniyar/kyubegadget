@@ -114,7 +114,7 @@ footer {
 </style>
 <body>
 
-<%@ include file="./navbar.jsp"%>
+<%@ include file="./navigationbar.jsp"%>
 
 
 	<div class="CCC">

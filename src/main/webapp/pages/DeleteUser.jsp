@@ -97,7 +97,7 @@ body {
 </style>
 </head>
 <body>
-	<%@ include file="./navbar.jsp"%>
+	<%@ include file="./navigationbar.jsp"%>
 	<div class="container">
 		<div id="sidebar">
 			<%@include file="./profileSidebar.jsp"%>

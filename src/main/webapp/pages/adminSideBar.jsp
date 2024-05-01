@@ -11,25 +11,57 @@
 </head>
 <body>
 <div class="flex">
-<div class="sidebar w-64 h-[100vh] relative"> 
-  <div  class="flex bg-orange-500 h-[70px]  border border-y-white items-center p-3 ">
-    <p class="text-white font-bold text-xl ml-3 ">Kyube Gadget</p>
-  </div>
+<div class="sidebar w-64 h-[100vh] relative bg-gray-800"> 
+  <div class="flex flex-col items-center justify-center h-16 bg-indigo-600 text-white">
+                <p class="font-bold text-xl">Admin Panel</p>
+                <p class="font-bold text-md">Kyube Gadget</p>
+            </div>
   <div class="p-3">
     <ul>
-      <li class="flex flex-col">
-        <a href="" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-home mr-3'></i>Home</a>
-        <a href="<%=request.getContextPath()%>/pages/dashboard.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bxs-dashboard mr-3'></i>Dashboard</a>
-        <a href="<%=request.getContextPath()%>/pages/orderList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-list-ol mr-3' ></i>Orders</a>
-        <a href="<%=request.getContextPath()%>/pages/testManageProduct.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-customize mr-3'></i>Product</a>
-        <a href="<%=request.getContextPath()%>/pages/UserList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class='bx bx-user-circle mr-3'></i>Customer</a>
-        <a href="<%=request.getContextPath()%>/pages/SalesList.jsp" class="hover:bg-blue-600 p-3 rounded-lg hover:text-white"><i class="icon-[carbon--sales-ops]"></i>Sales</a>
-      </li>
-    </ul>
+                    <li class="my-2">
+                        <a href="#" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
+                            <i class='bx bx-home mr-3'></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a href="<%=request.getContextPath()%>/pages/dashboard.jsp" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
+                            <i class='bx bxs-dashboard mr-3'></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a href="<%=request.getContextPath()%>/pages/orderList.jsp" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
+                            <i class='bx bx-list-ol mr-3'></i>
+                            Orders
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a href="<%=request.getContextPath()%>/pages/testManageProduct.jsp" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
+                            <i class='bx bx-customize mr-3'></i>
+                            Product
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a href="<%=request.getContextPath()%>/pages/UserList.jsp" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
+                            <i class='bx bx-user-circle mr-3'></i>
+                            Customer
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a href="<%=request.getContextPath()%>/pages/SalesList.jsp" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
+                            <i class='bx bx-dollar-circle mr-3'></i>
+                            Sales
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="my-2" >
+                    <a href="./logout.jsp" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">Logout</a>
+                    </li>
+                </ul>
   </div>
-  <div class="h-[70px] absolute inset-x-0 bottom-0 flex items-center p-3 border border-y-black">
-    <a class="nav-link dropdown-toggle ml-3" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin name</a>
-  </div>
+  
 </div>
 </div>
 </body>

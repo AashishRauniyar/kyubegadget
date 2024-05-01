@@ -10,12 +10,13 @@ import java.util.List;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.SalesModel;
+import com.kyubegadget.utils.QueryUtils;
 
 public class SalesDao {
 
     public static void insertSaletoDatabase(int productId, int userId, LocalDate saleDate, int quantity, double unitPrice, double totalPrice) throws ClassNotFoundException {
         try (Connection conn = DatabaseController.getConn()) {
-            String query = "INSERT INTO Sales (productId, userId, saleDate, quantity, unitPrice, totalPrice) VALUES (?, ?, ?, ?, ?, ?)";
+            String query = QueryUtils.INSERT_SALES_QUERY;
             try (PreparedStatement statement = conn.prepareStatement(query)) {
                 statement.setInt(1, productId);
                 statement.setInt(2, userId);
@@ -34,7 +35,7 @@ public class SalesDao {
     public List<SalesModel> getAllSales() {
         List<SalesModel> salesList = new ArrayList<>();
         try (Connection conn = DatabaseController.getConn()) {
-            String query = "SELECT * FROM Sales";
+            String query = QueryUtils.GET_ALL_SALES;
             try (PreparedStatement statement = conn.prepareStatement(query);
                  ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {

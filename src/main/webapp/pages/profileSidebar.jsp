@@ -61,6 +61,7 @@
         <ul>
             <li><a href="./profile.jsp" id="edit-profile">Edit Profile</a></li>
             <li><a href="./DeleteUser.jsp" id="delete-profile">Delete Account</a></li>
+            <li><a href="./orderHistory.jsp">Purchase History</a></li>
             <li><a href="./CustomerCare.jsp">Customer Care</a></li>
             <li><a href="./logout.jsp">Logout</a></li>
             

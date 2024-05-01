@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
     
 	
 	UserDao ud = new UserDao();	
+	UserModel um = new UserModel();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -101,12 +102,16 @@ public class LoginServlet extends HttpServlet {
             // Verify password using BCrypt
             if (BCrypt.checkpw(password, hashedPasswordDB)) {
                 // Password is correct
+            	
+            	
+            	
                 // Check if the user is an admin
             	int adminLoginResult = ud.getAdminLoginInfo(userName, hashedPasswordDB);
                 if (adminLoginResult == 1) {
                     // Successful admin login
                     HttpSession session = request.getSession();
                     session.setAttribute(StringUtils.userName, userName);
+                    
                     session.setAttribute("role", "admin");
                     session.setMaxInactiveInterval(30 * 60);
                     response.sendRedirect(request.getContextPath() + StringUtils.ADMIN_PAGE);
