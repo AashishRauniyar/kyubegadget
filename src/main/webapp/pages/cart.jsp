@@ -203,7 +203,7 @@ if (productList != null && !productList.isEmpty()) {
     // If the cart is not empty, calculate the total and apply shipping charge
     for (Cart item : productList) {
         double totalPrice = item.getPrice() * item.getStock();
-        total += totalPrice; // Increment total by adding total price of each item
+        total += totalPrice; // Inxcrement total by adding total price of each item
     }
 }
 

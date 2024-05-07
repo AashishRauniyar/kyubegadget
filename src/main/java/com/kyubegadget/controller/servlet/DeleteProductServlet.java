@@ -40,7 +40,7 @@ public class DeleteProductServlet extends HttpServlet {
                 boolean deleted = productDao.deleteProduct(productId);
                 if (deleted) {
                     // Product successfully deleted
-                    response.sendRedirect(request.getContextPath()+ "/pages/manageProduct.jsp"); // Redirect to the product list page
+                    response.sendRedirect(request.getContextPath()+ "/pages/testManageProduct.jsp"); // Redirect to the product list page
                 } else {
                     // Error occurred while deleting product
                     response.getWriter().println("Failed to delete product");

@@ -4,6 +4,10 @@ String userName1 = (String) session.getAttribute("userName");
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kyubegadget.model.*"%>
+<%@ page import="com.kyubegadget.utils.StringUtils"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +116,7 @@ String userName1 = (String) session.getAttribute("userName");
 
 					<a href="<%=request.getContextPath()%>/pages/cart.jsp"
 						class="flex h-9 w-24 justify-center rounded-3xl items-center my-1 mx-4 text-sm text-gray-700 font-medium hover:text-indigo-500">
-						<!-- <span id="cart-counter" style=" color: red;">0</span>  -->
+						<span  class="text-white font-bold ">${cartList.size()}</span> 
 						
 						<svg
 							xmlns="http://www.w3.org/2000/svg" width="24" height="24"

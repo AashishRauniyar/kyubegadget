@@ -30,7 +30,7 @@ public class StringUtils {
 	public static final String WELCOME_PAGE = "/pages/index.jsp";
 	public static final String HOME_PAGE = "/pages/home.jsp";
 	public static final String SHOP_PAGE = "pages/shop.jsp";
-	public static final String ADMIN_PAGE = "/pages/admin.jsp";
+	public static final String ADMIN_PAGE = "/pages/dashboard.jsp";
 	public static final String ERROR_PAGE = "/pages/error.jsp";
 	// End JSP Routes
 

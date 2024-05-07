@@ -39,23 +39,7 @@ public class OrderDao {
         }
         return -1; // Return -1 if the order insertion failed
     }
-	//getAllOrders
-//	public void getAllOrders() {
-//		try (Connection conn = DatabaseController.getConn()) {
-//			String query = "SELECT * FROM Orders";
-//			PreparedStatement statement = conn.prepareStatement(query);
-//			ResultSet resultSet = statement.executeQuery();
-//			while (resultSet.next()) {
-//				System.out.println("Order ID: " + resultSet.getInt("orderId"));
-//				System.out.println("Order Date: " + resultSet.getTimestamp("orderDate"));
-//				System.out.println("User ID: " + resultSet.getInt("userId"));
-//				System.out.println("Total Amount: " + resultSet.getDouble("totalAmount"));
-//				System.out.println("Order Status: " + resultSet.getString("orderStatus"));
-//			}
-//		} catch (SQLException | ClassNotFoundException ex) {
-//			ex.printStackTrace();
-//		}
-//	}
+	
 	
 	public List<OrderModel> getAllOrders() {
 	    List<OrderModel> orderList = new ArrayList<>();

@@ -274,6 +274,19 @@
                             <input type="checkbox" id="showPasswordCheckbox">
                             <label for="showPasswordCheckbox" style="font-family: sans-serif; font-size: 13px; color: #8d8d8d; margin-left: 5px;">Show Password</label>
                         </div>
+                      
+<%
+    String errorMessage = request.getParameter("error");
+    if (errorMessage != null && !errorMessage.isEmpty()) {
+%>
+    <div style="color: #cc0000;" class="error-message ">
+        <%= errorMessage %>
+    </div>
+<%
+    }
+%>
+
+
                                 <div class="relative">
                                     <button class="loginButton">Login</button>
                                 </div>

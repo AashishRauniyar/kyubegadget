@@ -5,16 +5,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Types;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
-import com.kyubegadget.model.OrderLineModel;
+
 import com.kyubegadget.model.OrderModel;
-import com.kyubegadget.model.ProductModel;
+
 import com.kyubegadget.model.SalesModel;
 import com.kyubegadget.model.UserModel;
 import com.kyubegadget.utils.QueryUtils;
@@ -156,19 +156,6 @@ public class UserDao {
 	        }
 	    }
 		
-		// delect user
-//		public static boolean deleteUser(String userName) {
-//			boolean success = false;
-//			try (Connection conn = DatabaseController.getConn()) {
-//				PreparedStatement ps = conn.prepareStatement(QueryUtils.DELETE_USER);
-//				ps.setString(1, userName);
-//				int rowsDeleted = ps.executeUpdate();
-//				success = rowsDeleted > 0;
-//			} catch (SQLException | ClassNotFoundException ex) {
-//				ex.printStackTrace();
-//			}
-//			return success;
-//		}
 
 		
 	    public boolean deleteUserByUserName(String userName) {

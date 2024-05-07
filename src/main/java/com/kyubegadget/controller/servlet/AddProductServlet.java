@@ -50,36 +50,6 @@ public class AddProductServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        doGet(request, response);
-//
-//        String productName = request.getParameter(StringUtils.productName);
-//        String productBrand = request.getParameter(StringUtils.productBrand);
-//        double price = Double.parseDouble(request.getParameter(StringUtils.price));
-//        String productDescription = request.getParameter(StringUtils.productDescription);
-//        String imageUrl = request.getParameter(StringUtils.imageUrl);
-//        int productCategoryId = Integer.parseInt(request.getParameter(StringUtils.productCategoryId));
-//        int stock = Integer.parseInt(request.getParameter(StringUtils.stock));
-//
-//        
-//        
-//        
-//
-////        ProductModel productModel = new ProductModel(productName, productBrand, price, productDescription, imageUrl, productCategoryId,stock);
-//        ProductModel productModel = new ProductModel(productName, productBrand, price, productDescription, imageUrl, productCategoryId,stock);
-//
-//        // Adding product to the database
-//        int result = productDao.addProduct(productModel);
-//
-//        if (result > 0) {
-//            HttpSession session = request.getSession();
-//            session.setAttribute(StringUtils.PRODUCT_ADDED_MESSAGE, "Product added successfully.");
-//            response.sendRedirect(request.getContextPath() + StringUtils.WELCOME_PAGE);
-//        } else {
-//            response.sendRedirect(request.getContextPath() + StringUtils.WELCOME_PAGE + "?" + StringUtils.ERROR_MESSAGE + "=" + StringUtils.ADD_PRODUCT_ERROR_MESSAGE);
-//            System.out.println("An unexpected server error occurred.");
-//        }
-//    }
 	
 	
 	//main code
@@ -120,29 +90,6 @@ public class AddProductServlet extends HttpServlet {
 	    // Adding product to the database
 	    int result = productDao.addProduct(productModel);
 	   
-//	    String path = request.getRealPath("images"+File.separator+part.getSubmittedFileName());
-//	    System.out.println(path);
-//	    
-//	    
-//	    //uploading code..
-//	    FileOutputStream fos = new FileOutputStream(path);
-//	    
-//	    InputStream is = part.getInputStream();
-//	    
-//	    // reading data
-//	    
-//	    byte []data = new byte[is.available()];
-//	    
-//	    is.read(data);
-//	    
-//	    // writing the data
-//	    
-//	    fos.write(data);
-//	    fos.close();
-	    
-	 // Obtain the absolute path to the destination directory
-//	    String uploadPath = getServletContext().getRealPath("/") + "images/";
-//	    String uploadPath = getServletContext().getRealPath("/") + "images/";
 	    String uploadPath = "C:\\Users\\VICTUS\\Desktop\\advanced-java-coursework\\kyubegadget\\src\\main\\webapp\\images\\";
 
 	    System.out.println(uploadPath);

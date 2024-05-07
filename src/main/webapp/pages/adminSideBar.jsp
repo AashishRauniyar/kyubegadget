@@ -18,12 +18,12 @@
             </div>
   <div class="p-3">
     <ul>
-                    <li class="my-2">
+                    <!-- <li class="my-2">
                         <a href="#" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
                             <i class='bx bx-home mr-3'></i>
                             Home
                         </a>
-                    </li>
+                    </li> -->
                     <li class="my-2">
                         <a href="<%=request.getContextPath()%>/pages/dashboard.jsp" class="flex items-center p-3 rounded-lg text-white hover:bg-indigo-600">
                             <i class='bx bxs-dashboard mr-3'></i>

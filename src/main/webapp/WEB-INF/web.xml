@@ -33,6 +33,11 @@
 			<servlet-name>CheckoutServlet</servlet-name>
 			<url-pattern>/CheckoutServlet</url-pattern>
 		</servlet-mapping>
+		
+		<servlet-mapping>
+			<servlet-name>EditProductServlet</servlet-name>
+			<url-pattern>/EditProductServlet</url-pattern>
+		</servlet-mapping>
 
 
 		<servlet>

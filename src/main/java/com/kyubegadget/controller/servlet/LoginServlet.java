@@ -43,51 +43,7 @@ public class LoginServlet extends HttpServlet {
 
     
     
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-//            throws ServletException, IOException {
-//        String userName = request.getParameter(StringUtils.userName);
-//        String password = request.getParameter(StringUtils.password);
-//        String hashedPasswordDB = ud.getHashedPassword(userName);
-//
-//        if (hashedPasswordDB != null && hashedPasswordDB.contains("$")) {
-//            String[] parts = hashedPasswordDB.split("\\$");
-//            String extractedSalt = parts[2];
-//            String extractedHash = parts[3];
-//            String hashedPasswordSalt = "$2a$" + extractedSalt + "$" + extractedHash;
-//
-//            // Check admin login
-//            int adminLoginResult = ud.getAdminLoginInfo(userName, hashedPasswordSalt);
-//            if (adminLoginResult == 1) {
-//                // Successful admin login
-//                HttpSession session = request.getSession();
-//                session.setAttribute(StringUtils.userName, userName);
-//                session.setAttribute("role", "admin");
-//                session.setMaxInactiveInterval(30 * 60);
-//                response.sendRedirect(request.getContextPath() + StringUtils.ADMIN_PAGE);
-//                return;
-//            } else if (adminLoginResult == 0) {
-//                // Admin credentials are not correct, proceed to check user login
-//                int userLoginResult = ud.getUserLoginInfo(userName, hashedPasswordSalt);
-//                if (userLoginResult == 1) {
-//                    // Successful user login
-//                    HttpSession session = request.getSession();
-//                    session.setAttribute(StringUtils.userName, userName);
-//                    session.setAttribute("role", "user");
-//                    session.setMaxInactiveInterval(30 * 60);
-//                    response.sendRedirect(request.getContextPath() + StringUtils.WELCOME_PAGE);
-//                    return;
-//                }
-//            } else {
-//                // Error occurred during admin login
-//                // Handle error
-//            }
-//        }
-//
-//        // Incorrect username or password or non-existing user
-//        request.setAttribute("errorMessage", "Incorrect username or password");
-//        // Redirect to login page for any other case
-//        response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
-//    }
+
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -97,13 +53,14 @@ public class LoginServlet extends HttpServlet {
 
         // Retrieve hashed password from the database
         String hashedPasswordDB = ud.getHashedPassword(userName);
+        
+        
 
         if (hashedPasswordDB != null && hashedPasswordDB.startsWith("$2a$")) {
             // Verify password using BCrypt
             if (BCrypt.checkpw(password, hashedPasswordDB)) {
                 // Password is correct
-            	
-            	
+
             	
                 // Check if the user is an admin
             	int adminLoginResult = ud.getAdminLoginInfo(userName, hashedPasswordDB);
@@ -117,7 +74,6 @@ public class LoginServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + StringUtils.ADMIN_PAGE);
                     return;
                 } else {
-
                     // Successful user login
                     HttpSession session = request.getSession();
                     session.setAttribute(StringUtils.userName, userName);
@@ -131,8 +87,18 @@ public class LoginServlet extends HttpServlet {
 
         // Incorrect username or password or non-existing user
         request.setAttribute("errorMessage", "Incorrect username or password");
+//        RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath() +StringUtils.LOGIN_PAGE);
+//        dispatcher.forward(request, response);
+        
+        
         // Redirect to login page for any other case
-        response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
+        //response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
+        
+        
+     // Instead of using RequestDispatcher for invalid login attempt
+        String errorMessage = "Incorrect username or password!";
+        response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE + "?error=" + errorMessage);
+
     }
 
 

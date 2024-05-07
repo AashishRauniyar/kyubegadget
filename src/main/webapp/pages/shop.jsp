@@ -205,9 +205,6 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
             
           
             
-            
-          
-            
             <% if (session.getAttribute("userName") != null) { %>
             
             

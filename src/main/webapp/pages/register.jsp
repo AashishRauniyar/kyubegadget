@@ -561,10 +561,13 @@ body {
                                     <label for="address" class="label">Address</label>
                                     <span class="error" id="addressError"></span>
                                 </div>
+                                
+                                
+                                
                                 <div class="input-group">
-                                    <input type="password" id="password" required class="input-area" name="password">
-                                    <label for="password" class="label">Password</label>
-                                    <span class="error" id="passwordError"></span>
+                                    <input type="text" id="userName" required class="input-area" name="userName">
+                                    <label for="userName" class="label">Username</label>
+                                    <span class="error" id="userNameError"></span>
                                 </div>
                                 <div class="checkbox-group" style="align-items: center; display: flex; margin-top: 10px;">
                                     <input type="checkbox" id="showPasswordCheckbox">
@@ -580,9 +583,9 @@ body {
                                 <div class="input-group">
                                     <select id="gender" required class="input-area" name="gender">
                                         <option value="" disabled selected hidden>Select Gender</option>
-                                        <option value="M">Male</option>
-                                        <option value="F">Female</option>
-                                        <option value="O">Other</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                     <label for="gender" class="label">Gender (M/F/O)</label>
                                 </div>
@@ -591,11 +594,13 @@ body {
                                     <label for="email" class="label">Email</label>
                                     <span class="error" id="emailError"></span>
                                 </div>
+                                
                                 <div class="input-group">
-                                    <input type="text" id="userName" required class="input-area" name="userName">
-                                    <label for="userName" class="label">Username</label>
-                                    <span class="error" id="userNameError"></span>
+                                    <input type="password" id="password" required class="input-area" name="password">
+                                    <label for="password" class="label">Password</label>
+                                    <span class="error" id="passwordError"></span>
                                 </div>
+                                
                                 <div class="input-group">
                                     <input type="password" id="rePassword" required class="input-area" name="rePassword">
                                     <label for="rePassword" class="label">Re-enter password</label>

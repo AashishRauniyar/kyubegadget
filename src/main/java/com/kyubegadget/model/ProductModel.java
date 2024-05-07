@@ -44,6 +44,21 @@ public class ProductModel {
     }
 	
 	
+	// try constructor
+	public ProductModel(int productId, String productName, String productBrand, double price, String productDescription,  int productCategoryId, int stock) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productBrand = productBrand;
+        this.price = price;
+        this.productDescription = productDescription;
+        
+        this.productCategoryId = productCategoryId;
+        this.stock = stock;
+    }
+	
+	
+	
+	
 	public ProductModel() {
 		
 	}
