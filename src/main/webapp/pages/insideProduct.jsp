@@ -92,7 +92,12 @@ function addToCart(productId) {
 
 </html>
   --%>
- <%@ page import="com.kyubegadget.controller.dao.ProductDao"%>
+ 
+
+
+
+
+<%@ page import="com.kyubegadget.controller.dao.ProductDao"%>
 <%@ page import="com.kyubegadget.model.ProductModel"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -150,18 +155,24 @@ function addToCart(productId) {
 					</p>
 					<p class="text-gray-700 mt-4"><%=product.getProductDescription()%></p>
 					<div class="flex items-center mt-6">
-						<label for="quantity" class="mr-2">Quantity:</label> <input type="number" id="quantity" name="quantity" value="1" min="1" max="10" class="appearance-none w-20 py-1 px-2 border border-gray-300 text-gray-700 leading-tight rounded-md focus:outline-none focus:border-gray-500" >
+						<label for="quantity" class="mr-2">Quantity:</label> <input
+							type="number" id="quantity" name="quantity" value="1" min="1"
+							max="10"
+							class="appearance-none w-20 py-1 px-2 border border-gray-300 text-gray-700 leading-tight rounded-md focus:outline-none focus:border-gray-500">
 
 
 					</div>
 					<div class="flex justify-between mt-8">
 						<button
-    class="bg-gray-900 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
-    onclick="addToCart(<%=product.getProductId()%>)">Add to Cart</button>
+							class="bg-gray-900 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-gray-800 focus:outline-none focus:bg-gray-800"
+							onclick="addToCart(<%=product.getProductId()%>)">Add to
+							Cart</button>
 
-						<button
-							class="bg-orange-500 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600">Buy
-							Now</button>
+						<a href="<%=request.getContextPath()%>/pages/cart.jsp"
+							class="bg-orange-500 text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-orange-600 focus:outline-none focus:bg-orange-600"
+							onclick="buyNow(<%=product.getProductId()%>, <%=product.getPrice()%>)">Buy
+							Now</a>
+
 					</div>
 				</div>
 			</div>
@@ -201,9 +212,28 @@ function addToCart(productId) {
 }
 
 
+function buyNow(productId, price) {
+    const quantityInput = document.getElementById('quantity');
+    const quantity = parseInt(quantityInput.value);
+    
+    fetch('<%=request.getContextPath()%>/AddToCartServlet?productId=' + productId + '&quantity=' + quantity + '&price=' + price)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to add item to cart');
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}
+
+
+
 
 </script>
 
 
 
 </html>
+
