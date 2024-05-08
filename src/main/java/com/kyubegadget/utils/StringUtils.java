@@ -1,6 +1,10 @@
 
 package com.kyubegadget.utils;
 
+import java.util.UUID;
+
+import javax.servlet.http.Part;
+
 public class StringUtils {
 
 	public static final String userName = "userName";
@@ -79,4 +83,12 @@ public class StringUtils {
 	
 	public static final String PRODUCT_LIST_PAGE = "/pages/testManageProduct.jsp";
 
+	
+	
+	public static String generateUniqueFileName(Part part) {
+        String submittedFileName = part.getSubmittedFileName();
+        String extension = submittedFileName.substring(submittedFileName.lastIndexOf('.'));
+        String uniqueFileName = UUID.randomUUID().toString() + extension;
+        return uniqueFileName;
+    }
 }

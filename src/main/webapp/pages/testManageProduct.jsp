@@ -1,9 +1,12 @@
-
+  
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.kyubegadget.model.ProductModel" %>
 <%@ page import="com.kyubegadget.controller.dao.*" %>
+<%@ page import="com.kyubegadget.controller.dao.CategoryDao" %>
+<%@ page import="com.kyubegadget.model.ProductCategoryModel" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,7 +38,7 @@
         }
 %>
 <%@include file="adminSideBar.jsp"%>
-<body class="bg-gray-100 flex  h-[100vh] ">
+<body class="bg-gray-100 flex h-screen">
 
 <input type="hidden" name="productId" value="${product.productId}">
     <div id="content" class="relative overflow-x-auto shadow-md w-full ">
@@ -49,13 +52,11 @@
                                 class="w-full px-3 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500 border border-transparent"
                                 placeholder="Search for products...">
                             <button type="submit">
-                                <div class="pl-2">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="white" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                                    </svg>
-                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="white" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                                </svg>
                             </button>
                         </div>
                     </form>
@@ -67,8 +68,11 @@
                             Add New Product
                         </button>
                     </a>
-                    
-                </div>
+					<button onclick="toggleModal('categoryModal')"
+						class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-500 hover:bg-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+						Add Category
+						</button>
+				</div>
             </div>
         </div>
 
@@ -113,10 +117,124 @@
         </table>
         
     </div>
-</body>
+    
+    <!-- Category Modal -->
+<div id="categoryModal" class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none hidden mt-50">
+    <div class="relative w-auto max-w-md mx-auto bg-white rounded-md shadow-lg h-[80vh]">
+        <div id="content" class="relative overflow-x-auto shadow-md sm:rounded-lg mx-auto h-[80vh]">
+            <div class="pb-4 bg-white"></div>
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-medium text-gray-900">Add Category</h3>
+                    <!-- Close button -->
+                    <button type="button" onclick="toggleModal('categoryModal')" class="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
+                        <span class="sr-only">Close</span>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="p-4">
+                <div class="flex items-center">
+
+                </div>
+            </th>
+            <th scope="col" class="px-6 ">Category ID</th>
+            <th scope="col" class="px-6 ">Category Name</th>
+            
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            CategoryDao categoryDao = new CategoryDao();
+            List<ProductCategoryModel> categories = categoryDao.getAllCategories();
+            for (ProductCategoryModel category : categories) {
+        %>
+        <tr class="bg-white border-b hover:bg-gray-50">
+            <td class="w-4 p-4">
+                <div class="flex items-center">
+                    <!-- Any checkboxes or actions you want to include -->
+                </div>
+            </td>
+            <td class="px-6 "><%= category.getProductCategoryId() %></td>
+            <td class="px-6 "><%= category.getCategoryName() %></td>
+         
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
+                <!-- Form -->
+                <form id="addCategoryForm" onsubmit="event.preventDefault(); addCategory();" class="mt-4">
+                    <!-- Category name -->
+                    
+                    <div class="mb-4">
+                        <label for="categoryName" class="block text-sm font-medium text-gray-700">Category Name</label>
+                        <input type="text" name="categoryName" id="categoryName" class="mt-1 p-2 block w-full border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter category name" required>
+                    </div>
+                    <!-- Submit button -->
+                    <div class="flex justify-end">
+                        <button type="submit" class="px-3 py-2 text-sm font-medium text-center text-white bg-green-500 hover:bg-green-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Add</button>
+                    </div>
+                </form>
+                <!-- Message for category added -->
+                <div id="successMessage" class="hidden mt-4 text-green-600 font-semibold">Category added successfully!</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function toggleModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.classList.toggle('hidden');
+        // Hide success message when modal is closed
+        if (modal.classList.contains('hidden')) {
+            document.getElementById('successMessage').classList.add('hidden');
+        }
+    }
+
+    function addCategory() {
+        // Get the category name input value
+        var categoryName = document.getElementById("categoryName").value.trim(); // Trim any leading or trailing whitespace
+
+        // Check if the category name is empty
+        if (categoryName === "") {
+            alert("Please enter a category name.");
+            return; // Exit the function if the category name is empty
+        }
+
+        // Send AJAX request to the servlet
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../AddCategoryServlet", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                // Handle response from servlet
+                // Show success message
+                document.getElementById('successMessage').classList.remove('hidden');
+                // Add a delay before reloading the page
+                /* setTimeout(function() {
+                    location.reload(); // Reload the page after 2 seconds
+                }, 1000); */ // Delay in milliseconds (2 seconds in this example)
+            }
+        };
+        xhr.send("categoryName=" + encodeURIComponent(categoryName)); // Send category name as POST parameter
+    }
+    
+    
+    
+
+</script>
+
 
 </html>
 <%
 }
 %>
- 
+  

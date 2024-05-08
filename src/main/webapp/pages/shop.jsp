@@ -99,36 +99,28 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 </form>
 
 
-<!-- sort -->
 
 
-<!-- 
-<form id="sort-form" class="sort p-4">
-    <button type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" onclick="sortProducts()">
-        Sort By Price
-    </button>
-</form> -->
 <form id="sort-form" class="sort p-4">
 	
-    <button type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" onclick="sortProducts('asc')">
-        Low To High
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+    <button type="button" class="text-black bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" onclick="sortProducts('asc')">
+       Low To High
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 6.75 12 3m0 0 3.75 3.75M12 3v18" />
 </svg>
         
 
         
     </button>
-    <button type="button" class="text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" onclick="sortProducts('desc')">
+    <button type="button" class="text-black bg-gray-100 hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" onclick="sortProducts('desc')">
         High to Low
         
-<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6">
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" class="w-6 h-6">
   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3" />
 </svg>
         
     </button>
 </form>
-
 
 <!-- categories sidebar -->
 
@@ -340,37 +332,7 @@ function topFunction() {
 
 
     
-   // this is working
-    /* function sortProducts() {
-        // Fetch the product elements
-        const productElements = document.querySelectorAll('.product-item');
-
-        // Convert the NodeList to an array
-        const productsArray = Array.from(productElements);
-
-        // Sort the products by price
-        productsArray.sort((a, b) => {
-            const priceA = parseFloat(a.dataset.price);
-            const priceB = parseFloat(b.dataset.price);
-
-            return priceA - priceB;
-        });
-
-        // Clear the current product list
-        const productList = document.getElementById('product-list');
-        productList.innerHTML = '';
-
-        // Append the sorted products to the product list
-        productsArray.forEach(product => {
-            productList.appendChild(product);
-        });
-    }
-
-    // Prevent form submission
-    document.getElementById('sort-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        sortProducts();
-    }); */
+  
     
     function sortProducts(order) {
         // Fetch the product elements
@@ -406,7 +368,7 @@ function topFunction() {
    
   
 </script>			
-
+<%@ include file="footer.jsp" %>
 
 </body>
 <!-- <script src="https://cdn.tailwindcss.com"></script> -->

@@ -9,7 +9,7 @@
     <link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet"> 
 </head>
 <body >
-<%@ include file="navbar.jsp"%>
+<%@ include file="navigationbar.jsp"%>
     <div class="container mx-auto py-8">
         <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
             <div class="flex">

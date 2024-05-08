@@ -23,11 +23,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Sales History</title>
     <style>
+    
+    body{
+    	padding:0px;
+    	margin:0px;
+    }
+    .sidebar{
+    	margin-top:80px;
+    	position:fixed;
+    }
+    .navbarok{
+    	position:fixed;
+    	width:100%;	
+    }
+    .sales-container{
+    	margin-top:100px;
+    	margin-left:150px;
+    	margin-bottom:20px;
+    }
         /* CSS styles for the sales history page */
 .sales-history-table {
-    width: 80%; /* Reduce the width of the table */
-    margin: 20px auto; /* Add margins to center the table */
+    width: 100%; /* Reduce the width of the table */
+     /* Add margins to center the table */
     border-collapse: collapse;
+    margin-left:200px;
 }
 
 .sales-history-table th,
@@ -49,21 +68,23 @@
         
     </style>
 </head>
-<body>
-    <%@ include file="./navigationbar.jsp"%>
     
+<body >
+    <div class="navbarok">
+     <%@ include file="./navigationbar.jsp"%>
+    </div>
     <div class="flex flex-cols">
     <div id="sidebar">
 			<%@include file="./profileSidebar.jsp"%>
 		</div>
     
-    <div class="container ">
+    <div class="sales-container ">
     
-        <h2 class="text-center text-xl">User Sales History</h2>
+        <h2 class="text-center text-2xl">User Sales History</h2>
         <table class="sales-history-table">
             <thead>
                 <tr class="text-white">
-                    <!-- <th>Sale ID</th> -->
+                     <!-- <th>Sale ID</th> -->
                     <th>Product Name</th>
                     <th>Product Image</th>
                     <th>Sale Date</th>
@@ -95,11 +116,11 @@
         </table>
     </div>
     </div>
-    <%@ include file="./footer.jsp"%>
+    
 </body>
 </html>
 
 <%
     }
 %>
-  
+   

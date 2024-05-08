@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.OrderModel;
@@ -83,4 +85,23 @@ public class OrderDao {
 	        }
 	        return updated;
 	    }
+	 
+	 
+	 public Map<String, Integer> getOrderStatusDistribution() {
+		    Map<String, Integer> statusDistribution = new HashMap<>();
+		    String query = "SELECT orderStatus, COUNT(*) AS count FROM Orders GROUP BY orderStatus";
+		    try (Connection conn = DatabaseController.getConn();
+		         PreparedStatement statement = conn.prepareStatement(query);
+		         ResultSet resultSet = statement.executeQuery()) {
+		        while (resultSet.next()) {
+		            String status = resultSet.getString("orderStatus");
+		            int count = resultSet.getInt("count");
+		            statusDistribution.put(status, count);
+		        }
+		    } catch (SQLException | ClassNotFoundException ex) {
+		        ex.printStackTrace();
+		    }
+		    return statusDistribution;
+		}
+
 }

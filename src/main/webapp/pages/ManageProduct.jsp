@@ -130,7 +130,7 @@
                     <td class="px-6 py-4"><%= product.getProductDescription() %></td>
                     <td class="px-6 py-4"><%= cD.getCategoryNameById(product.getProductCategoryId()) %></td> <!-- Call getCategoryNameById method -->
                     <td class="px-6 py-4"><a href="../DeleteProductServlet?productId=<%= product.getProductId() %>" class="font-medium text-red-600 hover:underline">Delete</a></td>
-                </tr>
+                </tr>	
                 <%
                     }
                 %>

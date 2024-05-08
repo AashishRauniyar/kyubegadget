@@ -14,7 +14,7 @@
         }
 
         body {
-            font-family: 'Outfit';
+            
             /* background: linear-gradient(#ffdad5, #fff7f9); */
         }
 
@@ -118,12 +118,12 @@
             <input type="text" class="contact-inputs" name="name" placeholder="Your Name" required>
             <input type="email" class="contact-inputs" name="email" placeholder="Your Email" required>
             <textarea name="message" class="contact-inputs" placeholder="Your Message" required></textarea>
-            <button type="submit">Submit<img src="/assets/arrow_icon.png" alt=""></button>
+            <button type="submit">Submit<img src="<%=request.getContextPath()%>/assets/arrow_icon.png" alt=""></button>
         </form>
         <div class="contact-right">
-            <img src="/assets/right_img.png" alt="rightImage">
+            <img src="<%=request.getContextPath()%>/assets/right_img.png" alt="rightImage">
         </div>
     </div>
 <%@ include file="footer.jsp"%>
 </body>
-</html>
+</html> 

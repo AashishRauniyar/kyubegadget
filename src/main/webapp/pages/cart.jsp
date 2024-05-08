@@ -269,8 +269,9 @@ System.out.println("Total Price: " + totalPriceWithTax);
 </script>
 </head>
 <body class="bg-gray-100">
+<%@ include file="./navigationbar.jsp"%>
 
-    <h1 class="mb-10 text-center text-2xl font-bold">Shopping Cart</h1>
+    <h1 class="mb-10 mt-10 text-center text-2xl font-bold text-orange-500">Shopping Cart</h1>
     <div
         class="mx-auto max-w-6xl justify-center px-6 md:flex md:space-x-6 xl:px-0">
         <div class="rounded-lg md:w-2/3">

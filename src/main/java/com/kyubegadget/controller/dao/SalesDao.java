@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.SalesModel;
@@ -56,4 +58,31 @@ public class SalesDao {
         }
         return salesList;
     }
+    
+    public Map<String, Double> getRevenueByCategory() {
+        Map<String, Double> revenueByCategory = new HashMap<>();
+        String query = "SELECT ProductCategory.categoryName, SUM(Sales.totalPrice) AS revenue " +
+                       "FROM Sales INNER JOIN Product ON Sales.productId = Product.productId " +
+                       "INNER JOIN ProductCategory ON Product.productCategoryId = ProductCategory.productCategoryId " +
+                       "GROUP BY ProductCategory.categoryName";
+        try (Connection conn = DatabaseController.getConn();
+             PreparedStatement statement = conn.prepareStatement(query);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                String categoryName = resultSet.getString("categoryName");
+                double revenue = resultSet.getDouble("revenue");
+                revenueByCategory.put(categoryName, revenue);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return revenueByCategory;
+    }
+
+    
+    
+    
+
+    
+
 }
