@@ -61,10 +61,7 @@ public class SalesDao {
     
     public Map<String, Double> getRevenueByCategory() {
         Map<String, Double> revenueByCategory = new HashMap<>();
-        String query = "SELECT ProductCategory.categoryName, SUM(Sales.totalPrice) AS revenue " +
-                       "FROM Sales INNER JOIN Product ON Sales.productId = Product.productId " +
-                       "INNER JOIN ProductCategory ON Product.productCategoryId = ProductCategory.productCategoryId " +
-                       "GROUP BY ProductCategory.categoryName";
+        String query = QueryUtils.GET_REVENUE_BY_CATEGORY;
         try (Connection conn = DatabaseController.getConn();
              PreparedStatement statement = conn.prepareStatement(query);
              ResultSet resultSet = statement.executeQuery()) {

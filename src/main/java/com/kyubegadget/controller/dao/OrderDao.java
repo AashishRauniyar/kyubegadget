@@ -65,6 +65,7 @@ public class OrderDao {
 	}
 	
 	
+	
 	 public boolean updateOrderStatus(int orderId, String newStatus) {
 	        boolean updated = false;
 	        // SQL query to update the order status
@@ -89,7 +90,7 @@ public class OrderDao {
 	 
 	 public Map<String, Integer> getOrderStatusDistribution() {
 		    Map<String, Integer> statusDistribution = new HashMap<>();
-		    String query = "SELECT orderStatus, COUNT(*) AS count FROM Orders GROUP BY orderStatus";
+		    String query = QueryUtils.GET_COUNT_ORDER_STATUS;
 		    try (Connection conn = DatabaseController.getConn();
 		         PreparedStatement statement = conn.prepareStatement(query);
 		         ResultSet resultSet = statement.executeQuery()) {

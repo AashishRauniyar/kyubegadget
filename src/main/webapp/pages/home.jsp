@@ -81,12 +81,7 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
                     
                 </p>
             </div>
-            
-            
-            
-            
-            
-            
+
              
             <% if (session.getAttribute("userName") != null) { %>
             

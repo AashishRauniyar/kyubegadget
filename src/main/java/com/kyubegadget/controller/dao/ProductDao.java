@@ -295,7 +295,7 @@ public class ProductDao {
 	
 	public int updateProduct(ProductModel product) {
 		try (Connection conn = DatabaseController.getConn()) {
-			String addProductQuery = "UPDATE product SET productName=?, productBrand=?, price=?, productDescription=?, imageUrl=?, productCategoryId=?, stock=? WHERE productId=?";
+			String addProductQuery = QueryUtils.UPDATE_PRODUCT;
 			System.out.println("SQL Query: " + addProductQuery);
 			PreparedStatement statement = conn.prepareStatement(addProductQuery);
 			statement.setString(1, product.getProductName());

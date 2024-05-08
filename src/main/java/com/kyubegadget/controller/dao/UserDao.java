@@ -343,31 +343,11 @@ public class UserDao {
 	        }
 
 	        
-//	        public int[] getMaleFemaleUserCount() {
-//	            int[] count = new int[2]; // Array to store male count at index 0 and female count at index 1
-//	            try (Connection conn = DatabaseController.getConn()) {
-//	                String query = "SELECT SUM(CASE WHEN gender = 'Male' THEN 1 ELSE 0 END) AS maleCount, " +
-//	                               "SUM(CASE WHEN gender = 'Female' THEN 1 ELSE 0 END) AS femaleCount " +
-//	                               "FROM Users";
-//	                try (PreparedStatement statement = conn.prepareStatement(query);
-//	                     ResultSet resultSet = statement.executeQuery()) {
-//	                    if (resultSet.next()) {
-//	                        count[0] = resultSet.getInt("maleCount");
-//	                        count[1] = resultSet.getInt("femaleCount");
-//	                    }
-//	                }
-//	            } catch (SQLException | ClassNotFoundException ex) {
-//	                ex.printStackTrace();
-//	            }
-//	            return count;
-//	        }
+
 	        public int[] getMaleFemaleOthersCount() {
 	            int[] count = new int[3]; // Array to store male count at index 0, female count at index 1, and others count at index 2
 	            try (Connection conn = DatabaseController.getConn()) {
-	                String query = "SELECT SUM(CASE WHEN gender = 'Male' THEN 1 ELSE 0 END) AS maleCount, " +
-	                               "SUM(CASE WHEN gender = 'Female' THEN 1 ELSE 0 END) AS femaleCount, " +
-	                               "SUM(CASE WHEN gender NOT IN ('Male', 'Female') THEN 1 ELSE 0 END) AS othersCount " +
-	                               "FROM Users";
+	                String query = QueryUtils.GET_SEX_RATIO;
 	                try (PreparedStatement statement = conn.prepareStatement(query);
 	                     ResultSet resultSet = statement.executeQuery()) {
 	                    if (resultSet.next()) {

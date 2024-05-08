@@ -60,6 +60,11 @@ public class QueryUtils {
 
 	public static final String GET_USERDATA_BY_USERNAME ="SELECT * FROM users WHERE userName = ?";
 	
+	public static final String GET_SEX_RATIO = "SELECT SUM(CASE WHEN gender = 'Male' THEN 1 ELSE 0 END) AS maleCount, " +
+            "SUM(CASE WHEN gender = 'Female' THEN 1 ELSE 0 END) AS femaleCount, " +
+            "SUM(CASE WHEN gender NOT IN ('Male', 'Female') THEN 1 ELSE 0 END) AS othersCount " +
+            "FROM Users";
+	
 	
 	public static final String GET_USERDATA_BY_EMAIL = "SELECT * FROM users WHERE email = ?";
 	
@@ -97,7 +102,7 @@ public class QueryUtils {
     public static final String GET_PRODUCT_PRICE = "SELECT price FROM product WHERE productId = ?";
     public static final String GET_PRODUCT_SORTBY_PRICE = "SELECT * FROM product ORDER BY price";
     
-    
+    public static final String UPDATE_PRODUCT = "UPDATE product SET productName=?, productBrand=?, price=?, productDescription=?, imageUrl=?, productCategoryId=?, stock=? WHERE productId=?";
     
     
     // delete user
@@ -120,6 +125,12 @@ public class QueryUtils {
     public static final String GET_ALL_SALES = "SELECT * FROM Sales";
     
     
+    public static final String GET_REVENUE_BY_CATEGORY = "SELECT ProductCategory.categoryName, SUM(Sales.totalPrice) AS revenue " +
+            "FROM Sales INNER JOIN Product ON Sales.productId = Product.productId " +
+            "INNER JOIN ProductCategory ON Product.productCategoryId = ProductCategory.productCategoryId " +
+            "GROUP BY ProductCategory.categoryName";
+    
+    
     //for order dao
     
     public static final String INSERT_ORDER_QUERY = "INSERT INTO Orders (orderDate, userId, totalAmount, orderStatus) VALUES (?, ?, ?, ?)";
@@ -128,6 +139,7 @@ public class QueryUtils {
     
     public static final String UPDATE_ORDER_STATUS = "UPDATE Orders SET orderStatus = ? WHERE orderId = ?";
     
+    public static final String GET_COUNT_ORDER_STATUS = "SELECT orderStatus, COUNT(*) AS count FROM Orders GROUP BY orderStatus";
     
     
     
