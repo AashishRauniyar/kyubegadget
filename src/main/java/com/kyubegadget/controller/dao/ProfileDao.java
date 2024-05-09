@@ -76,9 +76,7 @@ public class ProfileDao {
 	    
 	    
 	    
-	 // Get user's order history from the database
 	 
-	    
 	    
 	    
 }

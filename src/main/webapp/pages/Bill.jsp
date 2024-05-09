@@ -297,15 +297,16 @@ if (cartList != null) {
 <link
 	href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
 	rel="stylesheet">
+	
 </head>
 <body class="bg-gray-100">
 	<div class="bg-white rounded-lg shadow-lg px-8 py-10 max-w-xl mx-auto">
 		<div class="flex items-center justify-between mb-8">
 			<div class="flex items-center">
 				<img class="h-8 w-8 mr-2"
-					src="https://tailwindflex.com/public/images/logos/favicon-32x32.png"
+					src="../assets/logo.jpg"
 					alt="Logo" />
-				<div class="text-gray-700 font-semibold text-lg">Kyube</div>
+				<div class="text-gray-700 font-semibold text-lg">Kyube Gadgets</div>
 			</div>
 			<div class="text-gray-700">
 				<div class="font-bold text-xl mb-2">INVOICE</div>
@@ -381,7 +382,7 @@ if (cartList != null) {
 		<div class="button-container flex justify-end">
 			<button onclick="cancel()"
 				class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-4">
-				Cancel</button>
+				Go to home</button>
 
 			<button onclick="saveBill()"
 				class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
@@ -436,6 +437,7 @@ if (cartList != null) {
 
         // Remove the link element from the document body
         document.body.removeChild(link);
+        window.location.href = "<%=request.getContextPath()%>/pages/clearCart.jsp";
     }
 
 </script>

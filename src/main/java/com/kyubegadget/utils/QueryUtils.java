@@ -12,15 +12,6 @@ public class QueryUtils {
 			+ "VALUES" + "(?,?)";
 	
 	
-	// to fetch admin data
-	
-	
-
-
-	
-	
-
-	
 	
 	// profile update 
 	public static final String UPDATE_USER_DETAILS = "UPDATE Users SET firstName = ?, lastName = ?, email = ?, "

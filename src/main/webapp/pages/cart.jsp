@@ -202,7 +202,7 @@ System.out.println("Total Price: " + totalPriceWithTax);
         			</p>
                 </div>
             </div>
-            <a href="<%=request.getContextPath() + StringUtils.WELCOME_PAGE%>"
+            <a href="<%=request.getContextPath() + StringUtils.HOME_PAGE%>"
                 class="mt-6 w-full rounded-md bg-blue-500 py-2 font-medium text-blue-50 hover:bg-blue-600 block text-center">Continue
                 Shopping</a> <a href="<%=request.getContextPath()%>/CheckoutServlet"
                 class="mt-2 w-full rounded-md bg-green-500 py-2 font-medium text-green-50 hover:bg-green-600 block text-center">Proceed

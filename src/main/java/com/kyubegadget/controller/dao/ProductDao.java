@@ -214,21 +214,7 @@ public class ProductDao {
 	    return products;
 	}
 
-	/*
-	 * public double getProductPriceFromDatabase(int productId) { double price =
-	 * 0.0; try { // Prepare SQL query to retrieve price from the database based on
-	 * productId String query = "SELECT price FROM product WHERE productId = ?";
-	 * PreparedStatement statement = conn.prepareStatement(query);
-	 * statement.setInt(1, productId);
-	 * 
-	 * // Execute the query ResultSet resultSet = statement.executeQuery();
-	 * 
-	 * // Check if any result is returned if (resultSet.next()) { // Retrieve the
-	 * price from the result set price = resultSet.getDouble("price"); }
-	 * 
-	 * // Close the resources resultSet.close(); statement.close(); } catch
-	 * (SQLException e) { e.printStackTrace(); } return price; }
-	 */
+
 	
 	public double getProductPriceFromDatabase(int productId) {
 	    double price = 0.0;

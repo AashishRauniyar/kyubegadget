@@ -206,6 +206,9 @@
         .loginButton:hover {
             background-color: #dd6b20;
         }
+        .error{
+        	color:red;
+        }
 
     </style>
 </head>

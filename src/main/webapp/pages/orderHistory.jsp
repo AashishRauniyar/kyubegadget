@@ -80,7 +80,7 @@
     
     <div class="sales-container ">
     
-        <h2 class="text-center text-2xl">User Sales History</h2>
+        <h2 class="text-center text-2xl">User Order History</h2>
         <table class="sales-history-table">
             <thead>
                 <tr class="text-white">

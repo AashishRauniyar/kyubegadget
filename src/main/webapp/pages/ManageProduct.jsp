@@ -447,6 +447,42 @@ if (existingSessiony == null || existingSessiony.getAttribute("role") == null
                             </svg>
                         </button>
                     </div>
+                    
+                    
+                    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+            <th scope="col" class="p-4">
+                <div class="flex items-center">
+
+                </div>
+            </th>
+            <th scope="col" class="px-6 ">Category ID</th>
+            <th scope="col" class="px-6 ">Category Name</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <%
+            CategoryDao categoryDao = new CategoryDao();
+            List<ProductCategoryModel> categories = categoryDao.getAllCategories();
+            for (ProductCategoryModel category : categories) {
+        %>
+        <tr class="bg-white border-b hover:bg-gray-50">
+            <td class="w-4 p-4">
+                <div class="flex items-center">
+                    <!-- Any checkboxes or actions you want to include -->
+                </div>
+            </td>
+            <td class="px-6 "><%= category.getProductCategoryId() %></td>
+            <td class="px-6 "><%= category.getCategoryName() %></td>
+
+        </tr>
+        <%
+            }
+        %>
+        </tbody>
+    </table>
                     <!-- Form -->
                     <form id="addCategoryForm"
                         onsubmit="event.preventDefault(); addCategory();" class="mt-4">
