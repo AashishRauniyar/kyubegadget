@@ -192,24 +192,24 @@ body {
         <table class="profile-table">
             <tr>
                 <th scope="row">First Name</th>
-                <td><input type="text" name="firstName" value="<%= userModel != null ? userModel.getFirstName() : "" %>"></td>
+                <td><input required="" type="text" name="firstName" value="<%= userModel != null ? userModel.getFirstName() : "" %> "></td>
             </tr>
             <tr>
                 <th scope="row">Last Name</th>
-                <td><input type="text" name="lastName" value="<%= userModel != null ? userModel.getLastName() : "" %>"></td>
+                <td><input required="" type="text" name="lastName" value="<%= userModel != null ? userModel.getLastName() : "" %>"></td>
             </tr>
             <tr>
                 <th scope="row">Phone Number</th>
-                <td><input type="text" name="phoneNumber" value="<%= userModel != null ? userModel.getPhoneNumber() : "" %>"></td>
+                <td><input required="" type="text" name="phoneNumber" value="<%= userModel != null ? userModel.getPhoneNumber() : "" %>"></td>
             </tr>
             <tr>
                 <th scope="row">Email</th>
-                <td><input type="text" name="email" value="<%= userModel != null ? userModel.getEmail() : "" %>"></td>
+                <td><input required="" type="text" name="email" value="<%= userModel != null ? userModel.getEmail() : "" %>"></td>
             </tr>
             
             <tr>
                 <th scope="row">Address</th>
-                <td><input type="text" name="address" value="<%= userModel != null ? userModel.getAddress(): "" %>"></td>
+                <td><input required="" type="text" name="address" value="<%= userModel != null ? userModel.getAddress(): "" %>"></td>
             </tr>
             
             

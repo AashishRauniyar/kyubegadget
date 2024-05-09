@@ -1,3 +1,17 @@
+<%
+    // Retrieve the existing session variable
+    javax.servlet.http.HttpSession existingSession5 = request.getSession(false);
+
+    // Check if session exists and if the role is "admin"
+    if (existingSession5 == null || existingSession5.getAttribute("role") == null || !existingSession5.getAttribute("role").equals("admin")) {
+        // If not admin, redirect to index page
+        response.sendRedirect(request.getContextPath() +"/pages/home.jsp");
+    } else {
+        // Admin is authenticated, allow access to admin panel
+
+        
+
+        %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page
@@ -90,3 +104,6 @@
 	
 </body>
 </html>
+<%
+    }
+%>

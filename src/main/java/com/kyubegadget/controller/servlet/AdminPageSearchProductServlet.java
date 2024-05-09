@@ -41,7 +41,7 @@ public class AdminPageSearchProductServlet extends HttpServlet {
         }
 
         // Forward the request to the testManageProduct.jsp page
-        request.getRequestDispatcher("/pages/testManageProduct.jsp").forward(request, response);
+        request.getRequestDispatcher("/pages/ManageProduct.jsp").forward(request, response);
     }
 
     /**

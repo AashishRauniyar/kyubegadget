@@ -57,6 +57,16 @@
 <body>
     <div class="error-container">
         <h1>Error</h1>
+        <%
+    String errorMessage = request.getParameter("error");
+    if (errorMessage != null && !errorMessage.isEmpty()) {
+%>
+    <div style="color: #cc0000;" class="error-message ">
+        <%= errorMessage %>
+    </div>
+<%
+    }
+%>
         <p>An error occurred while processing your request.</p>
         <button class="btn" onclick="window.history.back()">Go Back</button>
     </div>

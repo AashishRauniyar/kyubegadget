@@ -34,7 +34,7 @@ public class EditProductServlet extends HttpServlet {
     	String productIdString = request.getParameter("productId");
         
         if(productIdString == null || productIdString.isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/pages/testManageProduct.jsp?error=productId is required");
+            response.sendRedirect(request.getContextPath() + "/pages/ManageProduct.jsp?error=productId is required");
             return;
         }
         
@@ -42,7 +42,7 @@ public class EditProductServlet extends HttpServlet {
         ProductModel product = productDao.getProductById(productId);
         
         if(product == null) {
-            response.sendRedirect(request.getContextPath() + "/pages/testManageProduct.jsp?error=Product not found");
+            response.sendRedirect(request.getContextPath() + "/pages/ManageProduct.jsp?error=Product not found");
             return;
         }
         

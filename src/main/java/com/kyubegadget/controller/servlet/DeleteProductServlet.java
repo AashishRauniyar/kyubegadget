@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kyubegadget.controller.dao.ProductDao;
+import com.kyubegadget.utils.StringUtils;
 
 /**
  * Servlet implementation class DeleteProductServlet
@@ -40,10 +41,13 @@ public class DeleteProductServlet extends HttpServlet {
                 boolean deleted = productDao.deleteProduct(productId);
                 if (deleted) {
                     // Product successfully deleted
-                    response.sendRedirect(request.getContextPath()+ "/pages/testManageProduct.jsp"); // Redirect to the product list page
+                    response.sendRedirect(request.getContextPath()+ "/pages/ManageProduct.jsp"); // Redirect to the product list page
                 } else {
                     // Error occurred while deleting product
-                    response.getWriter().println("Failed to delete product");
+					/* response.getWriter().println("Failed to delete product"); */
+                    String errorMessage = "Failed to delete product";
+                    response.sendRedirect(request.getContextPath() + StringUtils.ERROR_PAGE + "?error=" + errorMessage);
+                    
                 }
             } catch (NumberFormatException e) {
                 response.getWriter().println("Invalid product ID");

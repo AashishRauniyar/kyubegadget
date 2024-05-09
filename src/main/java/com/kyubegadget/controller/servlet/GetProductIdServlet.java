@@ -152,7 +152,7 @@ public class GetProductIdServlet extends HttpServlet {
             productId = Integer.parseInt(productIdString);
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/pages/testManageProduct.jsp?error=Invalid product ID");
+            response.sendRedirect(request.getContextPath() + "/pages/ManageProduct.jsp?error=Invalid product ID");
             return;
         }
 
@@ -177,7 +177,7 @@ public class GetProductIdServlet extends HttpServlet {
                 imageUrl = fileName; // Update imageUrl with the new file name
             } catch (IOException e) {
                 e.printStackTrace();
-                response.sendRedirect(request.getContextPath() + "/pages/testManageProduct.jsp?error=Failed to upload image");
+                response.sendRedirect(request.getContextPath() + "/pages/ManageProduct.jsp?error=Failed to upload image");
                 return;
             }
         }
@@ -190,9 +190,9 @@ public class GetProductIdServlet extends HttpServlet {
 
         // Redirect the user based on the result of the update operation
         if (result > 0) {
-            response.sendRedirect(request.getContextPath() + "/pages/testManageProduct.jsp?success=Product updated successfully");
+            response.sendRedirect(request.getContextPath() + "/pages/ManageProduct.jsp?success=Product updated successfully");
         } else {
-            response.sendRedirect(request.getContextPath() + "/pages/testManageProduct.jsp?error=Failed to update product");
+            response.sendRedirect(request.getContextPath() + "/pages/ManageProduct.jsp?error=Failed to update product");
         }
     }
 

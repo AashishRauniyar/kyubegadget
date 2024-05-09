@@ -11,7 +11,20 @@
 CategoryDao categoryDao = new CategoryDao();
 List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 %>
+<%
+    // Retrieve the existing session variable
+    javax.servlet.http.HttpSession existingSessionn = request.getSession(false);
 
+    // Check if session exists and if the role is "admin"
+    if (existingSessionn == null || existingSessionn.getAttribute("role") == null || !existingSessionn.getAttribute("role").equals("admin")) {
+        // If not admin, redirect to index page
+        response.sendRedirect(request.getContextPath() +"/pages/home.jsp");
+    } else {
+        // Admin is authenticated, allow access to admin panel
+
+        // Your HTML content for admin panel goes here
+
+        %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -99,4 +112,6 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 </script>
 </html>
 
-
+<%
+    }
+%>

@@ -15,19 +15,6 @@ public class DatabaseController {
         System.out.println("Connected to database");
         return DriverManager.getConnection(url, username, password);
     }
-
-
-    
-    
-    
-   
-    
-    
-    
-    
- 
- 	
- 	
- 	
+	
 
 }
