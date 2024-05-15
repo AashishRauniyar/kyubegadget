@@ -157,7 +157,7 @@ public class UserDao {
 	    }
 		
 
-		
+		// method to delete user by username
 	    public boolean deleteUserByUserName(String userName) {
 		    try (Connection conn = DatabaseController.getConn()) {
 		        String deleteQuery = QueryUtils.DELETE_USER;
@@ -177,6 +177,7 @@ public class UserDao {
 
 
 
+	    // method to get all users
 	    public List<UserModel> getAllUsers() {
 		    List<UserModel> users = new ArrayList<>();
 		    try (Connection conn = DatabaseController.getConn()) {
@@ -204,6 +205,8 @@ public class UserDao {
 		}
 	    
 	    
+	    
+	    // method to get user id from username
 	    public int getUserIdFromUserName(String userName) {
 	        try (Connection conn = DatabaseController.getConn()) {
 	            String query = QueryUtils.GET_USERID_BY_USERNAME;
@@ -223,7 +226,8 @@ public class UserDao {
 	        }
 	    }
 	    
-	    // to get username fomr serssion
+	    
+	    //Method to get user ID from session
 	    public int getUserIdFromSession(HttpSession session) {
 	        String userName = (String) session.getAttribute("userName");
 	        if (userName != null) {
@@ -235,11 +239,11 @@ public class UserDao {
 	        }
 	    }
 	    
-	    //user update by admin
+	    
 	    
 
 	      
-	        
+	  //user update by admin
 	        public int updateUserbyadmin(UserModel userModel) {
 	    		try (Connection conn = DatabaseController.getConn()) {
 	    			// Insert user data
@@ -269,9 +273,9 @@ public class UserDao {
 	    	}
 	        
 	        
-	        // show total users in dashboard
-
 	        
+
+	     //method to show total users in dashboard
 	        public static int getTotalUsers() throws SQLException, ClassNotFoundException {
 	            int totalUsers = 0;
 	            String sql = QueryUtils.COUNT_TOTAL_USERS; // Assuming 'users' is the table name
@@ -284,14 +288,16 @@ public class UserDao {
 	            }
 	            return totalUsers;
 	        }
+	        
+	        
 
-	        //working
+	        // method to get user's order history and show in profile page
 	        public List<OrderModel> getUserOrderHistory(String userName) {
 	            List<OrderModel> orderHistory = new ArrayList<>();
 	            try (Connection conn = DatabaseController.getConn()) {
 	                int userId = getUserIdFromUserName(userName);
 	                if (userId != -1) {
-	                    String query = "SELECT orderId, orderDate, totalAmount, orderStatus FROM Orders WHERE userId = ? ORDER BY orderDate DESC";
+	                    String query = QueryUtils.GET_USER_ORDER_HISTORY;
 	                    PreparedStatement statement = conn.prepareStatement(query);
 	                    statement.setInt(1, userId);
 	                    ResultSet resultSet = statement.executeQuery();
@@ -313,12 +319,14 @@ public class UserDao {
 	            return orderHistory;
 	        }
 	        
+	        
+	        // method to get user sales history
 	        public List<SalesModel> getUserOrderSalesHistory(String userName) {
 	            List<SalesModel> orderHistory = new ArrayList<>();
 	            try (Connection conn = DatabaseController.getConn()) {
 	                int userId = getUserIdFromUserName(userName);
 	                if (userId != -1) {
-	                    String query = "SELECT saleId, productId, userId, saleDate, quantity, unitPrice, totalPrice FROM sales WHERE userId = ? ORDER BY saleDate DESC";
+	                    String query = QueryUtils.GET_USER_SALES_HISTORY;
 	                    PreparedStatement statement = conn.prepareStatement(query);
 	                    statement.setInt(1, userId);
 	                    ResultSet resultSet = statement.executeQuery();
@@ -330,22 +338,23 @@ public class UserDao {
 	                                userId,
 	                                resultSet.getDate("saleDate").toLocalDate(), // Convert java.sql.Date to LocalDate
 	                                resultSet.getInt("quantity"),
-	                                resultSet.getDouble("unitPrice"), // Correct the column name
+	                                resultSet.getDouble("unitPrice"), 
 	                                resultSet.getDouble("totalPrice")
 	                        );
 	                        orderHistory.add(sales);
 	                    }
 	                }
 	            } catch (SQLException | ClassNotFoundException ex) {
-	                ex.printStackTrace(); // Log the exception for debugging
+	                ex.printStackTrace(); 
 	            }
 	            return orderHistory;
 	        }
 
 	        
 
+	        // method to get customer sex ratio to show in admin dashboard
 	        public int[] getMaleFemaleOthersCount() {
-	            int[] count = new int[3]; // Array to store male count at index 0, female count at index 1, and others count at index 2
+	            int[] count = new int[3]; 
 	            try (Connection conn = DatabaseController.getConn()) {
 	                String query = QueryUtils.GET_SEX_RATIO;
 	                try (PreparedStatement statement = conn.prepareStatement(query);

@@ -55,6 +55,8 @@
     </style>
 </head>
 <body>
+
+<!-- Error page to handle any error shown -->
     <div class="error-container">
         <h1>Error</h1>
         <%

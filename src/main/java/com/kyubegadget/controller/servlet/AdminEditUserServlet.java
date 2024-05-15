@@ -42,11 +42,11 @@ public class AdminEditUserServlet extends HttpServlet {
         userModel.setPhoneNumber(phoneNumber);
 
         UserDao userDao = new UserDao();
-        int rowsAffected = userDao.updateUserbyadmin(userModel); // Assuming you have a method updateUserByAdmin in your UserDao
+        int rowsAffected = userDao.updateUserbyadmin(userModel); //  method updateUserByAdmin from  UserDao
 
         // Redirect back to the page
         if (rowsAffected > 0) {
-            response.sendRedirect(request.getContextPath() + "/pages/UserList.jsp"); // Redirect to the admin panel or wherever appropriate
+            response.sendRedirect(request.getContextPath() + "/pages/UserList.jsp"); // Redirect to the userlist of admin panel
         } else {
             // Handle the case where update failed
             response.getWriter().println("Failed to update user. Please try again.");

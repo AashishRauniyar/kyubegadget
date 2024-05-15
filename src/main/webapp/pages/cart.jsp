@@ -1,6 +1,3 @@
-
- 
- 
 <%@page import="com.kyubegadget.controller.dao.ProductDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -141,11 +138,6 @@ System.out.println("Total Price: " + totalPriceWithTax);
                         <td class="px-4 py-2"><%=item.getProductBrand()%></td>
                         <td class="px-4 py-2">$<%=item.getPrice()%></td>
                         <td class="px-4 py-2">
-                            <%-- <form action="<%=request.getContextPath()%>/UpdateCartServlet" method="post">
-                                <input type="hidden" name="productId" value="<%=item.getProductId()%>">
-                                <input class="h-8 w-8 border bg-white text-center text-xs outline-none" type="number" name="quantity" value="<%=item.getStock()%>" min="1">
-                                <button type="submit">Update</button>
-                            </form> --%>
                             
                             <form id="updateCartForm_<%=item.getProductId()%>" action="<%=request.getContextPath()%>/UpdateCartServlet" method="post">
                                 <input type="hidden" name="productId" value="<%=item.getProductId()%>">

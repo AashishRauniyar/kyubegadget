@@ -17,6 +17,9 @@ import com.kyubegadget.utils.QueryUtils;
 
 public class ProfileDao {
 
+	
+	
+	// method to update the user profile
 	 public int updateUserProfile(UserModel userModel) {
 	        try (Connection conn = DatabaseController.getConn()) {
 	            // Update data in the users table

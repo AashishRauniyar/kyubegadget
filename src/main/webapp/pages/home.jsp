@@ -77,7 +77,7 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
                 <p>
                     <span class="text-lg font-bold text-slate-900">$
 			                    <%=product.getPrice()%></span>
-                    <%-- Add the discounted price here if available --%>
+                   
                     
                 </p>
             </div>
@@ -129,6 +129,8 @@ List<ProductModel> products = allProducts.subList(0, Math.min(allProducts.size()
 
 </body>
 <script>
+
+// js for image slider
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');

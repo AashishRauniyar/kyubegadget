@@ -33,6 +33,8 @@ public class AdminPageSearchProductServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	
+    	// get query from response parameter
         String query = request.getParameter("query");
 
         if (query != null && !query.isEmpty()) {

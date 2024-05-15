@@ -11,9 +11,10 @@
         response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
     } else {
         UserDao userDao = new UserDao();
+        //get user order sales history from database 
         List<SalesModel> salesHistory = userDao.getUserOrderSalesHistory(username);
 
-        // Display sales history
+        
 %>
 
 <!DOCTYPE html>

@@ -13,8 +13,6 @@ public class ProductCategoryModel {
 		
 	}
 	
-	
-	
 
 
 	public ProductCategoryModel() {

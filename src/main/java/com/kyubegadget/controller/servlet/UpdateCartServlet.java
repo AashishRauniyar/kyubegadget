@@ -38,6 +38,9 @@ public class UpdateCartServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	
+	
+	// this method is created to increase the quantity of items in the cart page
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
@@ -46,7 +49,7 @@ public class UpdateCartServlet extends HttpServlet {
 
             HttpSession session = request.getSession();
             ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
-
+            
             if (cartList != null) {
                 for (Cart item : cartList) {
                     if (item.getProductId() == productId) {

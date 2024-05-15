@@ -39,13 +39,7 @@
 			<thead
 				class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 				<tr>
-					<!-- <th scope="col" class="p-4">
-						<div class="flex items-center">
-							<input id="checkbox-all-search" type="checkbox"
-								class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-							<label for="checkbox-all-search" class="sr-only">checkbox</label>
-						</div>
-					</th> -->
+					
 					<th scope="col" class="px-3 py-3">User ID</th>
 					<th scope="col" class="px-3 py-3">User Name</th>
 					<th scope="col" class="px-3 py-3">First Name</th>
@@ -65,15 +59,7 @@
 				for (UserModel user : users) {
 				%>
 				<tr class="bg-white border-b hover:bg-gray-50">
-					<%-- <td class="w-4 p-4">
-						<div class="flex items-center">
-							<input id="checkbox-table-search-<%=user.getUserId()%>"
-								type="checkbox"
-								class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500">
-							<label for="checkbox-table-search-<%=user.getUserId()%>"
-								class="sr-only">checkbox</label>
-						</div>
-					</td> --%>
+					
 					<td class="px-3 py-4"><%=user.getUserId()%></td>
 					<td class="px-3 py-4"><%=user.getUserName()%></td>
 					<td class="px-3 py-4"><input type="text" name="firstName"

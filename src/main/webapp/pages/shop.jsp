@@ -16,12 +16,7 @@
 
     // Convert the categoryIdString to an int
     int categoryId = 0; // default value in case of conversion failure
-    /* try {
-        categoryId = Integer.parseInt(categoryIdString);
-    } catch (NumberFormatException e) {
-        // Handle the exception if categoryIdString cannot be parsed to an int
-        e.printStackTrace(); // Or log the error
-    } */
+    
 	
     try {
     if (categoryIdString != null) { // Check if categoryIdString is not null
@@ -371,5 +366,5 @@ function topFunction() {
 <%@ include file="footer.jsp" %>
 
 </body>
-<!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
 </html>

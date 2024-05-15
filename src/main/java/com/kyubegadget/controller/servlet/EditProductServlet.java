@@ -30,7 +30,7 @@ public class EditProductServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        // to get productId when clicked edit from product management page
     	String productIdString = request.getParameter("productId");
         
         if(productIdString == null || productIdString.isEmpty()) {

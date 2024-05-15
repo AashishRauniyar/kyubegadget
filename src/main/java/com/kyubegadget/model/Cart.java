@@ -7,7 +7,6 @@ public class Cart extends ProductModel {
 	
 	public Cart() {}
 
-	
 
 	public int getStock() {
 		return stock;

@@ -45,30 +45,24 @@ public class AddCategoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
+		// getting category name
 		String categoryName = request.getParameter("categoryName");
 		
-		
-	
 		ProductCategoryModel productCategoryModel = new ProductCategoryModel( categoryName);
 		
 		int result = categoryDao.addCategory(productCategoryModel);
 		
 		if(result>0) {
-
-			
 			 List<ProductCategoryModel> categories = categoryDao.getAllCategories() ;
 
 		        // Set the categories as an attribute in the request scope
 			 request.setAttribute("categories", categories);
 
 		        // Redirect to the JSP with success message
-		    //yo kaam xa hai
 			 
 			response.sendRedirect(request.getContextPath() + "/pages/productCategory.jsp" + "?"
                     + StringUtils.ERROR_MESSAGE + "=" + StringUtils.SUCCESS_ADD_CATEGORY);
 
-			
 			
 		}else {
 	        // Redirect to register page with error message

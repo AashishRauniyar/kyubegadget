@@ -59,7 +59,7 @@
     </div>
     <div class="options">
         <ul>
-        	
+        	<!-- Side bar for profile page -->
             <li><a href="./profile.jsp" id="edit-profile">Edit Profile</a></li>
             <li><a href="./orderHistory.jsp">Purchase History</a></li>
             <li><a href="./logout.jsp">Logout</a></li>

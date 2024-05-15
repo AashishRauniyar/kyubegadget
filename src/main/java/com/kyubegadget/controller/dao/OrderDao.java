@@ -18,7 +18,7 @@ import com.kyubegadget.utils.QueryUtils;
 public class OrderDao {
 
 	
-	
+	// method to save order into database
 	public int saveOrderToDatabase(OrderModel order) {
         try (Connection conn = DatabaseController.getConn()) {
             String query = QueryUtils.INSERT_ORDER_QUERY;
@@ -43,6 +43,8 @@ public class OrderDao {
     }
 	
 	
+	
+	// method to get all the orders from database
 	public List<OrderModel> getAllOrders() {
 	    List<OrderModel> orderList = new ArrayList<>();
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -65,7 +67,7 @@ public class OrderDao {
 	}
 	
 	
-	
+	// method to update order status in admin page
 	 public boolean updateOrderStatus(int orderId, String newStatus) {
 	        boolean updated = false;
 	        // SQL query to update the order status
@@ -87,7 +89,7 @@ public class OrderDao {
 	        return updated;
 	    }
 	 
-	 
+	 // method to get order status distribution to show in admin dashboard
 	 public Map<String, Integer> getOrderStatusDistribution() {
 		    Map<String, Integer> statusDistribution = new HashMap<>();
 		    String query = QueryUtils.GET_COUNT_ORDER_STATUS;

@@ -13,10 +13,7 @@
             box-sizing: border-box;
         }
 
-        body {
-            
-            /* background: linear-gradient(#ffdad5, #fff7f9); */
-        }
+        
 
         .contact-container {
             height: 100vh;

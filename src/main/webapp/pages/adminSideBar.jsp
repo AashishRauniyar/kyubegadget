@@ -9,7 +9,7 @@
     } else {
         // Admin is authenticated, allow access to admin panel
 
-        // Your HTML content for admin panel goes here
+        
 
         %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

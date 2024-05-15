@@ -83,7 +83,6 @@ public class AddProductServlet extends HttpServlet {
 	    if (stockParam != null && !stockParam.isEmpty()) {
 	        stock = Integer.parseInt(stockParam);
 	    }
-
 	    // Create the product model
 	    ProductModel productModel = new ProductModel(productName, productBrand, price, productDescription, part.getSubmittedFileName(), productCategoryId, stock);
 
@@ -105,7 +104,7 @@ public class AddProductServlet extends HttpServlet {
 	    InputStream inputStream = part.getInputStream();
 
 	    // Specify the path for the destination file
-	    String fileName = part.getSubmittedFileName(); // Or part.getSubmittedFileName() if you want to use the original file name
+	    String fileName = part.getSubmittedFileName(); 
 	    String filePath = uploadPath + fileName;
 
 	    // Create an output stream to write the uploaded file
@@ -122,7 +121,7 @@ public class AddProductServlet extends HttpServlet {
 	    inputStream.close();
 	    outputStream.close();
 
-	    // Optionally, you can delete the temporary file
+	    //  you can delete the temporary file
 	    part.delete();
 
 	    

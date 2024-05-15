@@ -25,7 +25,7 @@ public class UserModel {
 	}
 
 
-
+	// constructor
 	public UserModel(String userName, String firstName, String lastName, String email, String phoneNumber,
 			String password, LocalDate dob, String gender, String address) {
 		super();
@@ -48,7 +48,7 @@ public class UserModel {
 	
 
 
-
+	// another constructor
 	public UserModel( String userName, String firstName, String lastName, String email, String phoneNumber,
 			String password, LocalDate dob, String gender, String address, String userType) {
 		super();
@@ -64,7 +64,7 @@ public class UserModel {
 		this.userType = userType;
 	}
 
-	
+	//getter and setters
 	public int getUserId() {
 		return userId;
 	}

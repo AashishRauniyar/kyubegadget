@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- <link href="../styles/output.css" rel="stylesheet">  -->
     <link href="<%= request.getContextPath() %>/styles/output.css" rel="stylesheet"> 
 </head>
 <body>
+<!-- using navigation bar -->
 <%@ include file="navigationbar.jsp"%>
 
         <div class="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
@@ -51,7 +51,7 @@
                             <p class="font-medium text-xl leading-5 text-gray-800 dark:text-white mt-4">Rahul</p>
                         </div>
                         <div class="p-4 pb-6 flex justify-center flex-col items-center">
-                            <img  src="<%= request.getContextPath() %>/assets/" alt="Yogeen Adhikari" />
+                            <img  src="<%= request.getContextPath() %>/assets/yougeen.jpg" alt="Yogeen Adhikari" />
                             
                             <p class="font-medium text-xl leading-5 text-gray-800 dark:text-white mt-4">Yogeen</p>
                         </div>

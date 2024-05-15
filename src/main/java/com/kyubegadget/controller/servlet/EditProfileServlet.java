@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kyubegadget.controller.dao.ProfileDao;
+import com.kyubegadget.controller.dao.UserDao;
 import com.kyubegadget.model.UserModel;
 import com.kyubegadget.utils.StringUtils;
 
@@ -28,12 +29,14 @@ public class EditProfileServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+	   
 	}
 	
 	

@@ -22,7 +22,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
     } else {
         // Admin is authenticated, allow access to admin panel
 
-        // Your HTML content for admin panel goes here
+        
 
         %>
 <!DOCTYPE html>
@@ -72,7 +72,6 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 							}
 							%>
 							
-
 						</select>
 
 					</div>

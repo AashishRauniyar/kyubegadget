@@ -16,6 +16,8 @@ import com.kyubegadget.utils.QueryUtils;
 
 public class SalesDao {
 
+	
+	// method to add sales into sales database
     public static void insertSaletoDatabase(int productId, int userId, LocalDate saleDate, int quantity, double unitPrice, double totalPrice) throws ClassNotFoundException {
         try (Connection conn = DatabaseController.getConn()) {
             String query = QueryUtils.INSERT_SALES_QUERY;
@@ -34,6 +36,7 @@ public class SalesDao {
         }
     }
 
+    // method to get number of sales to show in admin database
     public List<SalesModel> getAllSales() {
         List<SalesModel> salesList = new ArrayList<>();
         try (Connection conn = DatabaseController.getConn()) {
@@ -59,6 +62,8 @@ public class SalesDao {
         return salesList;
     }
     
+    
+    //method to show revenue according to sales of category
     public Map<String, Double> getRevenueByCategory() {
         Map<String, Double> revenueByCategory = new HashMap<>();
         String query = QueryUtils.GET_REVENUE_BY_CATEGORY;

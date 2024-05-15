@@ -43,8 +43,7 @@ public class DeleteProductServlet extends HttpServlet {
                     // Product successfully deleted
                     response.sendRedirect(request.getContextPath()+ "/pages/ManageProduct.jsp"); // Redirect to the product list page
                 } else {
-                    // Error occurred while deleting product
-					/* response.getWriter().println("Failed to delete product"); */
+                    
                     String errorMessage = "Failed to delete product";
                     response.sendRedirect(request.getContextPath() + StringUtils.ERROR_PAGE + "?error=" + errorMessage);
                     

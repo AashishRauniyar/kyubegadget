@@ -7,10 +7,10 @@
 </head>
 <body>
 
-
+<!-- log out page -->
 
 <%
-	
+	// invalding the session
     session.invalidate();
 %>
 

@@ -26,7 +26,6 @@ UserDao userDao = new UserDao();
     } else {
         // Admin is authenticated, allow access to admin panel
 
-        // Your HTML content for admin panel goes here
 
         // Calculate total sales and total earnings
         double totalEarnings = 0;
@@ -176,7 +175,7 @@ UserDao userDao = new UserDao();
 
 </body>
 <script>
-    // Prepare data for the chart
+    // java script code for creating bar graph
     var data = {
         labels: ["Total Users", "Total Products", "Total Categories"],
         datasets: [{
@@ -217,6 +216,7 @@ UserDao userDao = new UserDao();
 </script>
 
 <script>
+// js code for creating piechart to show customers sex ratio
         var maleCount = <%= maleFemaleOthersCount[0] %>;
         var femaleCount = <%= maleFemaleOthersCount[1] %>;
         var othersCount = <%= maleFemaleOthersCount[2] %>;
@@ -304,6 +304,8 @@ UserDao userDao = new UserDao();
 
 
 <script>
+
+// code to make a bargraph for sales of product by category
     // Get revenue by category data from the servlet/controller
     var revenueData = {
         <% 

@@ -86,12 +86,7 @@ public class LoginServlet extends HttpServlet {
 
         // Incorrect username or password or non-existing user
         request.setAttribute("errorMessage", "Incorrect username or password");
-//        RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath() +StringUtils.LOGIN_PAGE);
-//        dispatcher.forward(request, response);
-        
-        
-        // Redirect to login page for any other case
-        //response.sendRedirect(request.getContextPath() + StringUtils.LOGIN_PAGE);
+
         
         
      // Instead of using RequestDispatcher for invalid login attempt

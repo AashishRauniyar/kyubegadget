@@ -2,8 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
 <%@ page import="com.kyubegadget.model.ProductCategoryModel"%>
 <%@ page import="com.kyubegadget.controller.dao.CategoryDao"%>
 <%@ page import="com.kyubegadget.utils.StringUtils"%>
@@ -26,7 +24,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
     } else {
         // Admin is authenticated, allow access to admin panel
 
-        // Your HTML content for admin panel goes here
+        
 
         %>
 <!DOCTYPE html>
@@ -108,11 +106,7 @@ List<ProductCategoryModel> categories = categoryDao.getAllCategories();
 							class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
 							placeholder="2300" required="">
 					</div>
-					<!-- <div class="col-span-6 sm:col-span-3">
-                    <label for="image-url" class="text-sm font-medium text-gray-900 block mb-2">Image URL</label>
-                    <input type="text" name="imageUrl" id="image-url" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Image URL" required="">
-                </div> -->
-					<!-- yeta maile image add grna try grdaixu -->
+					
 					<div class="col-span-6 sm:col-span-3">
 						<label for="image-file"
 							class="text-sm font-medium text-gray-900 block mb-2">Image

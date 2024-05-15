@@ -6,12 +6,6 @@
     <title>cart clear</title>
 </head>
 <body>
-<%-- <%@ include file="navbar.jsp"%>
-    <h2>Are you sure you want to logout?</h2>
-    <form action="../LogoutServlet" method="GET">
-        <button type="submit">Logout</button>
-    </form>
-<%@ include file="footer.jsp"%> --%>
 
 
 <%

@@ -17,14 +17,6 @@
 	<div class="container mx-auto py-8">
 		<div
 			class="max-w-xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-			<%-- <% 
-                // Retrieve the product ID from the request parameter
-                String productId = request.getParameter("id");
-                // Fetch the product details using the ID
-                ProductDao productDao = new ProductDao();
-                ProductModel product = productDao.getProductById(productId);
-                if (product != null) { // Check if product exists
-            %> --%>
 
 			<%
 			// Retrieve the product ID from the request parameter

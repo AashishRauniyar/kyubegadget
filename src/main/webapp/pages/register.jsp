@@ -16,7 +16,6 @@
             
         }
 
-        
 
         .py-6 {
             padding-top: 1.5rem;
@@ -156,9 +155,6 @@
             border-radius: 5px;
         }
 
-        /* select#inputField.input-area {
-            width: 208px;
-        } */
 
         select#gender.input-area {
             width: 208px;
@@ -248,9 +244,7 @@
                                     <label for="address" class="label">Address</label>
                                     <span class="error" id="addressError"></span>
                                 </div>
-                                
-                                
-                                
+                                      
                                 <div class="input-group">
                                     <input type="text" id="userName" required class="input-area" name="userName">
                                     <label for="userName" class="label">Username</label>
@@ -394,9 +388,7 @@
 			// Gender validation
 			var gender = document.getElementById("gender").value;
 			if (gender.trim() === "") {
-				// Optional: display error message for gender if required
-				// Example: document.getElementById("genderError").innerText = "Please select your gender.";
-				// isValid = false;
+				
 			}
 
 			// Address validation
@@ -472,7 +464,7 @@
 	
 	
 	//for phone number
-			//phone number
+			
     $(document).ready(function() {
         $('#phoneNumber').blur(function() {
             var phoneNumber = $('#phoneNumber').val();

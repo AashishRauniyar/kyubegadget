@@ -28,11 +28,10 @@ public class QueryUtils {
 	
 	public static final String ADD_CATEGORY = "INSERT INTO productCategory (categoryName)  values (?)";
 	
-	//old
-//    public static final String GET_ALL_CATEGORIES = "SELECT categoryName from productCategory";
+
     
     
-    //new for categories
+    //for categories
     public static final String GET_ALL_CATEGORIES = "SELECT productCategoryId,categoryName from productCategory";
     public static final String GET_CATEGORY_NAME = "SELECT categoryName from productCategory where productCategoryId = ?";
     public static final String COUNT_ALL_CATEGORIES = "SELECT COUNT(*) FROM productcategory";
@@ -120,6 +119,10 @@ public class QueryUtils {
             "FROM Sales INNER JOIN Product ON Sales.productId = Product.productId " +
             "INNER JOIN ProductCategory ON Product.productCategoryId = ProductCategory.productCategoryId " +
             "GROUP BY ProductCategory.categoryName";
+    
+    
+    public static final String GET_USER_SALES_HISTORY = "SELECT saleId, productId, userId, saleDate, quantity, unitPrice, totalPrice FROM sales WHERE userId = ? ORDER BY saleDate DESC";
+    public static final String GET_USER_ORDER_HISTORY = "SELECT orderId, orderDate, totalAmount, orderStatus FROM Orders WHERE userId = ? ORDER BY orderDate DESC";
     
     
     //for order dao

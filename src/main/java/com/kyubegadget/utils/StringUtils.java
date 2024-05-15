@@ -79,16 +79,12 @@ public class StringUtils {
 	
 	
 	
-	// admin
+	// admin product page
 	
-	public static final String PRODUCT_LIST_PAGE = "/pages/testManageProduct.jsp";
+	public static final String PRODUCT_LIST_PAGE = "/pages/ManageProduct.jsp";
 
 	
 	
-	public static String generateUniqueFileName(Part part) {
-        String submittedFileName = part.getSubmittedFileName();
-        String extension = submittedFileName.substring(submittedFileName.lastIndexOf('.'));
-        String uniqueFileName = UUID.randomUUID().toString() + extension;
-        return uniqueFileName;
-    }
+	
+	
 }

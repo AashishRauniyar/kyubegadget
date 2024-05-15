@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.Part;
 
 import com.kyubegadget.controller.dbcontroller.DatabaseController;
 import com.kyubegadget.model.Cart;
@@ -71,7 +73,7 @@ public class ProductDao {
 	
 	
 
-	
+	// method to get product by product id
 	public ProductModel getProductById(int productId) {
 	    ProductModel product = null;
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -98,9 +100,9 @@ public class ProductDao {
 	}
 
 
-	// You can add other methods related to product CRUD operations here
+	
 
-	// search product
+	//method to search product by name 
 	public List<ProductModel> searchProductsByName(String productName) {
 		List<ProductModel> products = new ArrayList<>();
 		try (Connection conn = DatabaseController.getConn()) {
@@ -137,7 +139,7 @@ public class ProductDao {
 
 	
 	
-	
+	// method to get product and add in cart
 	public List<Cart> getCartProduct(ArrayList<Cart> cartList) {
 	    List<Cart> product = new ArrayList<>();
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -154,7 +156,6 @@ public class ProductDao {
 	                    cart.setProductId(resultSet.getInt("productId"));
 	                    cart.setProductName(resultSet.getString("productName"));
 	                    cart.setProductBrand(resultSet.getString("productBrand"));
-	                    // Fetch the price directly from the database without considering stock
 	                    cart.setPrice(resultSet.getDouble("price"));
 	                    cart.setImageUrl(resultSet.getString("imageUrl"));
 	                    cart.setStock(item.getStock());
@@ -187,7 +188,7 @@ public class ProductDao {
 	    }
 	}
 	
-	
+	// method to get product by category id
 	public List<ProductModel> getProductsByCategoryId(int categoryId) {
 	    List<ProductModel> products = new ArrayList<>();
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -215,7 +216,7 @@ public class ProductDao {
 	}
 
 
-	
+	// method to get price of product from database
 	public double getProductPriceFromDatabase(int productId) {
 	    double price = 0.0;
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -250,7 +251,6 @@ public class ProductDao {
 	
 	
 	// get products sorted by price
-	
 	public List<ProductModel> getAllProductsSortedByPrice() {
         List<ProductModel> products = new ArrayList<>();
         String sql = QueryUtils.GET_PRODUCT_SORTBY_PRICE;
@@ -278,7 +278,7 @@ public class ProductDao {
 	
 	
 	
-	
+	// method to update the product in admin page
 	public int updateProduct(ProductModel product) {
 		try (Connection conn = DatabaseController.getConn()) {
 			String addProductQuery = QueryUtils.UPDATE_PRODUCT;
@@ -304,6 +304,14 @@ public class ProductDao {
 			return -1; // or handle the exception as needed
 		}
 	}
+	
+	// to generate unique file name for image
+	public static String generateUniqueFileName(Part part) {
+        String submittedFileName = part.getSubmittedFileName();
+        String extension = submittedFileName.substring(submittedFileName.lastIndexOf('.'));
+        String uniqueFileName = UUID.randomUUID().toString() + extension;
+        return uniqueFileName;
+    }
 	
 
 

@@ -16,6 +16,7 @@ import com.kyubegadget.utils.QueryUtils;
 public class CategoryDao {
 
 	
+	//this method is used to add category 
 	public int addCategory(ProductCategoryModel productCategoryModel) {
 		try (Connection conn = DatabaseController.getConn()) {
             // Update data in the users table
@@ -37,7 +38,7 @@ public class CategoryDao {
     }
 	
 	
-	//get all categories
+	//get all categories from database
 	public List<ProductCategoryModel> getAllCategories() {
 	    List<ProductCategoryModel> categories = new ArrayList<>();
 	    try (Connection conn = DatabaseController.getConn()) {
@@ -62,6 +63,7 @@ public class CategoryDao {
 	    return categories;
 	}
 	
+	
 	// Method to retrieve category name by category ID
     public String getCategoryNameById(int categoryId) {
         String categoryName = null;
@@ -85,7 +87,7 @@ public class CategoryDao {
         return categoryName;
     }
 	
-    
+    // Method to get total categories and show in dashboard
     public static int getTotalCategories() throws SQLException, ClassNotFoundException {
         int totalCategories = 0;
         String sql = QueryUtils.COUNT_ALL_CATEGORIES; // Assuming 'product_categories' is the table name
@@ -98,7 +100,6 @@ public class CategoryDao {
         }
         return totalCategories;
     }
-    
     
 
 

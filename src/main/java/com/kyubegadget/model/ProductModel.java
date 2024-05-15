@@ -14,8 +14,6 @@ public class ProductModel {
     
     
     
-    
-    
     // constructor to add product as we dont have to add product id
 	public ProductModel( String productName, String productBrand, double price, String productDescription,
 			String imageUrl, int productCategoryId, int stock) {

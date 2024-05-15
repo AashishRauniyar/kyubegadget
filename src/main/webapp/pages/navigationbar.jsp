@@ -17,8 +17,6 @@ String currentPage = request.getRequestURI();
 <style>
   /* Add custom CSS for active link */
   .active-link {
-    
-    
     text-decoration: underline;
     
   }
@@ -32,7 +30,7 @@ String currentPage = request.getRequestURI();
           <div class="flex justify-between items-center h-16">
             <!-- Logo -->
             <div class="flex-shrink-0">
-              <a href="#" class="flex items-center">
+              <a href="<%=request.getContextPath()%>/pages/home.jsp" class="flex items-center">
                 <img class="h-8" src="https://p1.hiclipart.com/preview/175/373/242/chibi-kyuubi-illustration-of-naruto-fox-png-clipart.jpg" alt="GadgetSite">
                 <span class="ml-2 text-white font-semibold">Kyube Gadget</span>
               </a>

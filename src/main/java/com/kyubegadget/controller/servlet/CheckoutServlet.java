@@ -37,7 +37,8 @@ public class CheckoutServlet extends HttpServlet {
 		try {
 			HttpSession session = request.getSession();
 			int userId = ud.getUserIdFromSession(session);
-
+			
+			//create an arrary list 
 			ArrayList<Cart> cartList = (ArrayList<Cart>) session.getAttribute("cartList");
 
 			if (cartList == null || cartList.isEmpty()) {
@@ -58,7 +59,7 @@ public class CheckoutServlet extends HttpServlet {
 			for (Cart cartItem : cartList) {
 			    
 			    // Calculate total price
-				/* double totalPrice = totalAmount * cartItem.getStock(); */
+				
 				double totalPrice = cartItem.getPrice() * cartItem.getStock();
 
 			    // Convert java.util.Date to java.time.LocalDate
@@ -70,7 +71,7 @@ public class CheckoutServlet extends HttpServlet {
 
 
 			response.sendRedirect(request.getContextPath() + StringUtils.BILL_PAGE);
-//			session.removeAttribute("cartList"); // Remove cartList from session after successful checkout
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Internal Server Error");

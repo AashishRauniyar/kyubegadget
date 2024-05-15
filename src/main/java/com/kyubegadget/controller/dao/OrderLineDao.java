@@ -10,7 +10,7 @@ import com.kyubegadget.utils.QueryUtils;
 
 public class OrderLineDao {
 	
-	
+	// method to save into orderline
 	public void saveOrderLineToDatabase(OrderLineModel orderLine) {
         try (Connection conn = DatabaseController.getConn()) {
             String query = QueryUtils.INSERT_ORDERLINE_QUERY;
