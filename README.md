@@ -1,5 +1,5 @@
 #Gadget Shop E-commerce Website
-
+worked on collaboration with "https://github.com/khadka27" 
 Welcome to the Gadget Shop E-commerce Website project repository! This project is an e-commerce website for a gadget shop, developed using JSP, Servlets, Java, Tailwind CSS, and JavaScript. It includes essential features such as order processing, a shop page, profile management, and an admin page.
 Features
 
@@ -67,4 +67,4 @@ License
 This project is licensed under the MIT License. See the LICENSE file for details.
 Contact
 
-For any questions or feedback, please reach out to rauniyaaraashish@example.com.
+For any questions or feedback, please reach out to rauniyaaraashish@gmail.com.
