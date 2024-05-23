@@ -27,8 +27,8 @@ How to Run
 
     sh
 
-    git clone https://github.com/aashishrauniyar/gadget-shop-ecommerce.git
-    cd gadget-shop-ecommerce
+    git clone https://github.com/aashishrauniyar/kyubegadget.git
+    cd kyubegadget
 
     Start XAMPP
         Open XAMPP Control Panel.
